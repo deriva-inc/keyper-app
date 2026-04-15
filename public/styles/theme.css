@@ -132,6 +132,7 @@
   --color-disabled-amber: oklch(0.6731 0 0);
   --color-disabled-gun-metal: oklch(0.325 0 0);
   --color-text-on-disabled: oklch(0.5208 0 0);
+  --color-muted: oklch(0.8025 0 0);
   /* !SECTION: Koala */
   /* !SECTION: Feedback Colors */
   /* !SECTION: Colors */
@@ -153,6 +154,7 @@
 	--color-bg-base-selected-primary: var(--bg-base-selected-primary);
 	--color-bg-base-selected-secondary: var(--bg-base-selected-secondary);
 	--color-bg-disabled: var(--bg-disabled);
+	--color-bg-muted: var(--bg-muted);
 	/* !SECTION: LAYER 1: BASE */
 	
 	/* SECTION: LAYER 2: FLAT */
@@ -164,6 +166,7 @@
 	--color-text-secondary: var(--text-secondary);
 	--color-text-tertiary: var(--text-tertiary);
 	--color-text-disabled: var(--text-disabled);
+	--color-text-muted: var(--text-muted);
 	--color-text-accent-primary: var(--text-accent-primary);
 	--color-text-accent-secondary: var(--text-accent-secondary);
 	--color-text-success: var(--text-success);
@@ -230,6 +233,7 @@
 		--stroke-base-primary: var(--color-gun-metal-700);
 		--stroke-base-secondary: var(--color-gun-metal-600);
 		--bg-disabled: var(--color-disabled-amber);
+		--bg-muted: var(--color-muted);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -241,6 +245,7 @@
 		--text-secondary: var(--color-gun-metal-600);
 		--text-tertiary: var(--color-gun-metal-100);
 		--text-disabled: var(--color-text-on-disabled);
+		--text-muted: var(--color-gun-metal-900);
 		--text-success: var(--color-basil-amber);
 		--text-destructive: var(--color-tomato-amber);
 		--text-info: var(--color-blueberry-amber);
@@ -274,6 +279,7 @@
 		--stroke-base-primary: var(--color-amber-white-500);
 		--stroke-base-secondary: var(--color-amber-white-600);
 		--bg-disabled: var(--color-disabled-gun-metal);
+		--bg-muted: var(--color-muted);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -285,6 +291,7 @@
 		--text-secondary: var(--color-amber-white-600);
 		--text-tertiary: var(--color-amber-white-1100);
 		--text-disabled: var(--color-text-on-disabled);
+		--text-muted: var(--color-gun-metal-900);
 		--text-success: var(--color-basil-gun-metal-light);
 		--text-destructive: var(--color-tomato-gun-metal-light);
 		--text-info: var(--color-blueberry-gun-metal-light);

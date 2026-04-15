@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.11.0] - 2026-04-15
+---
+#### Added
+- Add Button Group component.
+
 ### [0.10.0] - 2026-04-15
 ---
 #### Added
