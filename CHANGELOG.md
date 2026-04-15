@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.9.0] - 2026-04-15
+---
+#### Added
+- Add logger utility for better management.
+
 ### [0.8.0] - 2026-04-15
 ---
 #### Added
