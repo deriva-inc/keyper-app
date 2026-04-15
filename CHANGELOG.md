@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.8.0] - 2026-04-15
+---
+#### Added
+- Add Spinner component.
+
 ### [0.7.0] - 2026-04-15
 ---
 #### Added
