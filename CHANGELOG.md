@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.10.0] - 2026-04-15
+---
+#### Added
+- Add Text component.
+
 ### [0.9.0] - 2026-04-15
 ---
 #### Added
