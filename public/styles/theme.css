@@ -220,6 +220,10 @@
 @layer base {
 	/* SECTION: THEME - AMBER WHITE */
 	:root {
+		/* SECTION: Dimensions */
+		--radius: 0.625rem;
+		/* !SECTION: Dimensions */
+
 		/* SECTION: LAYER 1: BASE */
 		--bg-base-primary: var(--color-amber-white-100);
 		--bg-base-secondary: var(--color-amber-white-300);
