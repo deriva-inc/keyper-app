@@ -1,0 +1,60 @@
+@layer base {
+  /* Text Styles */
+  h1 {
+    font-size: 31px;
+    font-family: 'Fraunces', serif;
+    color: var(--color-text-primary);
+  }
+
+  h2 {
+    font-size: 25px;
+    font-family: 'Fraunces', serif;
+    color: var(--color-text-primary);
+  }
+
+  h3 {
+    font-size: 20px;
+    font-family: 'Fraunces', serif;
+    color: var(--color-text-primary);
+  }
+
+  h4 {
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Fraunces', serif;
+    color: var(--color-text-primary);
+  }
+
+  h5 {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Fraunces', serif;
+    color: var(--color-text-primary);
+  }
+
+  h6 {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Fraunces', serif;
+    color: var(--color-text-primary);
+  }
+
+  p {
+    font-family: 'Satoshi', sans-serif;
+    color: var(--color-text-primary);
+  }
+
+  span {
+    color: var(--color-text-primary);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

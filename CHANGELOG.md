@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.5.0] - 2026-04-15
+---
+#### Added
+- Add Button component.
+
 ### [0.4.0] - 2026-04-14
 ---
 #### Added

@@ -1,0 +1,694 @@
+/* GLOBAL PALETTE */
+@theme {
+  /* SECTION: Variables */
+  /* SECTION: Colors */
+  /* SECTION: Accent Colors */
+  /* SECTION: Electric Violet */
+  --color-electric-violet-100: oklch(0.963 0.0193 302.21);
+  --color-electric-violet-200: oklch(0.8907 0.0562 301.22);
+  --color-electric-violet-300: oklch(0.8189 0.0956 300.04);
+  --color-electric-violet-400: oklch(0.7474 0.1344 298.96);
+  --color-electric-violet-500: oklch(0.6777 0.1726 297.5);
+  --color-electric-violet-600: oklch(0.6436 0.1922 296.58);
+  --color-electric-violet-700: oklch(0.5965 0.177 296.84);
+  --color-electric-violet-800: oklch(0.4977 0.144 297.26);
+  --color-electric-violet-900: oklch(0.3963 0.1087 297.27);
+  --color-electric-violet-1000: oklch(0.2849 0.0719 296.56);
+  --color-electric-violet-1100: oklch(0.162 0.0275 297.41);
+  /* !SECTION: Electric Violet */
+  
+  /* SECTION: Hot Pink */
+  --color-hot-pink-100: oklch(0.9656 0.0179 351.14);
+  --color-hot-pink-200: oklch(0.8976 0.0586 350.91);
+  --color-hot-pink-300: oklch(0.8335 0.0986 352.09);
+  --color-hot-pink-400: oklch(0.7732 0.1386 354.16);
+  --color-hot-pink-500: oklch(0.7195 0.1797 356.01);
+  --color-hot-pink-600: oklch(0.6958 0.197 357.35);
+  --color-hot-pink-700: oklch(0.6435 0.1802 357.35);
+  --color-hot-pink-800: oklch(0.5363 0.1483 356.85);
+  --color-hot-pink-900: oklch(0.4245 0.1124 357.09);
+  --color-hot-pink-1000: oklch(0.3017 0.0738 356.56);
+  --color-hot-pink-1100: oklch(0.3017 0.0738 356.56);
+  /* !SECTION: Hot Pink */
+  
+  /* SECTION: Acid Lime */
+  --color-acid-lime-100: oklch(0.9902 0.0225 114.93);
+  --color-acid-lime-200: oklch(0.9691 0.0642 116.06);
+  --color-acid-lime-300: oklch(0.9499 0.1049 116.33);
+  --color-acid-lime-400: oklch(0.9322 0.1418 116.96);
+  --color-acid-lime-500: oklch(0.9152 0.172 118.11);
+  --color-acid-lime-600: oklch(0.9086 0.185 118.66);
+  --color-acid-lime-700: oklch(0.8399 0.1704 118.55);
+  --color-acid-lime-800: oklch(0.6971 0.1399 118.7);
+  --color-acid-lime-900: oklch(0.5474 0.1072 118.39);
+  --color-acid-lime-1000: oklch(0.3829 0.0713 117.74);
+  --color-acid-lime-1100: oklch(0.2008 0.0295 117.79);
+  /* !SECTION: Acid Lime */
+
+  /* SECTION: Aqua Mint */
+  --color-aqua-mint-100: oklch(0.984 0.0136 174.18);
+  --color-aqua-mint-200: oklch(0.9555 0.0414 173.81);
+  --color-aqua-mint-300: oklch(0.9264 0.0673 172.59);
+  --color-aqua-mint-400: oklch(0.8986 0.0924 171.55);
+  --color-aqua-mint-500: oklch(0.8761 0.1153 170.28);
+  --color-aqua-mint-600: oklch(0.8644 0.1254 169.48);
+  --color-aqua-mint-700: oklch(0.7981 0.1149 169.43);
+  --color-aqua-mint-800: oklch(0.6636 0.0942 169.64);
+  --color-aqua-mint-900: oklch(0.5218 0.0724 170);
+  --color-aqua-mint-1000: oklch(0.3663 0.0479 170.32);
+  --color-aqua-mint-1100: oklch(0.1953 0.0202 172.63);
+  /* !SECTION: Aqua Mint */
+  /* !SECTION: Accent Colors */
+
+  /* SECTION: Surface Colors */
+  /* SECTION: Gun Metal */
+  --color-gun-metal-100: oklch(0.8766 0.0052 228.83);
+  --color-gun-metal-200: oklch(0.793 0.0099 222.08);
+  --color-gun-metal-300: oklch(0.6855 0.0146 226.66);
+  --color-gun-metal-400: oklch(0.5707 0.0207 232.78);
+  --color-gun-metal-500: oklch(0.4523 0.0266 229.7);
+  --color-gun-metal-600: oklch(0.3273 0.034 230.85);
+  --color-gun-metal-700: oklch(0.293 0.0296 229.4);
+  --color-gun-metal-800: oklch(0.2555 0.0244 234.06);
+  --color-gun-metal-900: oklch(0.2189 0.0197 232.69);
+  --color-gun-metal-1000: oklch(0.1801 0.0136 223.07);
+  --color-gun-metal-1100: oklch(0.1458 0.0083 227.73);
+  /* !SECTION: Gun Metal */
+
+  /* SECTION: Amber White */
+  --color-amber-white-100: oklch(0.9913 0.0013 286.38);
+  --color-amber-white-200: oklch(0.9854 0.0013 286.38);
+  --color-amber-white-300: oklch(0.9787 0.0017 247.84);
+  --color-amber-white-400: oklch(0.9719 0.0025 228.78);
+  --color-amber-white-500: oklch(0.964 0.0029 264.54);
+  --color-amber-white-600: oklch(0.9572 0.0034 247.86);
+  --color-amber-white-700: oklch(0.8349 0.0036 247.87);
+  --color-amber-white-800: oklch(0.7077 0.0027 228.8);
+  --color-amber-white-900: oklch(0.5756 0.002 247.86);
+  --color-amber-white-1000: oklch(0.4316 0.0016 286.33);
+  --color-amber-white-1100: oklch(0.3096 0.0018 286.3);
+  /* !SECTION: Amber White */
+  /* !SECTION: Surface Colors */
+
+  /* SECTION: Feedback Colors */
+  /* SECTION: Basil */
+  --color-basil-amber-light: oklch(0.6454 0.1347 142.31)#59A253;
+  --color-basil-amber: oklch(0.4914 0.1336 143.21);
+  --color-basil-amber-dark: oklch(0.3415 0.1162 142.5);
+  --color-basil-gun-metal-light: oklch(0.7736 0.1039 144.1);
+  --color-basil-gun-metal: oklch(0.6187 0.1035 144.2);
+  --color-basil-gun-metal-dark: oklch(0.4647 0.1035 144.68);
+  /* !SECTION: Basil */
+
+  /* SECTION: Tomato */
+  --color-tomato-amber-light: oklch(0.6656 0.2019 22.56);
+  --color-tomato-amber: oklch(0.5106 0.1997 21.42);
+  --color-tomato-amber-dark: oklch(0.3898 0.159163 27.6392);
+  --color-tomato-gun-metal-light: oklch(0.6976 0.1933 29.11);
+  --color-tomato-gun-metal: oklch(0.6373 0.2481 27.08);
+  --color-tomato-gun-metal-dark: oklch(0.5132 0.2106 29.23);
+  /* !SECTION: Tomato */
+
+  /* SECTION: Corn */
+  --color-corn-amber-light: oklch(0.8559 0.1406 80.59);
+  --color-corn-amber: oklch(0.7042 0.1341 80.03);
+  --color-corn-amber-dark: oklch(0.5492 0.1147 77.38);
+  
+  --color-corn-gun-metal-light: oklch(0.8798 0.1242 83.19);
+  --color-corn-gun-metal: oklch(0.779 0.1505 62.52);
+  --color-corn-gun-metal-dark: oklch(0.6232 0.1407 61.65);
+  /* !SECTION: Corn */
+
+  /* SECTION: Blueberry */
+  --color-blueberry-amber-light: oklch(0.6413 0.1555 262.33);
+  --color-blueberry-amber: oklch(0.4867 0.1602 255.4);
+  --color-blueberry-amber-dark: oklch(0.3562 0.1452 259.99);
+  --color-blueberry-gun-metal-light: oklch(0.7874 0.1107 252.43);
+  --color-blueberry-gun-metal: oklch(0.6327 0.1152 250.45);
+  --color-blueberry-gun-metal-dark: oklch(0.4774 0.1207 246);
+  /* !SECTION: Blueberry */
+
+  /* SECTION: Koala */
+  --color-disabled-amber: oklch(0.6731 0 0);
+  --color-disabled-gun-metal: oklch(0.325 0 0);
+  --color-text-on-disabled: oklch(0.5208 0 0);
+  /* !SECTION: Koala */
+  /* !SECTION: Feedback Colors */
+  /* !SECTION: Colors */
+
+  /* SECTION: Fonts */
+  --font-heading: 'Fraunces', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+  /* !SECTION: Fonts */
+  /* !SECTION: Variables */
+}
+
+/* SECTION: Semantic Mapping */
+@theme inline {
+	/* SECTION: LAYER 1: BASE */
+	--color-bg-base-primary: var(--bg-base-primary);
+	--color-bg-base-secondary: var(--bg-base-secondary);
+	--color-stroke-base-primary: var(--stroke-base-primary);
+	--color-stroke-base-secondary: var(--stroke-base-secondary);
+	--color-bg-base-selected-primary: var(--bg-base-selected-primary);
+	--color-bg-base-selected-secondary: var(--bg-base-selected-secondary);
+	--color-bg-disabled: var(--bg-disabled);
+	/* !SECTION: LAYER 1: BASE */
+	
+	/* SECTION: LAYER 2: FLAT */
+	--color-bg-flat-primary: var(--bg-flat-primary);
+	--color-bg-flat-secondary: var(--bg-flat-secondary);
+	--color-stroke-flat-primary: var(--stroke-flat-primary);
+	--color-stroke-flat-secondary: var(--stroke-flat-secondary);
+	--color-text-primary: var(--text-primary);
+	--color-text-secondary: var(--text-secondary);
+	--color-text-tertiary: var(--text-tertiary);
+	--color-text-disabled: var(--text-disabled);
+	--color-text-accent-primary: var(--text-accent-primary);
+	--color-text-accent-secondary: var(--text-accent-secondary);
+	--color-text-success: var(--text-success);
+	--color-text-destructive: var(--text-destructive);
+	--color-text-info: var(--text-info);
+	--color-text-warning: var(--text-warning);
+
+	/* SECTION: LAYER 2: MODAL */
+	--color-bg-modal-primary: var(--bg-modal-primary);
+	--color-bg-modal-secondary: var(--bg-modal-secondary);
+	--color-bg-success: var(--bg-success);
+	--color-bg-hover-success: var(--bg-hover-success);
+	--color-stroke-success: var(--stroke-success);
+	--color-bg-destructive: var(--bg-destructive);
+	--color-bg-hover-destructive: var(--bg-hover-destructive);
+	--color-stroke-destructive: var(--stroke-destructive);
+	--color-bg-info: var(--bg-info);
+	--color-bg-hover-info: var(--bg-hover-info);
+	--color-stroke-info: var(--stroke-info);
+	--color-bg-warning: var(--bg-warning);
+	--color-bg-hover-warning: var(--bg-hover-warning);
+	--color-stroke-warning: var(--stroke-warning);
+	/* !SECTION: LAYER 2: MODAL */
+	/* !SECTION: LAYER 2: FLAT */
+
+	/* SECTION: LAYER 3: ACTIVE */
+	--color-bg-active-primary: var(--bg-active-primary);
+	--color-bg-active-hover-primary: var(--bg-active-hover-primary);
+	--color-bg-active-secondary: var(--bg-active-secondary);
+	--color-bg-active-hover-secondary: var(--bg-active-hover-secondary);
+	--color-stroke-active-primary: var(--stroke-active-primary);
+	--color-stroke-active-secondary: var(--stroke-active-secondary);
+	--color-bg-fill-active-primary: var(--bg-fill-active-primary);
+	--color-bg-fill-active-secondary: var(--bg-fill-active-secondary);
+
+	/* SECTION: LAYER 3: CHARTS */
+	--color-chart-primary-1: var(--chart-primary-1);
+	--color-chart-primary-2: var(--chart-primary-2);
+	--color-chart-primary-3: var(--chart-primary-3);
+	--color-chart-primary-4: var(--chart-primary-4);
+	--color-chart-primary-5: var(--chart-primary-5);
+	--color-chart-secondary-1: var(--chart-secondary-1);
+	--color-chart-secondary-2: var(--chart-secondary-2);
+	--color-chart-secondary-3: var(--chart-secondary-3);
+	--color-chart-secondary-4: var(--chart-secondary-4);
+	--color-chart-secondary-5: var(--chart-secondary-5);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	/* !SECTION: LAYER 3: CHARTS */
+	/* !SECTION: LAYER 3: ACTIVE */
+}
+/* !SECTION: Semantic Mapping */
+
+@layer base {
+	/* SECTION: THEME - AMBER WHITE */
+	:root {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-primary: var(--color-amber-white-100);
+		--bg-base-secondary: var(--color-amber-white-300);
+		--stroke-base-primary: var(--color-gun-metal-700);
+		--stroke-base-secondary: var(--color-gun-metal-600);
+		--bg-disabled: var(--color-disabled-amber);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--bg-flat-primary: var(--color-amber-white-400);
+		--bg-flat-secondary: var(--color-amber-white-600);
+		--stroke-flat-primary: var(--color-gun-metal-400);
+		--stroke-flat-secondary: var(--color-gun-metal-200);
+		--text-primary: var(--color-gun-metal-1100);
+		--text-secondary: var(--color-gun-metal-600);
+		--text-tertiary: var(--color-gun-metal-100);
+		--text-disabled: var(--color-text-on-disabled);
+		--text-success: var(--color-basil-amber);
+		--text-destructive: var(--color-tomato-amber);
+		--text-info: var(--color-blueberry-amber);
+		--text-warning: var(--color-corn-amber);
+
+		/* SECTION: LAYER 2: MODAL */
+		--bg-modal-primary: var(--color-amber-white-700);
+		--bg-modal-secondary: var(--color-amber-white-800);
+		--bg-success: color-mix(in oklch, var(--color-basil-amber), transparent 60%);
+		--bg-hover-success: color-mix(in oklch, var(--color-basil-amber), transparent 80%);
+		--stroke-success: var(--color-basil-amber-dark);
+		--bg-destructive: color-mix(in oklch, var(--color-tomato-amber), transparent 60%);
+		--bg-hover-destructive: color-mix(in oklch, var(--color-tomato-amber), transparent 80%);
+		--stroke-destructive: var(--color-tomato-amber-dark);
+		--bg-info: color-mix(in oklch, var(--color-blueberry-amber), transparent 60%);
+		--bg-hover-info: color-mix(in oklch, var(--color-blueberry-amber), transparent 80%);
+		--stroke-info: var(--color-blueberry-amber-dark);
+		--bg-warning: color-mix(in oklch, var(--color-corn-amber), transparent 60%);
+		--bg-hover-warning: color-mix(in oklch, var(--color-corn-amber), transparent 80%);
+		--stroke-warning: var(--color-corn-amber-dark);
+		/* !SECTION: LAYER 2: MODAL */
+		/* !SECTION: LAYER 2: FLAT */
+	}
+	/* !SECTION: THEME - AMBER WHITE */
+
+	/* SECTION: THEME - GUN METAL */
+	.dark {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-primary: var(--color-gun-metal-1100);
+		--bg-base-secondary: var(--color-gun-metal-900);
+		--stroke-base-primary: var(--color-amber-white-500);
+		--stroke-base-secondary: var(--color-amber-white-600);
+		--bg-disabled: var(--color-disabled-gun-metal);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--bg-flat-primary: var(--color-gun-metal-800);
+		--bg-flat-secondary: var(--color-gun-metal-600);
+		--stroke-flat-primary: var(--color-amber-white-800);
+		--stroke-flat-secondary: var(--color-amber-white-1000);
+		--text-primary: var(--color-amber-white-100);
+		--text-secondary: var(--color-amber-white-600);
+		--text-tertiary: var(--color-amber-white-1100);
+		--text-disabled: var(--color-text-on-disabled);
+		--text-success: var(--color-basil-gun-metal-light);
+		--text-destructive: var(--color-tomato-gun-metal-light);
+		--text-info: var(--color-blueberry-gun-metal-light);
+		--text-warning: var(--color-corn-gun-metal-light);
+
+		/* SECTION: LAYER 2: MODAL */
+		--bg-modal-primary: var(--color-gun-metal-500);
+		--bg-modal-secondary: var(--color-gun-metal-400);
+		--bg-success: color-mix(in oklch, var(--color-basil-gun-metal), transparent 70%);
+		--bg-hover-success: color-mix(in oklch, var(--color-basil-gun-metal), transparent 85%);
+		--stroke-success: var(--color-basil-gun-metal-dark);
+		--bg-destructive: color-mix(in oklch, var(--color-tomato-gun-metal), transparent 70%);
+		--bg-hover-destructive: color-mix(in oklch, var(--color-tomato-gun-metal), transparent 85%);
+		--stroke-destructive: var(--color-tomato-gun-metal-dark);
+		--bg-info: color-mix(in oklch, var(--color-blueberry-gun-metal), transparent 70%);
+		--bg-hover-info: color-mix(in oklch, var(--color-blueberry-gun-metal), transparent 85%);
+		--stroke-info: var(--color-blueberry-gun-metal-dark);
+		--bg-warning: color-mix(in oklch, var(--color-corn-gun-metal), transparent 70%);
+		--bg-hover-warning: color-mix(in oklch, var(--color-corn-gun-metal), transparent 85%);
+		--stroke-warning: var(--color-corn-gun-metal-dark);
+		/* !SECTION: LAYER 2: MODAL */
+		/* !SECTION: LAYER 2: FLAT */
+	}
+	/* !SECTION: THEME - GUN METAL */
+
+	/* SECTION: Energies */
+	/* SECTION: ENERGY - VAPORWAVE (Electric Violet + Hot Pink) */
+	[data-energy="vaporwave"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-electric-violet-200);
+		--bg-base-selected-secondary: var(--color-hot-pink-200);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-electric-violet-600);
+		--text-accent-secondary: var(--color-hot-pink-600);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-electric-violet-600);
+		--bg-active-hover-primary: var(--color-electric-violet-400);
+		--bg-active-secondary: var(--color-hot-pink-600);
+		--bg-active-hover-secondary: var(--color-hot-pink-400);
+		--stroke-active-primary: var(--color-electric-violet-400);
+		--stroke-active-secondary: var(--color-hot-pink-400);
+		--bg-fill-active-primary: var(--color-electric-violet-100);
+		--bg-fill-active-secondary: var(--color-hot-pink-100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-electric-violet-400);
+		--chart-primary-2: var(--color-electric-violet-500);
+		--chart-primary-3: var(--color-electric-violet-600);
+		--chart-primary-4: var(--color-electric-violet-700);
+		--chart-primary-5: var(--color-electric-violet-800);
+		--chart-secondary-1: var(--color-hot-pink-400);
+		--chart-secondary-2: var(--color-hot-pink-500);
+		--chart-secondary-3: var(--color-hot-pink-600);
+		--chart-secondary-4: var(--color-hot-pink-700);
+		--chart-secondary-5: var(--color-hot-pink-800);
+		--chart-3: var(--color-acid-lime-600);
+		--chart-4: var(--color-aqua-mint-600);
+		/* !SECTION: LAYER 3: CHARTS */
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+
+	.dark[data-energy="vaporwave"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-electric-violet-1000);
+		--bg-base-selected-secondary: var(--color-hot-pink-1000);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-electric-violet-400);
+		--text-accent-secondary: var(--color-hot-pink-400);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-electric-violet-400);
+		--bg-active-hover-primary: var(--color-electric-violet-200);
+		--bg-active-secondary: var(--color-hot-pink-400);
+		--bg-active-hover-secondary: var(--color-hot-pink-200);
+		--stroke-active-primary: var(--color-electric-violet-200);
+		--stroke-active-secondary: var(--color-hot-pink-200);
+		--bg-fill-active-primary: var(--color-electric-violet-1100);
+		--bg-fill-active-secondary: var(--color-hot-pink-1100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-electric-violet-200);
+		--chart-primary-2: var(--color-electric-violet-300);
+		--chart-primary-3: var(--color-electric-violet-400);
+		--chart-primary-4: var(--color-electric-violet-500);
+		--chart-primary-5: var(--color-electric-violet-600);
+		--chart-secondary-1: var(--color-hot-pink-200);
+		--chart-secondary-2: var(--color-hot-pink-300);
+		--chart-secondary-3: var(--color-hot-pink-400);
+		--chart-secondary-4: var(--color-hot-pink-500);
+		--chart-secondary-5: var(--color-hot-pink-600);
+		--chart-3: var(--color-acid-lime-400);
+		--chart-4: var(--color-aqua-mint-400);
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+	/* !SECTION: ENERGY - VAPORWAVE (Electric Violet + Hot Pink) */
+
+	/* SECTION: ENERGY - ELECTRIC SHOCK (Electric Violet + Acid Lime) */
+	[data-energy="electric-shock"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-electric-violet-200);
+		--bg-base-selected-secondary: var(--color-acid-lime-200);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-electric-violet-600);
+		--text-accent-secondary: var(--color-acid-lime-600);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-electric-violet-600);
+		--bg-active-hover-primary: var(--color-electric-violet-400);
+		--bg-active-secondary: var(--color-acid-lime-600);
+		--bg-active-hover-secondary: var(--color-acid-lime-400);
+		--stroke-active-primary: var(--color-electric-violet-400);
+		--stroke-active-secondary: var(--color-acid-lime-400);
+		--bg-fill-active-primary: var(--color-electric-violet-100);
+		--bg-fill-active-secondary: var(--color-acid-lime-100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-electric-violet-400);
+		--chart-primary-2: var(--color-electric-violet-500);
+		--chart-primary-3: var(--color-electric-violet-600);
+		--chart-primary-4: var(--color-electric-violet-700);
+		--chart-primary-5: var(--color-electric-violet-800);
+		--chart-secondary-1: var(--color-acid-lime-400);
+		--chart-secondary-2: var(--color-acid-lime-500);
+		--chart-secondary-3: var(--color-acid-lime-600);
+		--chart-secondary-4: var(--color-acid-lime-700);
+		--chart-secondary-5: var(--color-acid-lime-800);
+		--chart-3: var(--color-hot-pink-600);
+		--chart-4: var(--color-aqua-mint-600);
+		/* !SECTION: LAYER 3: CHARTS */
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+
+	.dark[data-energy="electric-shock"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-electric-violet-1000);
+		--bg-base-selected-secondary: var(--color-acid-lime-1000);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-electric-violet-400);
+		--text-accent-secondary: var(--color-acid-lime-400);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-electric-violet-400);
+		--bg-active-hover-primary: var(--color-electric-violet-200);
+		--bg-active-secondary: var(--color-acid-lime-400);
+		--bg-active-hover-secondary: var(--color-acid-lime-200);
+		--stroke-active-primary: var(--color-electric-violet-200);
+		--stroke-active-secondary: var(--color-acid-lime-200);
+		--bg-fill-active-primary: var(--color-electric-violet-1100);
+		--bg-fill-active-secondary: var(--color-acid-lime-1100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-electric-violet-200);
+		--chart-primary-2: var(--color-electric-violet-300);
+		--chart-primary-3: var(--color-electric-violet-400);
+		--chart-primary-4: var(--color-electric-violet-500);
+		--chart-primary-5: var(--color-electric-violet-600);
+		--chart-secondary-1: var(--color-acid-lime-200);
+		--chart-secondary-2: var(--color-acid-lime-300);
+		--chart-secondary-3: var(--color-acid-lime-400);
+		--chart-secondary-4: var(--color-acid-lime-500);
+		--chart-secondary-5: var(--color-acid-lime-600);
+		--chart-3: var(--color-hot-pink-400);
+		--chart-4: var(--color-aqua-mint-400);
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+	/* !SECTION: ENERGY - ELECTRIC SHOCK (Electric Violet + Acid Lime) */
+
+	/* SECTION: ENERGY - CYBER MIST (Electric Violet + Aqua Mint) */
+	[data-energy="cyber-mist"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-electric-violet-200);
+		--bg-base-selected-secondary: var(--color-aqua-mint-200);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-electric-violet-600);
+		--text-accent-secondary: var(--color-aqua-mint-600);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-electric-violet-600);
+		--bg-active-hover-primary: var(--color-electric-violet-400);
+		--bg-active-secondary: var(--color-aqua-mint-600);
+		--bg-active-hover-secondary: var(--color-aqua-mint-400);
+		--stroke-active-primary: var(--color-electric-violet-400);
+		--stroke-active-secondary: var(--color-aqua-mint-400);
+		--bg-fill-active-primary: var(--color-electric-violet-100);
+		--bg-fill-active-secondary: var(--color-aqua-mint-100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-electric-violet-400);
+		--chart-primary-2: var(--color-electric-violet-500);
+		--chart-primary-3: var(--color-electric-violet-600);
+		--chart-primary-4: var(--color-electric-violet-700);
+		--chart-primary-5: var(--color-electric-violet-800);
+		--chart-secondary-1: var(--color-aqua-mint-400);
+		--chart-secondary-2: var(--color-aqua-mint-500);
+		--chart-secondary-3: var(--color-aqua-mint-600);
+		--chart-secondary-4: var(--color-aqua-mint-700);
+		--chart-secondary-5: var(--color-aqua-mint-800);
+		--chart-3: var(--color-hot-pink-600);
+		--chart-4: var(--color-acid-lime-600);
+		/* !SECTION: LAYER 3: CHARTS */
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+
+	.dark[data-energy="cyber-mist"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-electric-violet-1000);
+		--bg-base-selected-secondary: var(--color-aqua-mint-1000);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-electric-violet-400);
+		--text-accent-secondary: var(--color-aqua-mint-400);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-electric-violet-400);
+		--bg-active-hover-primary: var(--color-electric-violet-200);
+		--bg-active-secondary: var(--color-aqua-mint-400);
+		--bg-active-hover-secondary: var(--color-aqua-mint-200);
+		--stroke-active-primary: var(--color-electric-violet-200);
+		--stroke-active-secondary: var(--color-aqua-mint-200);
+		--bg-fill-active-primary: var(--color-electric-violet-1100);
+		--bg-fill-active-secondary: var(--color-aqua-mint-1100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-electric-violet-200);
+		--chart-primary-2: var(--color-electric-violet-300);
+		--chart-primary-3: var(--color-electric-violet-400);
+		--chart-primary-4: var(--color-electric-violet-500);
+		--chart-primary-5: var(--color-electric-violet-600);
+		--chart-secondary-1: var(--color-aqua-mint-200);
+		--chart-secondary-2: var(--color-aqua-mint-300);
+		--chart-secondary-3: var(--color-aqua-mint-400);
+		--chart-secondary-4: var(--color-aqua-mint-500);
+		--chart-secondary-5: var(--color-aqua-mint-600);
+		--chart-3: var(--color-hot-pink-400);
+		--chart-4: var(--color-acid-lime-400);
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+	/* !SECTION: ENERGY - CYBER MIST (Electric Violet + Aqua Mint) */
+
+	/* SECTION: ENERGY - SUMMER FRUIT (Hot Pink + Acid Lime) */
+	[data-energy="summer-fruit"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-hot-pink-200);
+		--bg-base-selected-secondary: var(--color-acid-lime-200);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-hot-pink-600);
+		--text-accent-secondary: var(--color-acid-lime-600);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-hot-pink-600);
+		--bg-active-hover-primary: var(--color-hot-pink-400);
+		--bg-active-secondary: var(--color-acid-lime-600);
+		--bg-active-hover-secondary: var(--color-acid-lime-400);
+		--stroke-active-primary: var(--color-hot-pink-400);
+		--stroke-active-secondary: var(--color-acid-lime-400);
+		--bg-fill-active-primary: var(--color-hot-pink-100);
+		--bg-fill-active-secondary: var(--color-acid-lime-100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-hot-pink-400);
+		--chart-primary-2: var(--color-hot-pink-500);
+		--chart-primary-3: var(--color-hot-pink-600);
+		--chart-primary-4: var(--color-hot-pink-700);
+		--chart-primary-5: var(--color-hot-pink-800);
+		--chart-secondary-1: var(--color-acid-lime-400);
+		--chart-secondary-2: var(--color-acid-lime-500);
+		--chart-secondary-3: var(--color-acid-lime-600);
+		--chart-secondary-4: var(--color-acid-lime-700);
+		--chart-secondary-5: var(--color-acid-lime-800);
+		--chart-3: var(--color-electric-violet-600);
+		--chart-4: var(--color-aqua-mint-600);
+		/* !SECTION: LAYER 3: CHARTS */
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+
+	.dark[data-energy="summer-fruit"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-hot-pink-1000);
+		--bg-base-selected-secondary: var(--color-acid-lime-1000);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-hot-pink-400);
+		--text-accent-secondary: var(--color-acid-lime-400);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-hot-pink-400);
+		--bg-active-hover-primary: var(--color-hot-pink-200);
+		--bg-active-secondary: var(--color-acid-lime-400);
+		--bg-active-hover-secondary: var(--color-acid-lime-200);
+		--stroke-active-primary: var(--color-hot-pink-200);
+		--stroke-active-secondary: var(--color-acid-lime-200);
+		--bg-fill-active-primary: var(--color-hot-pink-1100);
+		--bg-fill-active-secondary: var(--color-acid-lime-1100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-hot-pink-200);
+		--chart-primary-2: var(--color-hot-pink-300);
+		--chart-primary-3: var(--color-hot-pink-400);
+		--chart-primary-4: var(--color-hot-pink-500);
+		--chart-primary-5: var(--color-hot-pink-600);
+		--chart-secondary-1: var(--color-acid-lime-200);
+		--chart-secondary-2: var(--color-acid-lime-300);
+		--chart-secondary-3: var(--color-acid-lime-400);
+		--chart-secondary-4: var(--color-acid-lime-500);
+		--chart-secondary-5: var(--color-acid-lime-600);
+		--chart-3: var(--color-electric-violet-400);
+		--chart-4: var(--color-aqua-mint-400);
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+	/* !SECTION: ENERGY - SUMMER FRUIT (Hot Pink + Acid Lime) */
+
+	/* SECTION: ENERGY - BUBBLEGUM ICE (Hot Pink + Aqua Mint) */
+	[data-energy="bubblegum-ice"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-hot-pink-200);
+		--bg-base-selected-secondary: var(--color-aqua-mint-200);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-hot-pink-600);
+		--text-accent-secondary: var(--color-aqua-mint-600);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-hot-pink-600);
+		--bg-active-hover-primary: var(--color-hot-pink-400);
+		--bg-active-secondary: var(--color-aqua-mint-600);
+		--bg-active-hover-secondary: var(--color-aqua-mint-400);
+		--stroke-active-primary: var(--color-hot-pink-400);
+		--stroke-active-secondary: var(--color-aqua-mint-400);
+		--bg-fill-active-primary: var(--color-hot-pink-100);
+		--bg-fill-active-secondary: var(--color-aqua-mint-100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-hot-pink-400);
+		--chart-primary-2: var(--color-hot-pink-500);
+		--chart-primary-3: var(--color-hot-pink-600);
+		--chart-primary-4: var(--color-hot-pink-700);
+		--chart-primary-5: var(--color-hot-pink-800);
+		--chart-secondary-1: var(--color-aqua-mint-400);
+		--chart-secondary-2: var(--color-aqua-mint-500);
+		--chart-secondary-3: var(--color-aqua-mint-600);
+		--chart-secondary-4: var(--color-aqua-mint-700);
+		--chart-secondary-5: var(--color-aqua-mint-800);
+		--chart-3: var(--color-electric-violet-600);
+		--chart-4: var(--color-acid-lime-600);
+		/* !SECTION: LAYER 3: CHARTS */
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+
+	.dark[data-energy="bubblegum-ice"] {
+		/* SECTION: LAYER 1: BASE */
+		--bg-base-selected-primary: var(--color-hot-pink-1000);
+		--bg-base-selected-secondary: var(--color-aqua-mint-1000);
+		/* !SECTION: LAYER 1: BASE */
+
+		/* SECTION: LAYER 2: FLAT */
+		--text-accent-primary: var(--color-hot-pink-400);
+		--text-accent-secondary: var(--color-aqua-mint-400);
+		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-hot-pink-400);
+		--bg-active-hover-primary: var(--color-hot-pink-200);
+		--bg-active-secondary: var(--color-aqua-mint-400);
+		--bg-active-hover-secondary: var(--color-aqua-mint-200);
+		--stroke-active-primary: var(--color-hot-pink-200);
+		--stroke-active-secondary: var(--color-aqua-mint-200);
+		--bg-fill-active-primary: var(--color-hot-pink-1100);
+		--bg-fill-active-secondary: var(--color-aqua-mint-1100);
+
+		/* SECTION: LAYER 3: CHARTS */
+		--chart-primary-1: var(--color-hot-pink-200);
+		--chart-primary-2: var(--color-hot-pink-300);
+		--chart-primary-3: var(--color-hot-pink-400);
+		--chart-primary-4: var(--color-hot-pink-500);
+		--chart-primary-5: var(--color-hot-pink-600);
+		--chart-secondary-1: var(--color-aqua-mint-200);
+		--chart-secondary-2: var(--color-aqua-mint-300);
+		--chart-secondary-3: var(--color-aqua-mint-400);
+		--chart-secondary-4: var(--color-aqua-mint-500);
+		--chart-secondary-5: var(--color-aqua-mint-600);
+		--chart-3: var(--color-electric-violet-400);
+		--chart-4: var(--color-acid-lime-400);
+		/* !SECTION: LAYER 3: ACTIVE */
+	}
+	/* !SECTION: ENERGY - BUBBLEGUM ICE (Hot Pink + Aqua Mint) */
+}
