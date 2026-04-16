@@ -178,15 +178,19 @@
 	--color-bg-modal-primary: var(--bg-modal-primary);
 	--color-bg-modal-secondary: var(--bg-modal-secondary);
 	--color-bg-success: var(--bg-success);
+	--color-bg-fill-success: var(--bg-fill-success);
 	--color-bg-hover-success: var(--bg-hover-success);
 	--color-stroke-success: var(--stroke-success);
 	--color-bg-destructive: var(--bg-destructive);
+	--color-bg-fill-destructive: var(--bg-fill-destructive);
 	--color-bg-hover-destructive: var(--bg-hover-destructive);
 	--color-stroke-destructive: var(--stroke-destructive);
 	--color-bg-info: var(--bg-info);
+	--color-bg-fill-info: var(--bg-fill-info);
 	--color-bg-hover-info: var(--bg-hover-info);
 	--color-stroke-info: var(--stroke-info);
 	--color-bg-warning: var(--bg-warning);
+	--color-bg-fill-warning: var(--bg-fill-warning);
 	--color-bg-hover-warning: var(--bg-hover-warning);
 	--color-stroke-warning: var(--stroke-warning);
 	/* !SECTION: LAYER 2: MODAL */
@@ -195,12 +199,12 @@
 	/* SECTION: LAYER 3: ACTIVE */
 	--color-bg-active-primary: var(--bg-active-primary);
 	--color-bg-active-hover-primary: var(--bg-active-hover-primary);
+	--color-bg-fill-active-primary: var(--bg-fill-active-primary);
+	--color-stroke-active-primary: var(--stroke-active-primary);
 	--color-bg-active-secondary: var(--bg-active-secondary);
 	--color-bg-active-hover-secondary: var(--bg-active-hover-secondary);
-	--color-stroke-active-primary: var(--stroke-active-primary);
-	--color-stroke-active-secondary: var(--stroke-active-secondary);
-	--color-bg-fill-active-primary: var(--bg-fill-active-primary);
 	--color-bg-fill-active-secondary: var(--bg-fill-active-secondary);
+	--color-stroke-active-secondary: var(--stroke-active-secondary);
 
 	/* SECTION: LAYER 3: CHARTS */
 	--color-chart-primary-1: var(--chart-primary-1);
@@ -225,6 +229,13 @@
 	:root {
 		/* SECTION: Dimensions */
 		--radius: 0.625rem;
+		--radius-sm: calc(var(--radius) * 0.6);
+		--radius-md: calc(var(--radius) * 0.8);
+		--radius-lg: var(--radius);
+		--radius-xl: calc(var(--radius) * 1.4);
+		--radius-2xl: calc(var(--radius) * 1.8);
+		--radius-3xl: calc(var(--radius) * 2.2);
+		--radius-4xl: calc(var(--radius) * 2.6);
 		/* !SECTION: Dimensions */
 
 		/* SECTION: LAYER 1: BASE */
@@ -254,16 +265,20 @@
 		/* SECTION: LAYER 2: MODAL */
 		--bg-modal-primary: var(--color-amber-white-700);
 		--bg-modal-secondary: var(--color-amber-white-800);
-		--bg-success: color-mix(in oklch, var(--color-basil-amber), transparent 60%);
+		--bg-success: var(--color-basil-amber);
+		--bg-fill-success: color-mix(in oklch, var(--color-basil-amber), transparent 60%);
 		--bg-hover-success: color-mix(in oklch, var(--color-basil-amber), transparent 80%);
 		--stroke-success: var(--color-basil-amber-dark);
-		--bg-destructive: color-mix(in oklch, var(--color-tomato-amber), transparent 60%);
+		--bg-destructive: var(--color-tomato-amber);
+		--bg-fill-destructive: color-mix(in oklch, var(--color-tomato-amber), transparent 60%);
 		--bg-hover-destructive: color-mix(in oklch, var(--color-tomato-amber), transparent 80%);
 		--stroke-destructive: var(--color-tomato-amber-dark);
+		--bg-info: var(--color-blueberry-amber);
 		--bg-info: color-mix(in oklch, var(--color-blueberry-amber), transparent 60%);
 		--bg-hover-info: color-mix(in oklch, var(--color-blueberry-amber), transparent 80%);
 		--stroke-info: var(--color-blueberry-amber-dark);
-		--bg-warning: color-mix(in oklch, var(--color-corn-amber), transparent 60%);
+		--bg-warning: var(--color-corn-amber);
+		--bg-fill-warning: color-mix(in oklch, var(--color-corn-amber), transparent 60%);
 		--bg-hover-warning: color-mix(in oklch, var(--color-corn-amber), transparent 80%);
 		--stroke-warning: var(--color-corn-amber-dark);
 		/* !SECTION: LAYER 2: MODAL */
@@ -300,16 +315,20 @@
 		/* SECTION: LAYER 2: MODAL */
 		--bg-modal-primary: var(--color-gun-metal-500);
 		--bg-modal-secondary: var(--color-gun-metal-400);
-		--bg-success: color-mix(in oklch, var(--color-basil-gun-metal), transparent 70%);
+		--bg-success: var(--color-basil-gun-metal);
+		--bg-fill-success: color-mix(in oklch, var(--color-basil-gun-metal), transparent 70%);
 		--bg-hover-success: color-mix(in oklch, var(--color-basil-gun-metal), transparent 85%);
 		--stroke-success: var(--color-basil-gun-metal-dark);
-		--bg-destructive: color-mix(in oklch, var(--color-tomato-gun-metal), transparent 70%);
+		--bg-destructive: var(--color-tomato-gun-metal);
+		--bg-fill-destructive: color-mix(in oklch, var(--color-tomato-gun-metal), transparent 70%);
 		--bg-hover-destructive: color-mix(in oklch, var(--color-tomato-gun-metal), transparent 85%);
 		--stroke-destructive: var(--color-tomato-gun-metal-dark);
-		--bg-info: color-mix(in oklch, var(--color-blueberry-gun-metal), transparent 70%);
+		--bg-info: var(--color-blueberry-gun-metal);
+		--bg-fill-info: color-mix(in oklch, var(--color-blueberry-gun-metal), transparent 70%);
 		--bg-hover-info: color-mix(in oklch, var(--color-blueberry-gun-metal), transparent 85%);
 		--stroke-info: var(--color-blueberry-gun-metal-dark);
-		--bg-warning: color-mix(in oklch, var(--color-corn-gun-metal), transparent 70%);
+		--bg-warning: var(--color-corn-gun-metal);
+		--bg-fill-warning: color-mix(in oklch, var(--color-corn-gun-metal), transparent 70%);
 		--bg-hover-warning: color-mix(in oklch, var(--color-corn-gun-metal), transparent 85%);
 		--stroke-warning: var(--color-corn-gun-metal-dark);
 		/* !SECTION: LAYER 2: MODAL */

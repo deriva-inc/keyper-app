@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.12.0] - 2026-04-16
+---
+#### Added
+- Add Avatar component.
+
 ### [0.11.0] - 2026-04-15
 ---
 #### Added
