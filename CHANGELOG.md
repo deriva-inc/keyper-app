@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.13.0] - 2026-04-16
+---
+#### Added
+- Add Label component.
+
 ### [0.12.0] - 2026-04-16
 ---
 #### Added
