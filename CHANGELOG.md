@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.17.0] - 2026-04-17
+---
+#### Added
+- Add Input component.
+
 ### [0.16.0] - 2026-04-17
 ---
 #### Added
