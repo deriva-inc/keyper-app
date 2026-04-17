@@ -67,7 +67,7 @@ function ButtonGroupSeparator({
             data-slot="button-group-separator"
             orientation={orientation}
             className={cn(
-                'bg-bg-flat-secondary relative self-stretch data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto',
+                'bg-stroke-flat-secondary relative self-stretch data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto',
                 className
             )}
             {...props}

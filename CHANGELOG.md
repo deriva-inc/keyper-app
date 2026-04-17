@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.14.0] - 2026-04-17
+---
+#### Added
+- Add Select component.
+
 ### [0.13.0] - 2026-04-16
 ---
 #### Added
