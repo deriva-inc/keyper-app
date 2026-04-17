@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.16.0] - 2026-04-17
+---
+#### Added
+- Add Breadcrumb component.
+
 ### [0.15.0] - 2026-04-17
 ---
 #### Added
