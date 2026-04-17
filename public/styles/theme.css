@@ -177,6 +177,8 @@
 	/* SECTION: LAYER 2: MODAL */
 	--color-bg-modal-primary: var(--bg-modal-primary);
 	--color-bg-modal-secondary: var(--bg-modal-secondary);
+	--color-stroke-modal-primary: var(--stroke-modal-primary);
+	--color-stroke-modal-secondary: var(--stroke-modal-secondary);
 	--color-bg-success: var(--bg-success);
 	--color-bg-fill-success: var(--bg-fill-success);
 	--color-bg-hover-success: var(--bg-hover-success);
@@ -265,6 +267,8 @@
 		/* SECTION: LAYER 2: MODAL */
 		--bg-modal-primary: var(--color-amber-white-700);
 		--bg-modal-secondary: var(--color-amber-white-800);
+		--stroke-modal-primary: var(--color-gun-metal-500);
+		--stroke-modal-secondary: var(--color-gun-metal-400);
 		--bg-success: var(--color-basil-amber);
 		--bg-fill-success: color-mix(in oklch, var(--color-basil-amber), transparent 60%);
 		--bg-hover-success: color-mix(in oklch, var(--color-basil-amber), transparent 80%);
@@ -315,6 +319,8 @@
 		/* SECTION: LAYER 2: MODAL */
 		--bg-modal-primary: var(--color-gun-metal-500);
 		--bg-modal-secondary: var(--color-gun-metal-400);
+		--stroke-modal-primary: var(--color-amber-white-600);
+		--stroke-modal-secondary: var(--color-amber-white-700);
 		--bg-success: var(--color-basil-gun-metal);
 		--bg-fill-success: color-mix(in oklch, var(--color-basil-gun-metal), transparent 70%);
 		--bg-hover-success: color-mix(in oklch, var(--color-basil-gun-metal), transparent 85%);

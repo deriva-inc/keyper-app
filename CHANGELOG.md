@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.15.0] - 2026-04-17
+---
+#### Added
+- Add Sheet component.
+
 ### [0.14.0] - 2026-04-17
 ---
 #### Added
