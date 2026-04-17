@@ -201,11 +201,11 @@
 	/* SECTION: LAYER 3: ACTIVE */
 	--color-bg-active-primary: var(--bg-active-primary);
 	--color-bg-active-hover-primary: var(--bg-active-hover-primary);
-	--color-bg-fill-active-primary: var(--bg-fill-active-primary);
+	--color-bg-active-fill-primary: var(--bg-active-fill-primary);
 	--color-stroke-active-primary: var(--stroke-active-primary);
 	--color-bg-active-secondary: var(--bg-active-secondary);
 	--color-bg-active-hover-secondary: var(--bg-active-hover-secondary);
-	--color-bg-fill-active-secondary: var(--bg-fill-active-secondary);
+	--color-bg-active-fill-secondary: var(--bg-active-fill-secondary);
 	--color-stroke-active-secondary: var(--stroke-active-secondary);
 
 	/* SECTION: LAYER 3: CHARTS */
@@ -362,8 +362,8 @@
 		--bg-active-hover-secondary: var(--color-hot-pink-400);
 		--stroke-active-primary: var(--color-electric-violet-400);
 		--stroke-active-secondary: var(--color-hot-pink-400);
-		--bg-fill-active-primary: var(--color-electric-violet-100);
-		--bg-fill-active-secondary: var(--color-hot-pink-100);
+		--bg-active-fill-primary: var(--color-electric-violet-100);
+		--bg-active-fill-secondary: var(--color-hot-pink-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-400);
@@ -400,8 +400,8 @@
 		--bg-active-hover-secondary: var(--color-hot-pink-200);
 		--stroke-active-primary: var(--color-electric-violet-200);
 		--stroke-active-secondary: var(--color-hot-pink-200);
-		--bg-fill-active-primary: var(--color-electric-violet-1000);
-		--bg-fill-active-secondary: var(--color-hot-pink-1000);
+		--bg-active-fill-primary: var(--color-electric-violet-1000);
+		--bg-active-fill-secondary: var(--color-hot-pink-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-200);
@@ -439,8 +439,8 @@
 		--bg-active-hover-secondary: var(--color-acid-lime-400);
 		--stroke-active-primary: var(--color-electric-violet-400);
 		--stroke-active-secondary: var(--color-acid-lime-400);
-		--bg-fill-active-primary: var(--color-electric-violet-100);
-		--bg-fill-active-secondary: var(--color-acid-lime-100);
+		--bg-active-fill-primary: var(--color-electric-violet-100);
+		--bg-active-fill-secondary: var(--color-acid-lime-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-400);
@@ -477,8 +477,8 @@
 		--bg-active-hover-secondary: var(--color-acid-lime-200);
 		--stroke-active-primary: var(--color-electric-violet-200);
 		--stroke-active-secondary: var(--color-acid-lime-200);
-		--bg-fill-active-primary: var(--color-electric-violet-1000);
-		--bg-fill-active-secondary: var(--color-acid-lime-1000);
+		--bg-active-fill-primary: var(--color-electric-violet-1000);
+		--bg-active-fill-secondary: var(--color-acid-lime-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-200);
@@ -516,8 +516,8 @@
 		--bg-active-hover-secondary: var(--color-aqua-mint-400);
 		--stroke-active-primary: var(--color-electric-violet-400);
 		--stroke-active-secondary: var(--color-aqua-mint-400);
-		--bg-fill-active-primary: var(--color-electric-violet-100);
-		--bg-fill-active-secondary: var(--color-aqua-mint-100);
+		--bg-active-fill-primary: var(--color-electric-violet-100);
+		--bg-active-fill-secondary: var(--color-aqua-mint-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-400);
@@ -554,8 +554,8 @@
 		--bg-active-hover-secondary: var(--color-aqua-mint-200);
 		--stroke-active-primary: var(--color-electric-violet-200);
 		--stroke-active-secondary: var(--color-aqua-mint-200);
-		--bg-fill-active-primary: var(--color-electric-violet-1000);
-		--bg-fill-active-secondary: var(--color-aqua-mint-1000);
+		--bg-active-fill-primary: var(--color-electric-violet-1000);
+		--bg-active-fill-secondary: var(--color-aqua-mint-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-200);
@@ -593,8 +593,8 @@
 		--bg-active-hover-secondary: var(--color-acid-lime-400);
 		--stroke-active-primary: var(--color-hot-pink-400);
 		--stroke-active-secondary: var(--color-acid-lime-400);
-		--bg-fill-active-primary: var(--color-hot-pink-100);
-		--bg-fill-active-secondary: var(--color-acid-lime-100);
+		--bg-active-fill-primary: var(--color-hot-pink-100);
+		--bg-active-fill-secondary: var(--color-acid-lime-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-hot-pink-400);
@@ -631,8 +631,8 @@
 		--bg-active-hover-secondary: var(--color-acid-lime-200);
 		--stroke-active-primary: var(--color-hot-pink-200);
 		--stroke-active-secondary: var(--color-acid-lime-200);
-		--bg-fill-active-primary: var(--color-hot-pink-1000);
-		--bg-fill-active-secondary: var(--color-acid-lime-1000);
+		--bg-active-fill-primary: var(--color-hot-pink-1000);
+		--bg-active-fill-secondary: var(--color-acid-lime-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-hot-pink-200);
@@ -670,8 +670,8 @@
 		--bg-active-hover-secondary: var(--color-aqua-mint-400);
 		--stroke-active-primary: var(--color-hot-pink-400);
 		--stroke-active-secondary: var(--color-aqua-mint-400);
-		--bg-fill-active-primary: var(--color-hot-pink-100);
-		--bg-fill-active-secondary: var(--color-aqua-mint-100);
+		--bg-active-fill-primary: var(--color-hot-pink-100);
+		--bg-active-fill-secondary: var(--color-aqua-mint-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-hot-pink-400);
@@ -708,8 +708,8 @@
 		--bg-active-hover-secondary: var(--color-aqua-mint-200);
 		--stroke-active-primary: var(--color-hot-pink-200);
 		--stroke-active-secondary: var(--color-aqua-mint-200);
-		--bg-fill-active-primary: var(--color-hot-pink-1000);
-		--bg-fill-active-secondary: var(--color-aqua-mint-1000);
+		--bg-active-fill-primary: var(--color-hot-pink-1000);
+		--bg-active-fill-secondary: var(--color-aqua-mint-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-hot-pink-200);

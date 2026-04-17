@@ -5,7 +5,6 @@ import { Select as SelectPrimitive } from 'radix-ui';
 
 import { cn } from '@/lib/utils';
 import { ChevronDown, ChevronUp, Check } from 'elementa-icons';
-import useUIStore from '@/lib/store';
 
 function Select({
     ...props
@@ -40,8 +39,6 @@ function SelectTrigger({
 }: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
     size?: 'sm' | 'default';
 }) {
-    const iconColor = useUIStore((state) => state.iconColor);
-
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
@@ -49,7 +46,7 @@ function SelectTrigger({
             className={cn(
                 "border-stroke-flat-secondary font-body data-placeholder:text-text-tertiary bg-bg-flat-primary flex w-fit items-center justify-between gap-1.5 rounded-lg border py-2 pr-2 pl-2.5 text-sm whitespace-nowrap transition-colors outline-none select-none disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-8 data-[size=sm]:h-7 data-[size=sm]:rounded-[min(var(--radius-md),10px)] *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
                 'aria-invalid:border-stroke-destructive aria-invalid:ring-bg-fill-destructive aria-invalid:ring-3',
-                'focus-visible:border-stroke-active-primary focus-visible:ring-bg-fill-active-primary focus-visible:ring-3',
+                'focus-visible:border-stroke-active-primary focus-visible:ring-bg-active-fill-primary focus-visible:ring-3',
                 'cursor-pointer',
                 className
             )}
@@ -57,10 +54,7 @@ function SelectTrigger({
         >
             {children}
             <SelectPrimitive.Icon asChild>
-                <ChevronDown
-                    color={iconColor}
-                    className="text-text-primary pointer-events-none size-4"
-                />
+                <ChevronDown className="text-text-primary pointer-events-none size-4" />
             </SelectPrimitive.Icon>
         </SelectPrimitive.Trigger>
     );
@@ -166,7 +160,6 @@ function SelectScrollUpButton({
     className,
     ...props
 }: React.ComponentProps<typeof SelectPrimitive.ScrollUpButton>) {
-    const iconColor = useUIStore((state) => state.iconColor);
     return (
         <SelectPrimitive.ScrollUpButton
             data-slot="select-scroll-up-button"
@@ -176,7 +169,7 @@ function SelectScrollUpButton({
             )}
             {...props}
         >
-            <ChevronUp color={iconColor} />
+            <ChevronUp />
         </SelectPrimitive.ScrollUpButton>
     );
 }
@@ -185,7 +178,6 @@ function SelectScrollDownButton({
     className,
     ...props
 }: React.ComponentProps<typeof SelectPrimitive.ScrollDownButton>) {
-    const iconColor = useUIStore((state) => state.iconColor);
     return (
         <SelectPrimitive.ScrollDownButton
             data-slot="select-scroll-down-button"
@@ -195,7 +187,7 @@ function SelectScrollDownButton({
             )}
             {...props}
         >
-            <ChevronDown color={iconColor} />
+            <ChevronDown />
         </SelectPrimitive.ScrollDownButton>
     );
 }
