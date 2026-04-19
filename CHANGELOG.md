@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.20.0] - 2026-04-20
+---
+#### Added
+- Add Textarea component.
+
 ### [0.19.0] - 2026-04-20
 ---
 #### Added
