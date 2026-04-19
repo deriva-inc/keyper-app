@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.18.0] - 2026-04-20
+---
+#### Added
+- Add Alert Dialog component.
+
 ### [0.17.0] - 2026-04-17
 ---
 #### Added

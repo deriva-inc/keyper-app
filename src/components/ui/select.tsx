@@ -46,7 +46,7 @@ function SelectTrigger({
             className={cn(
                 "border-stroke-flat-secondary font-body data-placeholder:text-text-tertiary bg-bg-flat-primary flex w-fit items-center justify-between gap-1.5 rounded-lg border py-2 pr-2 pl-2.5 text-sm whitespace-nowrap transition-colors outline-none select-none disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-8 data-[size=sm]:h-7 data-[size=sm]:rounded-[min(var(--radius-md),10px)] *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
                 'aria-invalid:border-stroke-destructive aria-invalid:ring-bg-fill-destructive aria-invalid:ring-3',
-                'focus-visible:border-stroke-active-primary focus-visible:ring-bg-active-fill-primary focus-visible:ring-3',
+                'focus-visible:border-stroke-active-accent-primary focus-visible:ring-bg-active-fill-accent-primary focus-visible:ring-3',
                 'cursor-pointer',
                 className
             )}
@@ -124,7 +124,7 @@ function SelectItem({
             data-slot="select-item"
             className={cn(
                 'relative flex w-full items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5',
-                "focus:bg-bg-base-selected-primary focus:text-text-primary not-data-[variant=destructive]:focus:**:text-text-primary text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+                "focus:bg-bg-base-accent-primary focus:text-text-primary not-data-[variant=destructive]:focus:**:text-text-primary text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
                 'cursor-pointer',
                 className
             )}

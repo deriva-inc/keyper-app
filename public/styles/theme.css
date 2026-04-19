@@ -153,8 +153,8 @@
 	--color-bg-base-secondary: var(--bg-base-secondary);
 	--color-stroke-base-primary: var(--stroke-base-primary);
 	--color-stroke-base-secondary: var(--stroke-base-secondary);
-	--color-bg-base-selected-primary: var(--bg-base-selected-primary);
-	--color-bg-base-selected-secondary: var(--bg-base-selected-secondary);
+	--color-bg-base-accent-primary: var(--bg-base-accent-primary);
+	--color-bg-base-accent-secondary: var(--bg-base-accent-secondary);
 	--color-bg-disabled: var(--bg-disabled);
 	--color-bg-muted: var(--bg-muted);
 	--color-stroke-disabled: var(--stroke-disabled);
@@ -203,13 +203,18 @@
 
 	/* SECTION: LAYER 3: ACTIVE */
 	--color-bg-active-primary: var(--bg-active-primary);
-	--color-bg-active-hover-primary: var(--bg-active-hover-primary);
-	--color-bg-active-fill-primary: var(--bg-active-fill-primary);
 	--color-stroke-active-primary: var(--stroke-active-primary);
 	--color-bg-active-secondary: var(--bg-active-secondary);
-	--color-bg-active-hover-secondary: var(--bg-active-hover-secondary);
-	--color-bg-active-fill-secondary: var(--bg-active-fill-secondary);
 	--color-stroke-active-secondary: var(--stroke-active-secondary);
+
+	--color-bg-active-accent-primary: var(--bg-active-accent-primary);
+	--color-bg-active-hover-accent-primary: var(--bg-active-hover-accent-primary);
+	--color-bg-active-fill-accent-primary: var(--bg-active-fill-accent-primary);
+	--color-stroke-active-accent-primary: var(--stroke-active-accent-primary);
+	--color-bg-active-accent-secondary: var(--bg-active-accent-secondary);
+	--color-bg-active-hover-accent-secondary: var(--bg-active-hover-accent-secondary);
+	--color-bg-active-fill-accent-secondary: var(--bg-active-fill-accent-secondary);
+	--color-stroke-active-accent-secondary: var(--stroke-active-accent-secondary);
 
 	/* SECTION: LAYER 3: CHARTS */
 	--color-chart-primary-1: var(--chart-primary-1);
@@ -291,6 +296,13 @@
 		--stroke-warning: var(--color-corn-amber-dark);
 		/* !SECTION: LAYER 2: MODAL */
 		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-amber-white-900);
+		--bg-active-secondary: var(--color-amber-white-1000);
+		--stroke-active-primary: var(--color-gun-metal-300);
+		--stroke-active-secondary: var(--color-gun-metal-200);
+		/* !SECTION: LAYER 3: ACTIVE */
 	}
 	/* !SECTION: THEME - AMBER WHITE */
 
@@ -344,6 +356,13 @@
 		--stroke-warning: var(--color-corn-gun-metal-dark);
 		/* !SECTION: LAYER 2: MODAL */
 		/* !SECTION: LAYER 2: FLAT */
+
+		/* SECTION: LAYER 3: ACTIVE */
+		--bg-active-primary: var(--color-gun-metal-300);
+		--bg-active-secondary: var(--color-gun-metal-200);
+		--stroke-active-primary: var(--color-amber-white-800);
+		--stroke-active-secondary: var(--color-amber-white-900);
+		/* !SECTION: LAYER 3: ACTIVE */
 	}
 	/* !SECTION: THEME - GUN METAL */
 
@@ -351,8 +370,8 @@
 	/* SECTION: ENERGY - VAPORWAVE (Electric Violet + Hot Pink) */
 	[data-energy="vaporwave"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-electric-violet-200);
-		--bg-base-selected-secondary: var(--color-hot-pink-200);
+		--bg-base-accent-primary: var(--color-electric-violet-200);
+		--bg-base-accent-secondary: var(--color-hot-pink-200);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -361,14 +380,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-electric-violet-600);
-		--bg-active-hover-primary: var(--color-electric-violet-400);
-		--bg-active-secondary: var(--color-hot-pink-600);
-		--bg-active-hover-secondary: var(--color-hot-pink-400);
-		--stroke-active-primary: var(--color-electric-violet-400);
-		--stroke-active-secondary: var(--color-hot-pink-400);
-		--bg-active-fill-primary: var(--color-electric-violet-100);
-		--bg-active-fill-secondary: var(--color-hot-pink-100);
+		--bg-active-accent-primary: var(--color-electric-violet-600);
+		--bg-active-hover-accent-primary: var(--color-electric-violet-400);
+		--bg-active-accent-secondary: var(--color-hot-pink-600);
+		--bg-active-hover-accent-secondary: var(--color-hot-pink-400);
+		--stroke-active-accent-primary: var(--color-electric-violet-400);
+		--stroke-active-accent-secondary: var(--color-hot-pink-400);
+		--bg-active-fill-accent-primary: var(--color-electric-violet-100);
+		--bg-active-fill-accent-secondary: var(--color-hot-pink-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-400);
@@ -389,8 +408,8 @@
 
 	.dark[data-energy="vaporwave"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-electric-violet-900);
-		--bg-base-selected-secondary: var(--color-hot-pink-900);
+		--bg-base-accent-primary: var(--color-electric-violet-900);
+		--bg-base-accent-secondary: var(--color-hot-pink-900);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -399,14 +418,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-electric-violet-400);
-		--bg-active-hover-primary: var(--color-electric-violet-200);
-		--bg-active-secondary: var(--color-hot-pink-400);
-		--bg-active-hover-secondary: var(--color-hot-pink-200);
-		--stroke-active-primary: var(--color-electric-violet-200);
-		--stroke-active-secondary: var(--color-hot-pink-200);
-		--bg-active-fill-primary: var(--color-electric-violet-1000);
-		--bg-active-fill-secondary: var(--color-hot-pink-1000);
+		--bg-active-accent-primary: var(--color-electric-violet-400);
+		--bg-active-hover-accent-primary: var(--color-electric-violet-200);
+		--bg-active-accent-secondary: var(--color-hot-pink-400);
+		--bg-active-hover-accent-secondary: var(--color-hot-pink-200);
+		--stroke-active-accent-primary: var(--color-electric-violet-200);
+		--stroke-active-accent-secondary: var(--color-hot-pink-200);
+		--bg-active-fill-accent-primary: var(--color-electric-violet-1000);
+		--bg-active-fill-accent-secondary: var(--color-hot-pink-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-200);
@@ -428,8 +447,8 @@
 	/* SECTION: ENERGY - ELECTRIC SHOCK (Electric Violet + Acid Lime) */
 	[data-energy="electric-shock"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-electric-violet-200);
-		--bg-base-selected-secondary: var(--color-acid-lime-200);
+		--bg-base-accent-primary: var(--color-electric-violet-200);
+		--bg-base-accent-secondary: var(--color-acid-lime-200);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -438,14 +457,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-electric-violet-600);
-		--bg-active-hover-primary: var(--color-electric-violet-400);
-		--bg-active-secondary: var(--color-acid-lime-600);
-		--bg-active-hover-secondary: var(--color-acid-lime-400);
-		--stroke-active-primary: var(--color-electric-violet-400);
-		--stroke-active-secondary: var(--color-acid-lime-400);
-		--bg-active-fill-primary: var(--color-electric-violet-100);
-		--bg-active-fill-secondary: var(--color-acid-lime-100);
+		--bg-active-accent-primary: var(--color-electric-violet-600);
+		--bg-active-hover-accent-primary: var(--color-electric-violet-400);
+		--bg-active-accent-secondary: var(--color-acid-lime-600);
+		--bg-active-hover-accent-secondary: var(--color-acid-lime-400);
+		--stroke-active-accent-primary: var(--color-electric-violet-400);
+		--stroke-active-accent-secondary: var(--color-acid-lime-400);
+		--bg-active-fill-accent-primary: var(--color-electric-violet-100);
+		--bg-active-fill-accent-secondary: var(--color-acid-lime-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-400);
@@ -466,8 +485,8 @@
 
 	.dark[data-energy="electric-shock"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-electric-violet-900);
-		--bg-base-selected-secondary: var(--color-acid-lime-900);
+		--bg-base-accent-primary: var(--color-electric-violet-900);
+		--bg-base-accent-secondary: var(--color-acid-lime-900);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -476,14 +495,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-electric-violet-400);
-		--bg-active-hover-primary: var(--color-electric-violet-200);
-		--bg-active-secondary: var(--color-acid-lime-400);
-		--bg-active-hover-secondary: var(--color-acid-lime-200);
-		--stroke-active-primary: var(--color-electric-violet-200);
-		--stroke-active-secondary: var(--color-acid-lime-200);
-		--bg-active-fill-primary: var(--color-electric-violet-1000);
-		--bg-active-fill-secondary: var(--color-acid-lime-1000);
+		--bg-active-accent-primary: var(--color-electric-violet-400);
+		--bg-active-hover-accent-aprimary: var(--color-electric-violet-200);
+		--bg-active-accent-secondary: var(--color-acid-lime-400);
+		--bg-active-hover-accent-secondary: var(--color-acid-lime-200);
+		--stroke-active-accent-primary: var(--color-electric-violet-200);
+		--stroke-active-accent-secondary: var(--color-acid-lime-200);
+		--bg-active-fill-accent-primary: var(--color-electric-violet-1000);
+		--bg-active-fill-accent-secondary: var(--color-acid-lime-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-200);
@@ -505,8 +524,8 @@
 	/* SECTION: ENERGY - CYBER MIST (Electric Violet + Aqua Mint) */
 	[data-energy="cyber-mist"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-electric-violet-200);
-		--bg-base-selected-secondary: var(--color-aqua-mint-200);
+		--bg-base-accent-primary: var(--color-electric-violet-200);
+		--bg-base-accent-secondary: var(--color-aqua-mint-200);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -515,14 +534,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-electric-violet-600);
-		--bg-active-hover-primary: var(--color-electric-violet-400);
-		--bg-active-secondary: var(--color-aqua-mint-600);
-		--bg-active-hover-secondary: var(--color-aqua-mint-400);
-		--stroke-active-primary: var(--color-electric-violet-400);
-		--stroke-active-secondary: var(--color-aqua-mint-400);
-		--bg-active-fill-primary: var(--color-electric-violet-100);
-		--bg-active-fill-secondary: var(--color-aqua-mint-100);
+		--bg-active-accent-primary: var(--color-electric-violet-600);
+		--bg-active-hover-accent-primary: var(--color-electric-violet-400);
+		--bg-active-accent-secondary: var(--color-aqua-mint-600);
+		--bg-active-hover-accent-secondary: var(--color-aqua-mint-400);
+		--stroke-active-accent-primary: var(--color-electric-violet-400);
+		--stroke-active-accent-secondary: var(--color-aqua-mint-400);
+		--bg-active-fill-accent-primary: var(--color-electric-violet-100);
+		--bg-active-fill-accent-secondary: var(--color-aqua-mint-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-400);
@@ -543,8 +562,8 @@
 
 	.dark[data-energy="cyber-mist"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-electric-violet-900);
-		--bg-base-selected-secondary: var(--color-aqua-mint-900);
+		--bg-base-accent-primary: var(--color-electric-violet-900);
+		--bg-base-accent-secondary: var(--color-aqua-mint-900);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -553,14 +572,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-electric-violet-400);
-		--bg-active-hover-primary: var(--color-electric-violet-200);
-		--bg-active-secondary: var(--color-aqua-mint-400);
-		--bg-active-hover-secondary: var(--color-aqua-mint-200);
-		--stroke-active-primary: var(--color-electric-violet-200);
-		--stroke-active-secondary: var(--color-aqua-mint-200);
-		--bg-active-fill-primary: var(--color-electric-violet-1000);
-		--bg-active-fill-secondary: var(--color-aqua-mint-1000);
+		--bg-active-accent-primary: var(--color-electric-violet-400);
+		--bg-active-hover-accent-primary: var(--color-electric-violet-200);
+		--bg-active-accent-secondary: var(--color-aqua-mint-400);
+		--bg-active-hover-accent-secondary: var(--color-aqua-mint-200);
+		--stroke-active-accent-primary: var(--color-electric-violet-200);
+		--stroke-active-accent-secondary: var(--color-aqua-mint-200);
+		--bg-active-fill-accent-primary: var(--color-electric-violet-1000);
+		--bg-active-fill-accent-secondary: var(--color-aqua-mint-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-electric-violet-200);
@@ -582,8 +601,8 @@
 	/* SECTION: ENERGY - SUMMER FRUIT (Hot Pink + Acid Lime) */
 	[data-energy="summer-fruit"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-hot-pink-200);
-		--bg-base-selected-secondary: var(--color-acid-lime-200);
+		--bg-base-accent-primary: var(--color-hot-pink-200);
+		--bg-base-accent-secondary: var(--color-acid-lime-200);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -592,14 +611,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-hot-pink-600);
-		--bg-active-hover-primary: var(--color-hot-pink-400);
-		--bg-active-secondary: var(--color-acid-lime-600);
-		--bg-active-hover-secondary: var(--color-acid-lime-400);
-		--stroke-active-primary: var(--color-hot-pink-400);
-		--stroke-active-secondary: var(--color-acid-lime-400);
-		--bg-active-fill-primary: var(--color-hot-pink-100);
-		--bg-active-fill-secondary: var(--color-acid-lime-100);
+		--bg-active-accent-primary: var(--color-hot-pink-600);
+		--bg-active-hover-accent-primary: var(--color-hot-pink-400);
+		--bg-active-accent-secondary: var(--color-acid-lime-600);
+		--bg-active-hover-accent-secondary: var(--color-acid-lime-400);
+		--stroke-active-accent-primary: var(--color-hot-pink-400);
+		--stroke-active-accent-secondary: var(--color-acid-lime-400);
+		--bg-active-fill-accent-primary: var(--color-hot-pink-100);
+		--bg-active-fill-accent-secondary: var(--color-acid-lime-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-hot-pink-400);
@@ -620,8 +639,8 @@
 
 	.dark[data-energy="summer-fruit"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-hot-pink-900);
-		--bg-base-selected-secondary: var(--color-acid-lime-900);
+		--bg-base-accent-primary: var(--color-hot-pink-900);
+		--bg-base-accent-secondary: var(--color-acid-lime-900);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -630,14 +649,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-hot-pink-400);
-		--bg-active-hover-primary: var(--color-hot-pink-200);
-		--bg-active-secondary: var(--color-acid-lime-400);
-		--bg-active-hover-secondary: var(--color-acid-lime-200);
-		--stroke-active-primary: var(--color-hot-pink-200);
-		--stroke-active-secondary: var(--color-acid-lime-200);
-		--bg-active-fill-primary: var(--color-hot-pink-1000);
-		--bg-active-fill-secondary: var(--color-acid-lime-1000);
+		--bg-active-accent-primary: var(--color-hot-pink-400);
+		--bg-active-hover-accent-primary: var(--color-hot-pink-200);
+		--bg-active-accent-secondary: var(--color-acid-lime-400);
+		--bg-active-hover-accent-secondary: var(--color-acid-lime-200);
+		--stroke-active-accent-primary: var(--color-hot-pink-200);
+		--stroke-active-accent-secondary: var(--color-acid-lime-200);
+		--bg-active-fill-accent-primary: var(--color-hot-pink-1000);
+		--bg-active-fill-accent-secondary: var(--color-acid-lime-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-hot-pink-200);
@@ -659,8 +678,8 @@
 	/* SECTION: ENERGY - BUBBLEGUM ICE (Hot Pink + Aqua Mint) */
 	[data-energy="bubblegum-ice"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-hot-pink-200);
-		--bg-base-selected-secondary: var(--color-aqua-mint-200);
+		--bg-base-accent-primary: var(--color-hot-pink-200);
+		--bg-base-accent-secondary: var(--color-aqua-mint-200);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -669,14 +688,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-hot-pink-600);
-		--bg-active-hover-primary: var(--color-hot-pink-400);
-		--bg-active-secondary: var(--color-aqua-mint-600);
-		--bg-active-hover-secondary: var(--color-aqua-mint-400);
-		--stroke-active-primary: var(--color-hot-pink-400);
-		--stroke-active-secondary: var(--color-aqua-mint-400);
-		--bg-active-fill-primary: var(--color-hot-pink-100);
-		--bg-active-fill-secondary: var(--color-aqua-mint-100);
+		--bg-active-accent-primary: var(--color-hot-pink-600);
+		--bg-active-hover-accent-primary: var(--color-hot-pink-400);
+		--bg-active-accent-secondary: var(--color-aqua-mint-600);
+		--bg-active-hover-accent-secondary: var(--color-aqua-mint-400);
+		--stroke-active-accent-primary: var(--color-hot-pink-400);
+		--stroke-active-accent-secondary: var(--color-aqua-mint-400);
+		--bg-active-fill-accent-primary: var(--color-hot-pink-100);
+		--bg-active-fill-accent-secondary: var(--color-aqua-mint-100);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-hot-pink-400);
@@ -697,8 +716,8 @@
 
 	.dark[data-energy="bubblegum-ice"] {
 		/* SECTION: LAYER 1: BASE */
-		--bg-base-selected-primary: var(--color-hot-pink-900);
-		--bg-base-selected-secondary: var(--color-aqua-mint-900);
+		--bg-base-accent-primary: var(--color-hot-pink-900);
+		--bg-base-accent-secondary: var(--color-aqua-mint-900);
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
@@ -707,14 +726,14 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-hot-pink-400);
-		--bg-active-hover-primary: var(--color-hot-pink-200);
-		--bg-active-secondary: var(--color-aqua-mint-400);
-		--bg-active-hover-secondary: var(--color-aqua-mint-200);
-		--stroke-active-primary: var(--color-hot-pink-200);
-		--stroke-active-secondary: var(--color-aqua-mint-200);
-		--bg-active-fill-primary: var(--color-hot-pink-1000);
-		--bg-active-fill-secondary: var(--color-aqua-mint-1000);
+		--bg-active-accent-primary: var(--color-hot-pink-400);
+		--bg-active-hover-accent-primary: var(--color-hot-pink-200);
+		--bg-active-accent-secondary: var(--color-aqua-mint-400);
+		--bg-active-hover-accent-secondary: var(--color-aqua-mint-200);
+		--stroke-active-accent-primary: var(--color-hot-pink-200);
+		--stroke-active-accent-secondary: var(--color-aqua-mint-200);
+		--bg-active-fill-accent-primary: var(--color-hot-pink-1000);
+		--bg-active-fill-accent-secondary: var(--color-aqua-mint-1000);
 
 		/* SECTION: LAYER 3: CHARTS */
 		--chart-primary-1: var(--color-hot-pink-200);
