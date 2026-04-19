@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.21.0] - 2026-04-20
+---
+#### Added
+- Add Tooltip component.
+
 ### [0.20.0] - 2026-04-20
 ---
 #### Added
