@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.19.0] - 2026-04-20
+---
+#### Added
+- Add Dialog component.
+
 ### [0.18.0] - 2026-04-20
 ---
 #### Added
