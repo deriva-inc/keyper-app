@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.25.0] - 2026-04-21
+---
+#### Added
+- Add Toggle component.
+
 ### [0.24.0] - 2026-04-21
 ---
 #### Added
