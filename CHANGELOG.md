@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.24.0] - 2026-04-21
+---
+#### Added
+- Add Switch component.
+
 ### [0.23.0] - 2026-04-20
 ---
 #### Added
