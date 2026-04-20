@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.22.0] - 2026-04-20
+---
+#### Added
+- Add Radio Group component.
+
 ### [0.21.0] - 2026-04-20
 ---
 #### Added
