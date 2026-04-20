@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.26.0] - 2026-04-21
+---
+#### Added
+- Add Toggle Group component.
+
 ### [0.25.0] - 2026-04-21
 ---
 #### Added
