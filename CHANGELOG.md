@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.23.0] - 2026-04-20
+---
+#### Added
+- Add Field component.
+
 ### [0.22.0] - 2026-04-20
 ---
 #### Added
