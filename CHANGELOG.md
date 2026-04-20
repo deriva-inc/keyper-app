@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.27.0] - 2026-04-21
+---
+#### Added
+- Add Progress component.
+
 ### [0.26.0] - 2026-04-21
 ---
 #### Added
