@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.28.0] - 2026-04-21
+---
+#### Added
+- Add Input OTP component.
+
 ### [0.27.0] - 2026-04-21
 ---
 #### Added

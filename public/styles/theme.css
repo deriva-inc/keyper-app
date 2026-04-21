@@ -250,7 +250,7 @@
 
 		/* SECTION: LAYER 1: BASE */
 		--bg-base-primary: var(--color-amber-white-100);
-		--bg-base-secondary: var(--color-amber-white-300);
+		--bg-base-secondary: var(--color-amber-white-200);
 		--stroke-base-primary: var(--color-gun-metal-1000);
 		--stroke-base-secondary: var(--color-gun-metal-900);
 		--bg-disabled: var(--color-disabled-amber);
@@ -259,8 +259,8 @@
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
-		--bg-flat-primary: var(--color-amber-white-400);
-		--bg-flat-secondary: var(--color-amber-white-600);
+		--bg-flat-primary: var(--color-amber-white-300);
+		--bg-flat-secondary: var(--color-amber-white-400);
 		--stroke-flat-primary: var(--color-gun-metal-700);
 		--stroke-flat-secondary: var(--color-gun-metal-600);
 		--text-primary: var(--color-gun-metal-1100);
@@ -274,8 +274,8 @@
 		--text-warning: var(--color-corn-amber);
 
 		/* SECTION: LAYER 2: MODAL */
-		--bg-modal-primary: var(--color-amber-white-700);
-		--bg-modal-secondary: var(--color-amber-white-800);
+		--bg-modal-primary: var(--color-amber-white-500);
+		--bg-modal-secondary: var(--color-amber-white-600);
 		--stroke-modal-primary: var(--color-gun-metal-500);
 		--stroke-modal-secondary: var(--color-gun-metal-400);
 		--bg-success: var(--color-basil-amber);
@@ -287,7 +287,7 @@
 		--bg-hover-destructive: color-mix(in oklch, var(--color-tomato-amber), transparent 80%);
 		--stroke-destructive: var(--color-tomato-amber-dark);
 		--bg-info: var(--color-blueberry-amber);
-		--bg-info: color-mix(in oklch, var(--color-blueberry-amber), transparent 60%);
+		--bg-fill-info: color-mix(in oklch, var(--color-blueberry-amber), transparent 60%);
 		--bg-hover-info: color-mix(in oklch, var(--color-blueberry-amber), transparent 80%);
 		--stroke-info: var(--color-blueberry-amber-dark);
 		--bg-warning: var(--color-corn-amber);
@@ -298,8 +298,8 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-amber-white-900);
-		--bg-active-secondary: var(--color-amber-white-1000);
+		--bg-active-primary: var(--color-amber-white-700);
+		--bg-active-secondary: var(--color-amber-white-800);
 		--stroke-active-primary: var(--color-gun-metal-300);
 		--stroke-active-secondary: var(--color-gun-metal-200);
 		/* !SECTION: LAYER 3: ACTIVE */
@@ -310,7 +310,7 @@
 	.dark {
 		/* SECTION: LAYER 1: BASE */
 		--bg-base-primary: var(--color-gun-metal-1100);
-		--bg-base-secondary: var(--color-gun-metal-900);
+		--bg-base-secondary: var(--color-gun-metal-1000);
 		--stroke-base-primary: var(--color-amber-white-200);
 		--stroke-base-secondary: var(--color-amber-white-300);
 		--bg-disabled: var(--color-disabled-gun-metal);
@@ -319,8 +319,8 @@
 		/* !SECTION: LAYER 1: BASE */
 
 		/* SECTION: LAYER 2: FLAT */
-		--bg-flat-primary: var(--color-gun-metal-800);
-		--bg-flat-secondary: var(--color-gun-metal-600);
+		--bg-flat-primary: var(--color-gun-metal-900);
+		--bg-flat-secondary: var(--color-gun-metal-800);
 		--stroke-flat-primary: var(--color-amber-white-400);
 		--stroke-flat-secondary: var(--color-amber-white-500);
 		--text-primary: var(--color-amber-white-100);
@@ -334,8 +334,8 @@
 		--text-warning: var(--color-corn-gun-metal-light);
 
 		/* SECTION: LAYER 2: MODAL */
-		--bg-modal-primary: var(--color-gun-metal-500);
-		--bg-modal-secondary: var(--color-gun-metal-400);
+		--bg-modal-primary: var(--color-gun-metal-700);
+		--bg-modal-secondary: var(--color-gun-metal-600);
 		--stroke-modal-primary: var(--color-amber-white-600);
 		--stroke-modal-secondary: var(--color-amber-white-700);
 		--bg-success: var(--color-basil-gun-metal);
@@ -358,8 +358,8 @@
 		/* !SECTION: LAYER 2: FLAT */
 
 		/* SECTION: LAYER 3: ACTIVE */
-		--bg-active-primary: var(--color-gun-metal-300);
-		--bg-active-secondary: var(--color-gun-metal-200);
+		--bg-active-primary: var(--color-gun-metal-500);
+		--bg-active-secondary: var(--color-gun-metal-400);
 		--stroke-active-primary: var(--color-amber-white-800);
 		--stroke-active-secondary: var(--color-amber-white-900);
 		/* !SECTION: LAYER 3: ACTIVE */
