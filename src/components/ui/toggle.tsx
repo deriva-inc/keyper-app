@@ -7,7 +7,7 @@ import { Toggle as TogglePrimitive } from 'radix-ui';
 import { cn } from '@/lib/utils';
 
 const toggleVariants = cva(
-    "group/toggle inline-flex cursor-pointer text-text-primary font-body aria-checked:text-bg-base-primary aria-pressed:text-bg-base-primary items-center justify-center gap-1 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none hover:bg-bg-active-primary hover:text-bg-base-primary focus-visible:border-stroke-active-primary focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed aria-invalid:border-stroke-destructive aria-invalid:ring-bg-fill-destructive aria-invalid:text-text-destructive disabled:border-stroke-disabled disabled:text-text-disabled aria-checked:bg-bg-active-secondary aria-pressed:bg-bg-active-secondary data-[state=on]:bg-bg-active-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+    "group/toggle inline-flex cursor-pointer text-text-primary font-body items-center justify-center gap-1 rounded-lg text-sm font-medium whitespace-nowrap transition-all outline-none hover:bg-bg-active-primary focus-visible:border-stroke-active-primary focus-visible:ring-[3px] focus-visible:ring-stroke-active-secondary disabled:pointer-events-none disabled:cursor-not-allowed aria-invalid:border-stroke-destructive aria-invalid:ring-bg-fill-destructive aria-invalid:text-text-destructive disabled:border-stroke-disabled disabled:text-text-disabled aria-checked:bg-bg-active-secondary aria-pressed:bg-bg-active-secondary data-[state=on]:bg-bg-active-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
     {
         variants: {
             variant: {

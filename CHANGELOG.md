@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.29.0] - 2026-04-21
+---
+#### Added
+- Add Accordion component.
+
 ### [0.28.0] - 2026-04-21
 ---
 #### Added
