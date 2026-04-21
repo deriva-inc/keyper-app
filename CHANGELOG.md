@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.31.0] - 2026-04-21
+---
+#### Added
+- Add Slider component.
+
 ### [0.30.0] - 2026-04-21
 ---
 #### Added
