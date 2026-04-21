@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.30.0] - 2026-04-21
+---
+#### Added
+- Add Badge component.
+
 ### [0.29.0] - 2026-04-21
 ---
 #### Added
