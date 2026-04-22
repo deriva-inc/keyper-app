@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.46.0] - 2026-04-22
+---
+#### Added
+- Add Empty State block.
+
 ### [0.45.0] - 2026-04-22
 ---
 #### Added
