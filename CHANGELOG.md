@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.42.0] - 2026-04-22
+---
+#### Added
+- Add Input Group component.
+
 ### [0.41.0] - 2026-04-22
 ---
 #### Added
