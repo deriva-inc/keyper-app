@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.45.0] - 2026-04-22
+---
+#### Added
+- Add Error State block.
+
 ### [0.44.0] - 2026-04-22
 ---
 #### Added

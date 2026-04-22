@@ -11,7 +11,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
     return (
         <Sonner
             theme={theme as ToasterProps['theme']}
-            className="toaster group data-"
+            className="toaster group"
             icons={{
                 success: <TickCloud className="size-4" />,
                 info: <Info className="size-4" />,
@@ -29,11 +29,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
             }
             toastOptions={{
                 classNames: {
-                    toast: 'cn-toast',
-                    error: 'bg-bg-fill-destructive! text-text-destructive!',
-                    info: 'bg-bg-fill-info! text-text-info!',
-                    success: 'bg-bg-fill-success! text-text-success!',
-                    warning: 'bg-bg-fill-warning! text-text-warning!'
+                    toast: 'cn-toast font-body',
+                    error: 'bg-bg-fill-destructive! text-text-destructive! font-body',
+                    info: 'bg-bg-fill-info! text-text-info! font-body',
+                    success: 'bg-bg-fill-success! text-text-success! font-body',
+                    warning: 'bg-bg-fill-warning! text-text-warning! font-body'
                 }
             }}
             {...props}
