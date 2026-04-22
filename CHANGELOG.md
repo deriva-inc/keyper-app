@@ -1,8 +1,13 @@
 # CHANGELOG
+### [0.34.0] - 2026-04-22
+---
+#### Added
+- Add Sonner component.
+
 ### [0.33.0] - 2026-04-22
 ---
 #### Added
-- Add Table component.
+- Add Calendar component.
 
 ### [0.32.0] - 2026-04-22
 ---
