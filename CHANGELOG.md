@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.40.0] - 2026-04-22
+---
+#### Added
+- Add Stepper component.
+
 ### [0.39.0] - 2026-04-22
 ---
 #### Added
