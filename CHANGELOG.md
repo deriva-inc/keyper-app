@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.47.0] - 2026-04-22
+---
+#### Added
+- Add Hover Card component.
+
 ### [0.46.0] - 2026-04-22
 ---
 #### Added
