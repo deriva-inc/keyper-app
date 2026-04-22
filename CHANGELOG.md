@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.39.0] - 2026-04-22
+---
+#### Added
+- Add Drawer component.
+
 ### [0.38.0] - 2026-04-22
 ---
 #### Added
