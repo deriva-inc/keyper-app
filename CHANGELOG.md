@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.35.0] - 2026-04-22
+---
+#### Added
+- Add Dropdown Menu component.
+
 ### [0.34.0] - 2026-04-22
 ---
 #### Added
