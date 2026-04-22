@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.38.0] - 2026-04-22
+---
+#### Added
+- Add Popover component.
+
 ### [0.37.0] - 2026-04-22
 ---
 #### Added
