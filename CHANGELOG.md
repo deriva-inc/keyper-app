@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.33.0] - 2026-04-22
+---
+#### Added
+- Add Table component.
+
 ### [0.32.0] - 2026-04-22
 ---
 #### Added
