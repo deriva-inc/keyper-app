@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.43.0] - 2026-04-22
+---
+#### Added
+- Add Item component.
+
 ### [0.42.0] - 2026-04-22
 ---
 #### Added
