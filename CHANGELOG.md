@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.37.0] - 2026-04-22
+---
+#### Added
+- Add Pagination component.
+
 ### [0.36.0] - 2026-04-22
 ---
 #### Added
