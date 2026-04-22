@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.41.0] - 2026-04-22
+---
+#### Added
+- Add Sidebar component.
+
 ### [0.40.0] - 2026-04-22
 ---
 #### Added
