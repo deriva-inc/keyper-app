@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.44.0] - 2026-04-22
+---
+#### Added
+- Add Loading State block.
+
 ### [0.43.0] - 2026-04-22
 ---
 #### Added
