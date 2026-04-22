@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.36.0] - 2026-04-22
+---
+#### Added
+- Add Context Menu component.
+
 ### [0.35.0] - 2026-04-22
 ---
 #### Added
