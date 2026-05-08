@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.48.0] - 2026-05-08
+---
+#### Added
+- Add Theme support on the app.
+
 ### [0.48.0] - 2026-05-07
 ---
 #### Added
