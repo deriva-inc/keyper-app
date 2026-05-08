@@ -142,6 +142,7 @@
   /* SECTION: Fonts */
   --font-heading: 'Fraunces', sans-serif;
   --font-body: 'Satoshi', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
   /* !SECTION: Fonts */
   /* !SECTION: Variables */
 }

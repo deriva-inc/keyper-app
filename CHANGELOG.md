@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.48.0] - 2026-05-07
+---
+#### Added
+- Add support for [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) font.
+
 ### [0.47.0] - 2026-04-22
 ---
 #### Added
