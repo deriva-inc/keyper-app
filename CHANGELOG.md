@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.51.0] - 2026-05-11
+---
+#### Added
+- Add login status check on each page load.
+
 ### [0.50.0] - 2026-05-11
 ---
 #### Added

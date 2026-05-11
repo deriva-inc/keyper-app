@@ -7,6 +7,14 @@ function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+const protectedRoutes = [
+    '/dashboard',
+    '/groups',
+    '/entries',
+    '/vault',
+    '/profiles'
+];
+
 /**
  * This function converts a hex string to a Uint8Array.
  *
@@ -56,4 +64,5 @@ const copyToClipboard = async (text: string): Promise<void> => {
     }
 };
 
+export { protectedRoutes };
 export { cn, hexToUint8Array, uint8ArrayToHex, copyToClipboard };
