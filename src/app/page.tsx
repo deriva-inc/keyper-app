@@ -5,11 +5,12 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { cryptoService } from '@/lib/crypto';
+import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
-import { SignUpResponse } from '@/lib/types/api';
+import { HTTP_STATUS_CODE, SignUpResponse } from '@/lib/types/api';
 import { UI_STATE } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
-import { copyToClipboard, uint8ArrayToHex } from '@/lib/utils';
+import { copyToClipboard, hexToUint8Array, uint8ArrayToHex } from '@/lib/utils';
 import LoadingState from '@/src/components/blocks/loading-state';
 import {
     AlertDialog,
@@ -55,8 +56,8 @@ import { Text, TextVariant } from '@/src/components/ui/text';
 export default function HomePage() {
     // SECTION: Constants
     const router = useRouter();
-    const isUserLoggedIn = useUIStore((state) => state.isUserLoggedIn);
-    const actions = useUIStore((state) => state.actions);
+    const isUserLoggedIn = useDataStore((state) => state.isUserLoggedIn);
+    const dataActions = useDataStore((state) => state.actions);
     const securityFeatures = [
         {
             icon: Locker,
@@ -94,11 +95,11 @@ export default function HomePage() {
                 localStorage.getItem('loggedIn') as string
             ) as boolean;
             if (isUserLoggedIn) {
-                actions.setIsUserLoggedIn(true);
-                router.push('/home');
+                dataActions.setIsUserLoggedIn(true);
+                router.push('/dashboard');
             } else {
                 localStorage.setItem('loggedIn', 'false');
-                actions.setIsUserLoggedIn(false);
+                dataActions.setIsUserLoggedIn(false);
                 setUIState(UI_STATE.IDLE);
             }
         } catch (error: any) {
@@ -132,28 +133,67 @@ export default function HomePage() {
     /**
      * This function handles the user login process.
      */
-    const handleUserLogin = async () => {
+    const handleUserLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const email = (
+            document.getElementById('input-email') as HTMLInputElement
+        )?.value;
+
         try {
+            // Get user's salt to derive auth hash.
+            const authHashSaltRes = await fetch('/api/users/salt', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-email': email
+                }
+            });
+            const authHashSaltData = await authHashSaltRes.json();
+            const authHashSalt = hexToUint8Array(authHashSaltData.data.salt);
+
+            const password = (
+                document.getElementById('input-password') as HTMLInputElement
+            )?.value;
+            const authHash = await cryptoService.deriveAuthHash(
+                password,
+                authHashSalt
+            );
+
+            // Start the login process.
             const loginRes = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email: (
-                        document.getElementById(
-                            'input-email'
-                        ) as HTMLInputElement
-                    )?.value,
-                    authHash: (
-                        document.getElementById(
-                            'input-password'
-                        ) as HTMLInputElement
-                    )?.value
+                    email: email,
+                    authHash: authHash
                 })
             });
 
             const loginData = await loginRes.json();
+
+            if (loginRes.status === HTTP_STATUS_CODE.CREATED) {
+                localStorage.setItem('jwtToken', loginData.data.accessToken);
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem(
+                    'userDetails',
+                    JSON.stringify(loginData.data.user)
+                );
+
+                dataActions.setIsUserLoggedIn(true);
+                dataActions.setUserDetails(loginData.data.user);
+                router.push('/dashboard');
+            } else {
+                logger.error(
+                    'Login failed with response:',
+                    (loginData.error as string) ||
+                        loginData.message ||
+                        loginRes.statusText
+                );
+                toast.error('Login failed. Please check your credentials.');
+            }
         } catch (error: any) {
             logger.error(
                 'An error occurred during user login:',
@@ -166,7 +206,7 @@ export default function HomePage() {
     /**
      * This function handles the user sign-up process.
      */
-    const handleUserSignUp = async (e) => {
+    const handleUserSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const name = (document.getElementById('input-name') as HTMLInputElement)
             ?.value;
@@ -347,7 +387,10 @@ export default function HomePage() {
                     </div>
                     {isLoginPage ? (
                         // Login Form
-                        <form className="bg-bg-flat-primary my-[8%] rounded-md px-4 py-8 shadow-sm">
+                        <form
+                            className="bg-bg-flat-primary my-[8%] rounded-md px-4 py-8 shadow-sm"
+                            onSubmit={(e) => handleUserLogin(e)}
+                        >
                             <FieldSet>
                                 <FieldLegend>Login</FieldLegend>
                                 <FieldDescription>
@@ -393,12 +436,7 @@ export default function HomePage() {
                                         </ItemDescription>
                                     </ItemContent>
                                 </Item>
-                                <Button
-                                    type="submit"
-                                    onClick={() => handleUserLogin()}
-                                >
-                                    Login
-                                </Button>
+                                <Button type="submit">Login</Button>
                                 <Text className="mx-auto flex items-center">
                                     New to Keyper?{' '}
                                     <Button

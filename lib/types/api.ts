@@ -1,7 +1,14 @@
 import { z } from 'zod';
-import { UserSchema } from './model';
+import { UserSchema } from '@/lib/types/model';
 
 // Zod Schemas
+const JWTPayloadSchema = z.object({
+    user_id: z.string(),
+    iss: z.string(),
+    exp: z.number(),
+    iat: z.number()
+});
+
 const APIResponseSchema = z.object({
     message: z.string(),
     data: z.unknown().optional(),
@@ -18,7 +25,29 @@ const SignUpResponseSchema = APIResponseSchema.extend({
     data: z.object({ user: UserSchema })
 });
 
-export { APIResponseSchema, SignUpRequestSchema, SignUpResponseSchema };
+const LoginResponseSchema = APIResponseSchema.extend({
+    data: z.object({
+        user: UserSchema.omit({
+            authHash: true,
+            recoveryKey: true,
+            salt: true
+        }),
+        accessToken: z.string()
+    })
+});
+
+const GetUserSaltResponseSchema = APIResponseSchema.extend({
+    data: z.object({ salt: z.string() })
+});
+
+export {
+    JWTPayloadSchema,
+    APIResponseSchema,
+    SignUpRequestSchema,
+    SignUpResponseSchema,
+    LoginResponseSchema,
+    GetUserSaltResponseSchema
+};
 
 // TypeScript Types
 enum HTTP_STATUS_CODE {
@@ -35,11 +64,21 @@ enum HTTP_STATUS_CODE {
     SERVICE_UNAVAILABLE = 503
 }
 
+type JWTPayload = z.infer<typeof JWTPayloadSchema>;
 type APIResponse = z.infer<typeof APIResponseSchema>;
 type SignUpRequest = z.infer<typeof SignUpRequestSchema>;
 type SignUpResponse = z.infer<typeof SignUpResponseSchema>;
+type LoginResponse = z.infer<typeof LoginResponseSchema>;
+type GetUserSaltResponse = z.infer<typeof GetUserSaltResponseSchema>;
 
 // Exports - TypeScript types
 export { HTTP_STATUS_CODE };
 
-export type { APIResponse, SignUpRequest, SignUpResponse };
+export type {
+    JWTPayload,
+    APIResponse,
+    SignUpRequest,
+    SignUpResponse,
+    LoginResponse,
+    GetUserSaltResponse
+};

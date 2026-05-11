@@ -1,4 +1,14 @@
 # CHANGELOG
+### [0.50.0] - 2026-05-11
+---
+#### Added
+- Add sign in functionality on the app.
+
+### [0.49.0] - 2026-05-08
+---
+#### Added
+- Add sign up functionality on the app.
+
 ### [0.48.0] - 2026-05-08
 ---
 #### Added

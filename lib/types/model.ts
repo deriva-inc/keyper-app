@@ -6,6 +6,7 @@ const UserSchema = z.object({
     email: z.string(),
     authHash: z.string(),
     recoveryKey: z.string(),
+    salt: z.string(),
     name: z.string(),
     avatarUrl: z.url(),
     createdAt: z.date(),
