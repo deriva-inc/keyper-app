@@ -31,6 +31,11 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     // !SECTION: States
 
     // SECTION: API Calls
+    /**
+     * This function handles the user logout process by clearing the relevant
+     * data from localStorage, updating the data store, and redirecting the
+     * user to the login page.
+     */
     const handleLogout = () => {
         localStorage.removeItem('jwtToken');
         localStorage.setItem('loggedIn', 'false');
@@ -42,6 +47,11 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     // !SECTION: API Calls
 
     // SECTION: Functions
+    /**
+     * This function verifies the user's login status by checking the validity
+     * of the JWT token stored in localStorage. If the token is invalid or
+     * expired, it triggers the logout process.
+     */
     const verifyLoginStatus = () => {
         try {
             const jwtToken = localStorage.getItem('jwtToken');
@@ -93,7 +103,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     return (
         <html
             lang="en"
-            data-energy="vaporwave"
+            data-energy="bubblegum-ice"
             className="bg-bg-base-primary antialiased"
         >
             <head>

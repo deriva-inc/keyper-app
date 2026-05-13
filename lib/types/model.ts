@@ -17,6 +17,7 @@ const ProfileSchema = z.object({
     id: z.uuid(),
     userId: z.uuid(),
     name: z.string(),
+    description: z.string().optional(),
     icon: z.url(),
     createdAt: z.date(),
     updatedAt: z.date()
@@ -79,6 +80,14 @@ enum UI_STATE {
     'IDLE'
 }
 
+enum TOP_NAV_LINKS {
+    'DASHBOARD',
+    'PROFILES',
+    'GROUPS',
+    'VAULT',
+    'SETTINGS'
+}
+
 type User = z.infer<typeof UserSchema>;
 type Profile = z.infer<typeof ProfileSchema>;
 type Group = z.infer<typeof GroupSchema>;
@@ -86,6 +95,6 @@ type VaultEntry = z.infer<typeof VaultEntrySchema>;
 type LocalStorageData = z.infer<typeof LocalStorageSchema>;
 
 // Exports - TypeScript types
-export { ENERGY, THEME, UI_STATE };
+export { ENERGY, THEME, UI_STATE, TOP_NAV_LINKS };
 
 export type { User, LocalStorageData, Profile, Group, VaultEntry };

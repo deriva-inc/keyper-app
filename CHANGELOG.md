@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.52.0] - 2026-05-11
+---
+#### Added
+- Add Header on the app.
+
 ### [0.51.0] - 2026-05-11
 ---
 #### Added
