@@ -24,13 +24,13 @@ import { Text, TextVariant } from '@/src/components/ui/text';
 import { Textarea } from '@/src/components/ui/textarea';
 
 /**
- * This function renders the Create New Profile Sidebar which allows users to
+ * This function renders the Create New Profile Sheet which allows users to
  * create a new profile.
  *
  * @author Aayush Goyal
  * @created 2026-05-13
  */
-export default function CreateNewProfileSidebar({
+export default function CreateNewProfileSheet({
     isCreateNewProfileSheetOpen,
     setIsCreateNewProfileSheetOpen,
     showTrigger = true

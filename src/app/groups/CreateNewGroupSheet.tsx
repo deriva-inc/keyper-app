@@ -33,13 +33,13 @@ import {
 } from '@/src/components/ui/select';
 
 /**
- * This function renders the Create New Group Sidebar which allows users to
+ * This function renders the Create New Group Sheet which allows users to
  * create a new group.
  *
  * @author Aayush Goyal
  * @created 2026-05-13
  */
-export default function CreateNewGroupSidebar({
+export default function CreateNewGroupSheet({
     isCreateNewGroupSheetOpen,
     setIsCreateNewGroupSheetOpen,
     showTrigger = true

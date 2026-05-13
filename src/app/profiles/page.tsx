@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDataStore } from '@/lib/data-store';
 import { TOP_NAV_LINKS } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
-import CreateNewProfileSidebar from '@/src/app/profiles/CreateNewProfileSidebar';
+import CreateNewProfileSheet from '@/src/app/profiles/CreateNewProfileSheet';
 import ProfileCard from '@/src/app/profiles/ProfileCard';
 import EmptyState from '@/src/components/blocks/empty-state';
 import Header from '@/src/components/blocks/header';
@@ -60,7 +60,7 @@ export default function ProfilesPage() {
                                     }
                                 }}
                             />
-                            <CreateNewProfileSidebar
+                            <CreateNewProfileSheet
                                 isCreateNewProfileSheetOpen={
                                     isCreateNewProfileSheetOpen
                                 }
@@ -78,7 +78,7 @@ export default function ProfilesPage() {
                                     profile={profile}
                                 />
                             ))}
-                            <CreateNewProfileSidebar
+                            <CreateNewProfileSheet
                                 isCreateNewProfileSheetOpen={
                                     isCreateNewProfileSheetOpen
                                 }

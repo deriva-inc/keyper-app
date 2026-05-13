@@ -8,7 +8,7 @@ import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { Group, TOP_NAV_LINKS } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
-import CreateNewGroupSidebar from '@/src/app/groups/CreateNewGroupSidebar';
+import CreateNewGroupSheet from '@/src/app/groups/CreateNewGroupSheet';
 import GroupCard from '@/src/app/groups/GroupCard';
 import Header from '@/src/components/blocks/header';
 import AppSidebar from '@/src/components/ui/app-sidebar';
@@ -103,7 +103,7 @@ export default function ComponentName() {
                                     }
                                 }}
                             />
-                            <CreateNewGroupSidebar
+                            <CreateNewGroupSheet
                                 isCreateNewGroupSheetOpen={
                                     isCreateNewGroupSheetOpen
                                 }
@@ -118,7 +118,7 @@ export default function ComponentName() {
                             {groups.map((group) => (
                                 <GroupCard key={group.id} group={group} />
                             ))}
-                            <CreateNewGroupSidebar
+                            <CreateNewGroupSheet
                                 isCreateNewGroupSheetOpen={
                                     isCreateNewGroupSheetOpen
                                 }
