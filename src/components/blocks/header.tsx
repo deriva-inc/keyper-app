@@ -37,12 +37,10 @@ import { profileIcons } from '@/lib/utils';
 export default function Header() {
     // SECTION: Constants and Variables
     const theme = useUIStore((state) => state.theme);
-    const currentPage = useUIStore((state) => state.currentPage);
     const actions = useUIStore((state) => state.actions);
     const activeProfile = useDataStore((state) => state.activeProfile);
     const profiles = useDataStore((state) => state.profiles);
     const dataActions = useDataStore((state) => state.actions);
-    const params = useSearchParams();
     // !SECTION: Constants and Variables
 
     // SECTION: States
@@ -104,9 +102,6 @@ export default function Header() {
     // SECTION: UI
     return (
         <header className="flex items-center justify-between py-2">
-            <Text variant={TextVariant.H3} className="text-text-accent-primary">
-                {TOP_NAV_LINKS[currentPage]}
-            </Text>
             <InputGroup className="max-w-md">
                 <InputGroupInput
                     id="inline-start-input"

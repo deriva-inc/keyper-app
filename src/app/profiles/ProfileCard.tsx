@@ -69,7 +69,9 @@ export default function ProfileCard({ profile }: { profile: Profile }) {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <Badge variant="info">Active</Badge>
+                        <Badge className="bg-bg-base-accent-secondary">
+                            Active
+                        </Badge>
                     </motion.div>
                 )}
             </div>

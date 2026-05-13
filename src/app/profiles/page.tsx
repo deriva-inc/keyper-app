@@ -11,6 +11,7 @@ import EmptyState from '@/src/components/blocks/empty-state';
 import Header from '@/src/components/blocks/header';
 import AppSidebar from '@/src/components/ui/app-sidebar';
 import { SidebarProvider } from '@/src/components/ui/sidebar';
+import { Text, TextVariant } from '@/src/components/ui/text';
 
 /**
  * This function renders the Profiles page of the app.
@@ -46,7 +47,7 @@ export default function ProfilesPage() {
         <div className="min-h-screen transition-colors duration-300">
             <SidebarProvider>
                 <AppSidebar />
-                <div className="w-full px-4 py-2">
+                <div className="w-full px-8 py-2">
                     <Header />
                     {isEmpty(profiles) ? (
                         <>
@@ -71,21 +72,32 @@ export default function ProfilesPage() {
                             />
                         </>
                     ) : (
-                        <div className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center justify-items-center gap-8">
-                            {profiles.map((profile) => (
-                                <ProfileCard
-                                    key={profile.id}
-                                    profile={profile}
+                        <div className="px-4">
+                            <div className="my-8">
+                                <Text
+                                    variant={TextVariant.H2}
+                                    color="text-text-accent-primary"
+                                >
+                                    Profiles
+                                </Text>
+                                <Text variant={TextVariant.H5}>Profiles</Text>
+                            </div>
+                            <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center gap-8">
+                                {profiles.map((profile) => (
+                                    <ProfileCard
+                                        key={profile.id}
+                                        profile={profile}
+                                    />
+                                ))}
+                                <CreateNewProfileSheet
+                                    isCreateNewProfileSheetOpen={
+                                        isCreateNewProfileSheetOpen
+                                    }
+                                    setIsCreateNewProfileSheetOpen={
+                                        setIsCreateNewProfileSheetOpen
+                                    }
                                 />
-                            ))}
-                            <CreateNewProfileSheet
-                                isCreateNewProfileSheetOpen={
-                                    isCreateNewProfileSheetOpen
-                                }
-                                setIsCreateNewProfileSheetOpen={
-                                    setIsCreateNewProfileSheetOpen
-                                }
-                            />
+                            </div>
                         </div>
                     )}
                 </div>

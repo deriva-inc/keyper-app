@@ -51,6 +51,8 @@ export default function CreateNewGroupSheet({
     // SECTION: Constants and Variables
     const activeProfile = useDataStore((state) => state.activeProfile);
     const profiles = useDataStore((state) => state.profiles);
+    const groups = useDataStore((state) => state.groups);
+    const dataActions = useDataStore((state) => state.actions);
     // !SECTION: Constants and Variables
 
     // SECTION: States
@@ -98,6 +100,7 @@ export default function CreateNewGroupSheet({
 
             if (createGroupRes.ok) {
                 const groupData = await createGroupRes.json();
+                dataActions.setGroups([...groups, groupData.data]);
                 toast.success('Group created successfully!');
                 setIsCreateNewGroupSheetOpen(false);
             } else {
@@ -222,7 +225,7 @@ export default function CreateNewGroupSheet({
                                 }
                             >
                                 <SelectTrigger className="mt-2">
-                                    <SelectValue placeholder="Select Profile" />
+                                    <SelectValue placeholder="Select Type" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {['provider', 'category'].map((type) => (
