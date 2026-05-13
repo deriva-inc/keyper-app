@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.54.0] - 2026-05-13
+---
+#### Added
+- Add UI and Profiles service data integration on the Profiles page.
+
 ### [0.53.0] - 2026-05-13
 ---
 #### Added

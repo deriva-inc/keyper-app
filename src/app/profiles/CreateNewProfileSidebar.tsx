@@ -1,6 +1,7 @@
 'use client';
 
 import { Add } from 'elementa-icons';
+import { motion } from 'motion/react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
@@ -117,7 +118,11 @@ export default function CreateNewProfileSidebar({
         >
             {showTrigger && (
                 <SheetTrigger asChild>
-                    <div className="bg-bg-flat-primary flex min-h-60 w-80 cursor-pointer flex-col items-center justify-center gap-4 rounded-md border px-6 py-8 shadow-md hover:scale-105 active:scale-95">
+                    <motion.div
+                        className="bg-bg-flat-primary flex min-h-64 w-80 cursor-pointer flex-col items-center justify-center gap-4 rounded-md border px-6 py-8 shadow-md active:scale-95"
+                        initial={{ scale: 1 }}
+                        whileHover={{ scale: 1.05 }}
+                    >
                         <div className="border-text-primary w-fit rounded-full border border-dashed p-4">
                             <Add
                                 className="text-text-primary"
@@ -129,7 +134,7 @@ export default function CreateNewProfileSidebar({
                         <Text className="text-center">
                             Set up a new isolated vault for your specific needs.
                         </Text>
-                    </div>
+                    </motion.div>
                 </SheetTrigger>
             )}
             <SheetContent>
