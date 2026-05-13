@@ -1,4 +1,14 @@
 # CHANGELOG
+### [0.56.0] - 2026-05-13
+---
+#### Added
+- Add UI and Groups service data integration on the Groups page.
+
+### [0.55.0] - 2026-05-13
+---
+#### Added
+- Add Create New Group functionality on the app.
+
 ### [0.54.0] - 2026-05-13
 ---
 #### Added
