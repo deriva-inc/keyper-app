@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { ProfileSchema, UserSchema } from '@/lib/types/model';
+import { GroupSchema, ProfileSchema, UserSchema } from '@/lib/types/model';
 
-// Zod Schemas
+// SECTION: Zod Schemas
 const JWTPayloadSchema = z.object({
     user_id: z.string(),
     iss: z.string(),
@@ -40,6 +40,7 @@ const GetUserSaltResponseSchema = APIResponseSchema.extend({
     data: z.object({ salt: z.string() })
 });
 
+// SECTION: Profile Service
 const SingleProfileResponseSchema = APIResponseSchema.extend({
     data: ProfileSchema
 });
@@ -51,6 +52,21 @@ const ListProfileResponseSchema = APIResponseSchema.extend({
 const DeleteProfileResponseSchema = APIResponseSchema.extend({
     data: z.boolean()
 });
+// !SECTION: Profile Service
+
+// SECTION: Group Service
+const SingleGroupResponseSchema = APIResponseSchema.extend({
+    data: GroupSchema
+});
+
+const ListGroupResponseSchema = APIResponseSchema.extend({
+    data: z.array(GroupSchema)
+});
+
+const DeleteGroupResponseSchema = APIResponseSchema.extend({
+    data: z.boolean()
+});
+// !SECTION: Group Service
 
 export {
     JWTPayloadSchema,
@@ -61,7 +77,10 @@ export {
     GetUserSaltResponseSchema,
     SingleProfileResponseSchema,
     ListProfileResponseSchema,
-    DeleteProfileResponseSchema
+    DeleteProfileResponseSchema,
+    SingleGroupResponseSchema,
+    ListGroupResponseSchema,
+    DeleteGroupResponseSchema
 };
 
 // TypeScript Types
@@ -88,6 +107,9 @@ type GetUserSaltResponse = z.infer<typeof GetUserSaltResponseSchema>;
 type SingleProfileResponse = z.infer<typeof SingleProfileResponseSchema>;
 type ListProfileResponse = z.infer<typeof ListProfileResponseSchema>;
 type DeleteProfileResponse = z.infer<typeof DeleteProfileResponseSchema>;
+type SingleGroupResponse = z.infer<typeof SingleGroupResponseSchema>;
+type ListGroupResponse = z.infer<typeof ListGroupResponseSchema>;
+type DeleteGroupResponse = z.infer<typeof DeleteGroupResponseSchema>;
 
 // Exports - TypeScript types
 export { HTTP_STATUS_CODE };
@@ -101,5 +123,8 @@ export type {
     GetUserSaltResponse,
     SingleProfileResponse,
     ListProfileResponse,
-    DeleteProfileResponse
+    DeleteProfileResponse,
+    SingleGroupResponse,
+    ListGroupResponse,
+    DeleteGroupResponse
 };

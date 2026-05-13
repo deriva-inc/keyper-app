@@ -100,6 +100,52 @@ const profileIcons = [
     }
 ];
 
+const groupProviders = [
+    {
+        id: 'google',
+        name: 'Google',
+        icon: '/icons/providers/google.svg'
+    },
+    {
+        id: 'amazon',
+        name: 'Amazon',
+        icon: '/icons/providers/amazon.svg'
+    },
+    {
+        id: 'microsoft',
+        name: 'Microsoft',
+        icon: '/icons/providers/microsoft.svg'
+    },
+    {
+        id: 'github',
+        name: 'GitHub',
+        icon: '/icons/providers/github.svg'
+    },
+    {
+        id: 'hdfc',
+        name: 'HDFC Bank',
+        icon: '/icons/providers/hdfc.svg'
+    }
+];
+
+const groupCategories = [
+    {
+        id: 'social',
+        name: 'Social',
+        icon: 'https://storage.googleapis.com/elementa-icons/social-people/friends.svg'
+    },
+    {
+        id: 'travel',
+        name: 'Travel',
+        icon: 'https://storage.googleapis.com/elementa-icons/transportation/airplane.svg'
+    },
+    {
+        id: 'health-wellness',
+        name: 'Health & Wellness',
+        icon: 'https://storage.googleapis.com/elementa-icons/medical-health/pills.svg'
+    }
+];
+
 /**
  * This function converts a hex string to a Uint8Array.
  *
@@ -149,5 +195,5 @@ const copyToClipboard = async (text: string): Promise<void> => {
     }
 };
 
-export { protectedRoutes, profileIcons };
+export { protectedRoutes, profileIcons, groupProviders, groupCategories };
 export { cn, hexToUint8Array, uint8ArrayToHex, copyToClipboard };

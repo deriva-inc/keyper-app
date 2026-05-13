@@ -23,10 +23,14 @@ const ProfileSchema = z.object({
     updatedAt: z.date()
 });
 
+const GroupTypeSchema = z.enum(['provider', 'category']);
+
 const GroupSchema = z.object({
     id: z.uuid(),
     profileId: z.uuid(),
     name: z.string(),
+    description: z.string().optional(),
+    type: GroupTypeSchema,
     icon: z.url().optional(),
     createdAt: z.date(),
     updatedAt: z.date()
@@ -90,6 +94,7 @@ enum TOP_NAV_LINKS {
 
 type User = z.infer<typeof UserSchema>;
 type Profile = z.infer<typeof ProfileSchema>;
+type GroupType = z.infer<typeof GroupTypeSchema>;
 type Group = z.infer<typeof GroupSchema>;
 type VaultEntry = z.infer<typeof VaultEntrySchema>;
 type LocalStorageData = z.infer<typeof LocalStorageSchema>;
@@ -97,4 +102,4 @@ type LocalStorageData = z.infer<typeof LocalStorageSchema>;
 // Exports - TypeScript types
 export { ENERGY, THEME, UI_STATE, TOP_NAV_LINKS };
 
-export type { User, LocalStorageData, Profile, Group, VaultEntry };
+export type { User, LocalStorageData, Profile, GroupType, Group, VaultEntry };

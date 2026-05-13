@@ -95,8 +95,9 @@ export default function Header() {
 
     // SECTION: Side Effects
     useEffect(() => {
-        fetchUserProfiles();
-        console.log(currentPage);
+        if (!activeProfile) {
+            fetchUserProfiles();
+        }
     }, []);
     // !SECTION: Side Effects
 
@@ -119,6 +120,7 @@ export default function Header() {
             <div className="flex items-center gap-4">
                 {!isEmpty(profiles) && (
                     <Select
+                        value={activeProfile ? activeProfile.id : undefined}
                         onValueChange={(value) => handleSetActiveProfile(value)}
                     >
                         <SelectTrigger>

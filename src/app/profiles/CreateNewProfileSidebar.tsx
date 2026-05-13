@@ -170,10 +170,12 @@ export default function CreateNewProfileSidebar({
                     <Label className="mt-6">Profile Icon</Label>
                     <div className="mt-2 grid grid-cols-4 items-start justify-items-center gap-4">
                         {profileIcons.map((icon, index) => (
-                            <div
+                            <motion.div
                                 role="button"
                                 key={index}
-                                className={`hover:bg-bg-base-accent-primary active cursor-pointer rounded-md border p-4 hover:scale-105 active:scale-95 ${activeIcon === icon.id ? 'bg-bg-active-accent-primary' : 'bg-bg-active-primary'}`}
+                                className={`hover:bg-bg-base-accent-primary active cursor-pointer rounded-md border p-4 active:scale-95 ${activeIcon === icon.id ? 'bg-bg-active-accent-primary' : 'bg-bg-active-primary'}`}
+                                initial={{ scale: 1 }}
+                                whileHover={{ scale: 1.05 }}
                                 onClick={() => handleIconClick(icon.id)}
                             >
                                 <icon.icon
@@ -186,7 +188,7 @@ export default function CreateNewProfileSidebar({
                                             : ''
                                     }
                                 />
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </form>
