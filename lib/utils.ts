@@ -1,7 +1,25 @@
 import { clsx, type ClassValue } from 'clsx';
+import {
+    Airplane,
+    Briefcase,
+    DogPaw,
+    Flag,
+    Gear,
+    Home1,
+    IdCard,
+    Import,
+    MediaPlayback,
+    OpenBook,
+    PiggyBank,
+    Pills,
+    Rocket,
+    ShoppingBags,
+    ToolBox,
+    World1
+} from 'elementa-icons';
 import { twMerge } from 'tailwind-merge';
-import logger from '@/lib/logger';
 import { toast } from 'sonner';
+import logger from '@/lib/logger';
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -13,6 +31,73 @@ const protectedRoutes = [
     '/entries',
     '/vault',
     '/profiles'
+];
+
+const profileIcons = [
+    {
+        id: 'id-card',
+        icon: IdCard
+    },
+    {
+        id: 'briefcase',
+        icon: Briefcase
+    },
+    {
+        id: 'piggy-bank',
+        icon: PiggyBank
+    },
+    {
+        id: 'home',
+        icon: Home1
+    },
+    {
+        id: 'rocket',
+        icon: Rocket
+    },
+    {
+        id: 'shopping-bags',
+        icon: ShoppingBags
+    },
+    {
+        id: 'gear',
+        icon: Gear
+    },
+    {
+        id: 'flag',
+        icon: Flag
+    },
+    {
+        id: 'dog-paw',
+        icon: DogPaw
+    },
+    {
+        id: 'airplane',
+        icon: Airplane
+    },
+    {
+        id: 'tool-box',
+        icon: ToolBox
+    },
+    {
+        id: 'open-book',
+        icon: OpenBook
+    },
+    {
+        id: 'world',
+        icon: World1
+    },
+    {
+        id: 'media-playback',
+        icon: MediaPlayback
+    },
+    {
+        id: 'pills',
+        icon: Pills
+    },
+    {
+        id: 'import',
+        icon: Import
+    }
 ];
 
 /**
@@ -64,5 +149,5 @@ const copyToClipboard = async (text: string): Promise<void> => {
     }
 };
 
-export { protectedRoutes };
+export { protectedRoutes, profileIcons };
 export { cn, hexToUint8Array, uint8ArrayToHex, copyToClipboard };

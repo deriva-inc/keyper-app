@@ -1,5 +1,10 @@
 # CHANGELOG
-### [0.52.0] - 2026-05-11
+### [0.53.0] - 2026-05-13
+---
+#### Added
+- Add Create New Profile functionality on the app.
+
+### [0.52.0] - 2026-05-13
 ---
 #### Added
 - Add Header on the app.

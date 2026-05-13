@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { UserSchema } from '@/lib/types/model';
+import { ProfileSchema, UserSchema } from '@/lib/types/model';
 
 // Zod Schemas
 const JWTPayloadSchema = z.object({
@@ -40,13 +40,28 @@ const GetUserSaltResponseSchema = APIResponseSchema.extend({
     data: z.object({ salt: z.string() })
 });
 
+const SingleProfileResponseSchema = APIResponseSchema.extend({
+    data: ProfileSchema
+});
+
+const ListProfileResponseSchema = APIResponseSchema.extend({
+    data: z.array(ProfileSchema)
+});
+
+const DeleteProfileResponseSchema = APIResponseSchema.extend({
+    data: z.boolean()
+});
+
 export {
     JWTPayloadSchema,
     APIResponseSchema,
     SignUpRequestSchema,
     SignUpResponseSchema,
     LoginResponseSchema,
-    GetUserSaltResponseSchema
+    GetUserSaltResponseSchema,
+    SingleProfileResponseSchema,
+    ListProfileResponseSchema,
+    DeleteProfileResponseSchema
 };
 
 // TypeScript Types
@@ -70,6 +85,9 @@ type SignUpRequest = z.infer<typeof SignUpRequestSchema>;
 type SignUpResponse = z.infer<typeof SignUpResponseSchema>;
 type LoginResponse = z.infer<typeof LoginResponseSchema>;
 type GetUserSaltResponse = z.infer<typeof GetUserSaltResponseSchema>;
+type SingleProfileResponse = z.infer<typeof SingleProfileResponseSchema>;
+type ListProfileResponse = z.infer<typeof ListProfileResponseSchema>;
+type DeleteProfileResponse = z.infer<typeof DeleteProfileResponseSchema>;
 
 // Exports - TypeScript types
 export { HTTP_STATUS_CODE };
@@ -80,5 +98,8 @@ export type {
     SignUpRequest,
     SignUpResponse,
     LoginResponse,
-    GetUserSaltResponse
+    GetUserSaltResponse,
+    SingleProfileResponse,
+    ListProfileResponse,
+    DeleteProfileResponse
 };
