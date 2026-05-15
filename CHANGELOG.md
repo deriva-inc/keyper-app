@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.62.0] - 2026-05-15
+---
+#### Added
+- Add Profile delete functionality.
+
 ### [0.61.0] - 2026-05-15
 ---
 #### Added

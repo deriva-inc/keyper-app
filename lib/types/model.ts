@@ -62,6 +62,7 @@ const VaultEntrySchema = z.object({
     groupId: z.uuid().optional(),
     name: z.string(),
     description: z.string().optional(),
+    icon: z.url().optional(),
     type: EntryTypeSchema,
     encryptedBlob: z.string(),
     customFields: z.record(z.string(), z.unknown()).optional(),

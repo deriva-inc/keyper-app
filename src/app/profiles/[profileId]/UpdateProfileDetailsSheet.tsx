@@ -118,11 +118,7 @@ export default function UpdateProfileDetailsSheet({
                     variant="secondary"
                     onClick={() => setIsSheetOpen(true)}
                 >
-                    <Edit
-                        className="text-text-primary"
-                        height={24}
-                        width={24}
-                    />
+                    <Edit height={24} width={24} />
                     Update
                 </Button>
             </SheetTrigger>
