@@ -113,7 +113,7 @@ export default function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             className={`${
-                                currentPage === TOP_NAV_LINKS.GROUPS
+                                currentPage === TOP_NAV_LINKS.DASHBOARD
                                     ? 'bg-bg-base-accent-primary'
                                     : ''
                             } ${
@@ -136,7 +136,7 @@ export default function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             className={`${
-                                currentPage === TOP_NAV_LINKS.GROUPS
+                                currentPage === TOP_NAV_LINKS.VAULT
                                     ? 'bg-bg-base-accent-primary'
                                     : ''
                             } ${
@@ -157,7 +157,7 @@ export default function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton
                             className={`${
-                                currentPage === TOP_NAV_LINKS.GROUPS
+                                currentPage === TOP_NAV_LINKS.PROFILES
                                     ? 'bg-bg-base-accent-primary'
                                     : ''
                             } ${

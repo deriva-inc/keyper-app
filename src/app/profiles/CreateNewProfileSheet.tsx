@@ -88,7 +88,6 @@ export default function CreateNewProfileSheet({
 
             if (createProfileRes.ok) {
                 const profileData = await createProfileRes.json();
-                console.log(profileData);
                 dataActions.setProfiles([
                     ...(profiles || []),
                     profileData.data

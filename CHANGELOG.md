@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.61.0] - 2026-05-15
+---
+#### Added
+- Add Profile update functionality.
+
 ### [0.60.0] - 2026-05-15
 ---
 #### Added
