@@ -1,5 +1,6 @@
 // import { hash } from 'phc-argon2';
 import argon2 from 'argon2-browser/dist/argon2-bundled.min.js';
+import { hexToUint8Array } from '@/lib/utils';
 
 const AUTH_HASH_PARAMS = {
     timeCost: 1,
@@ -67,6 +68,28 @@ const deriveEncryptionKey = async (
 };
 
 /**
+ * This function imports a raw encryption key into a CryptoKey object that can
+ * be used with the Web Crypto API for encryption and decryption.
+ *
+ * @param rawKey - A Uint8Array containing the raw bytes of the encryption key (should be 32 bytes for AES-256).
+ * @returns A Promise that resolves to a CryptoKey object ready for use in encryption/decryption operations.
+ */
+async function importKey(rawKey: Uint8Array): Promise<CryptoKey> {
+    if (rawKey.length !== 32) {
+        throw new Error(
+            `Invalid key length: expected 32 bytes for AES-256, got ${rawKey.length}`
+        );
+    }
+    return window.crypto.subtle.importKey(
+        'raw',
+        rawKey.slice().buffer,
+        { name: 'AES-GCM' },
+        false,
+        ['encrypt', 'decrypt']
+    );
+}
+
+/**
  * Encrypts a string and returns a Base64 string suitable for the Go Backend
  */
 async function encryptAndEncode(
@@ -125,10 +148,25 @@ async function decodeAndDecrypt(
     return decoder.decode(decryptedBuffer);
 }
 
+/**
+ * This function retrieves the encryption key from localStorage, imports it as
+ * a CryptoKey, and returns it for use in encryption/decryption operations.
+ *
+ * @returns {Promise<CryptoKey>} The imported CryptoKey.
+ */
+const getEncryptionKey = async (): Promise<CryptoKey> => {
+    const encryptionKeyHex = localStorage.getItem('encryptionKey');
+    const encryptionKey = await importKey(hexToUint8Array(encryptionKeyHex));
+
+    return encryptionKey;
+};
+
 export const cryptoService = {
     generateSalt,
     deriveAuthHash,
     deriveEncryptionKey,
+    importKey,
     encryptAndEncode,
-    decodeAndDecrypt
+    decodeAndDecrypt,
+    getEncryptionKey
 };

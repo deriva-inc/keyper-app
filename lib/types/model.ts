@@ -5,8 +5,10 @@ const UserSchema = z.object({
     id: z.uuid(),
     email: z.string(),
     authHash: z.string(),
+    authSalt: z.string(),
+    encryptionHash: z.string(),
+    encryptionSalt: z.string(),
     recoveryKey: z.string(),
-    salt: z.string(),
     name: z.string(),
     avatarUrl: z.url(),
     createdAt: z.date(),
@@ -36,11 +38,23 @@ const GroupSchema = z.object({
     updatedAt: z.date()
 });
 
+const EntryTypeSchema = z.enum([
+    'login',
+    'credit_card',
+    'debit_card',
+    'bank_account',
+    'upi_id',
+    'identity_card',
+    'secure_note'
+]);
+
 const VaultEntrySchema = z.object({
     id: z.uuid(),
     profileId: z.uuid(),
     groupId: z.uuid().optional(),
     name: z.string(),
+    description: z.string().optional(),
+    type: EntryTypeSchema,
     encryptedBlob: z.string(),
     customFields: z.record(z.string(), z.unknown()).optional(),
     isFavorite: z.boolean().default(false),
@@ -58,7 +72,9 @@ const LocalStorageSchema = z.object({
 export {
     UserSchema,
     ProfileSchema,
+    GroupTypeSchema,
     GroupSchema,
+    EntryTypeSchema,
     VaultEntrySchema,
     LocalStorageSchema
 };
@@ -96,10 +112,19 @@ type User = z.infer<typeof UserSchema>;
 type Profile = z.infer<typeof ProfileSchema>;
 type GroupType = z.infer<typeof GroupTypeSchema>;
 type Group = z.infer<typeof GroupSchema>;
+type EntryType = z.infer<typeof EntryTypeSchema>;
 type VaultEntry = z.infer<typeof VaultEntrySchema>;
 type LocalStorageData = z.infer<typeof LocalStorageSchema>;
 
 // Exports - TypeScript types
 export { ENERGY, THEME, UI_STATE, TOP_NAV_LINKS };
 
-export type { User, LocalStorageData, Profile, GroupType, Group, VaultEntry };
+export type {
+    User,
+    LocalStorageData,
+    Profile,
+    GroupType,
+    Group,
+    EntryType,
+    VaultEntry
+};

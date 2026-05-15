@@ -1,12 +1,11 @@
 'use client';
 
 import { isEmpty } from 'lodash';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
-import { Group, TOP_NAV_LINKS } from '@/lib/types/model';
+import { TOP_NAV_LINKS } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
 import CreateNewGroupSheet from '@/src/app/groups/CreateNewGroupSheet';
 import GroupCard from '@/src/app/groups/GroupCard';
@@ -21,15 +20,15 @@ import EmptyState from '@/src/components/blocks/empty-state';
  * @author Aayush Goyal
  * @created 2026-05-13
  */
-export default function ComponentName() {
+export default function GroupsPage() {
     // SECTION: Constants and Variables
-    const router = useRouter();
     const actions = useUIStore((state) => state.actions);
+    const dataActions = useDataStore((state) => state.actions);
     const activeProfile = useDataStore((state) => state.activeProfile);
+    const groups = useDataStore((state) => state.groups);
     // !SECTION: Constants and Variables
 
     // SECTION: States
-    const [groups, setGroups] = useState<Group[]>([]);
     const [isCreateNewGroupSheetOpen, setIsCreateNewGroupSheetOpen] =
         useState(false);
     // !SECTION: States
@@ -54,7 +53,7 @@ export default function ComponentName() {
 
             const groupsData = await groupsRes.json();
             if (groupsRes.ok) {
-                setGroups(groupsData.data);
+                dataActions.setGroups(groupsData.data);
             } else {
                 toast.error('Failed to fetch groups. Please try again.');
                 logger.error('Failed to fetch groups.');
@@ -71,14 +70,16 @@ export default function ComponentName() {
 
     // SECTION: Side Effects
     useEffect(() => {
-        actions.setCurrentPage(TOP_NAV_LINKS.GROUPS);
+        if (isEmpty(groups)) {
+            actions.setCurrentPage(TOP_NAV_LINKS.GROUPS);
 
-        if (activeProfile) {
-            fetchGroupsForProfile(activeProfile.id);
-        } else {
-            toast.info(
-                'No active profile found. Please select one from top nav bar.'
-            );
+            if (activeProfile) {
+                fetchGroupsForProfile(activeProfile.id);
+            } else {
+                toast.info(
+                    'No active profile found. Please select one from top nav bar.'
+                );
+            }
         }
     }, [activeProfile]);
 

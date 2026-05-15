@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.57.0] - 2026-05-15
+---
+#### Added
+- Update sign up process to handle encryption salt and key for securing vault entries.
+
 ### [0.56.0] - 2026-05-13
 ---
 #### Added

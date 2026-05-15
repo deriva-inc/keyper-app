@@ -142,22 +142,29 @@ export default function HomePage() {
 
         try {
             // Get user's salt to derive auth hash.
-            const authHashSaltRes = await fetch('/api/users/salt', {
+            const hashSaltRes = await fetch('/api/users/salt', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'x-email': email
                 }
             });
-            const authHashSaltData = await authHashSaltRes.json();
-            const authHashSalt = hexToUint8Array(authHashSaltData.data.salt);
+            const hashSaltData = await hashSaltRes.json();
+            const authHashSalt = hexToUint8Array(hashSaltData.data.authSalt);
+            const encryptionKeySalt = hexToUint8Array(
+                hashSaltData.data.encryptionSalt
+            );
 
             const password = (
                 document.getElementById('input-password') as HTMLInputElement
             )?.value;
-            const authHash = await cryptoService.deriveAuthHash(
+            const authKey = await cryptoService.deriveAuthHash(
                 password,
                 authHashSalt
+            );
+            const encryptionKey = await cryptoService.deriveEncryptionKey(
+                password,
+                encryptionKeySalt
             );
 
             // Start the login process.
@@ -168,7 +175,7 @@ export default function HomePage() {
                 },
                 body: JSON.stringify({
                     email: email,
-                    authHash: authHash
+                    authKey: authKey
                 })
             });
 
@@ -182,6 +189,10 @@ export default function HomePage() {
                     JSON.stringify(loginData.data.user)
                 );
 
+                localStorage.setItem(
+                    'encryptionKey',
+                    uint8ArrayToHex(encryptionKey)
+                );
                 dataActions.setIsUserLoggedIn(true);
                 dataActions.setUserDetails(loginData.data.user);
                 router.push('/dashboard');
@@ -205,6 +216,8 @@ export default function HomePage() {
 
     /**
      * This function handles the user sign-up process.
+     *
+     * @param e - The form submission event.
      */
     const handleUserSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -219,9 +232,17 @@ export default function HomePage() {
 
         // Hash password with Argon2 before sending to the server.
         const authHashSalt = cryptoService.generateSalt();
-        const authHash = await cryptoService.deriveAuthHash(
+        const authKeyRaw = await cryptoService.deriveAuthHash(
             password,
             authHashSalt
+        );
+
+        // Hash password with Argon2 to generate the encryption key, which will
+        // be used for encrypting the user's data.
+        const encryptionHashSalt = cryptoService.generateSalt();
+        const encryptionKeyRaw = await cryptoService.deriveEncryptionKey(
+            password,
+            encryptionHashSalt
         );
 
         try {
@@ -233,8 +254,10 @@ export default function HomePage() {
                 body: JSON.stringify({
                     name: name,
                     email: email,
-                    authHash: authHash,
-                    salt: uint8ArrayToHex(authHashSalt),
+                    authSalt: uint8ArrayToHex(authHashSalt),
+                    authKey: authKeyRaw,
+                    encryptionSalt: uint8ArrayToHex(encryptionHashSalt),
+                    encryptionKey: encryptionKeyRaw.toHex(),
                     avatarUrl: `https://api.dicebear.com/9.x/thumbs/svg?seed=${name.split(' ').join('-')}`
                 })
             });
