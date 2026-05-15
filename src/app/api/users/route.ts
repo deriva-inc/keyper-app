@@ -33,3 +33,33 @@ export async function GET(req: Request) {
         );
     }
 }
+
+/* Handle DELETE request to delete a user's profile. */
+export async function DELETE(req: Request) {
+    const targetUrl = `${process.env.SERVER_BASE_URL}/users`;
+    logger.info(`[DELETE] ${targetUrl} | Deleting user profile.`);
+
+    try {
+        const userDetailsRes = await fetch(`${targetUrl}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: req.headers.get('Authorization') || ''
+            }
+        });
+
+        const userDetailsData =
+            (await userDetailsRes.json()) as GetUserDetailsResponse;
+
+        return NextResponse.json(userDetailsData, {
+            status: userDetailsRes.status
+        });
+    } catch (error: unknown) {
+        return handleErrorOnServerSideAPICalls(
+            error,
+            `Failed to delete user profile.`,
+            HTTP_STATUS_CODE.INTERNAL_ERROR,
+            `[DELETE] /api/v1/users`
+        );
+    }
+}

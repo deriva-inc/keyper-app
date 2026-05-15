@@ -33,7 +33,7 @@ export default function ProfilePage() {
     // SECTION: Constants and Variables
     const router = useRouter();
     const userDetails = useDataStore((state) => state.userDetails);
-    const actions = useDataStore((state) => state.actions);
+    const dataActions = useDataStore((state) => state.actions);
     // !SECTION: Constants and Variables
 
     // SECTION: States
@@ -56,7 +56,7 @@ export default function ProfilePage() {
             });
 
             const userProfileData = await userProfileRes.json();
-            actions.setUserDetails(userProfileData.data);
+            dataActions.setUserDetails(userProfileData.data);
         } catch (error: any) {
             logger.error(
                 `Failed to fetch user details for the user profile page. Error: ${error.message}`
@@ -72,23 +72,36 @@ export default function ProfilePage() {
      * This function deletes the user profile and all associated data from the platform.
      */
     const handleDeleteUserProfile = async () => {
-        //  try {
-        //     const jwtToken = localStorage.getItem('jwtToken');
-        //     const response = await fetch('/api/users', {
-        //         method: 'GET',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             Authorization: `Bearer ${jwtToken}`
-        //         }
-        // } catch (error: any) {
-        //     logger.error(
-        //         `Failed to fetch user details for the user profile page. Error: ${error.message}`
-        //     );
-        //     toast.error(
-        //         'Failed to fetch user details. Routing to your dashboard.'
-        //     );
-        //     router.push('/dashboard');
-        // }
+        try {
+            const jwtToken = localStorage.getItem('jwtToken');
+            const deleteUserRes = await fetch('/api/users', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${jwtToken}`
+                }
+            });
+
+            if (deleteUserRes.ok) {
+                toast.success('User profile deleted successfully.');
+                localStorage.removeItem('jwtToken');
+                localStorage.setItem('loggedIn', 'false');
+                dataActions.setIsUserLoggedIn(false);
+                dataActions.setUserDetails(null);
+                router.push('/');
+            } else {
+                logger.error();
+                toast.success('User profile deleted successfully.');
+            }
+        } catch (error: any) {
+            logger.error(
+                `Failed to delete user profile. Error: ${error.message}`
+            );
+            toast.error(
+                'Failed to fetch user details. Routing to your dashboard.'
+            );
+            router.push('/dashboard');
+        }
     };
     // !SECTION API Queries
 
