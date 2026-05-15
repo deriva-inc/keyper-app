@@ -1,5 +1,10 @@
 import { z } from 'zod';
-import { GroupSchema, ProfileSchema, UserSchema } from '@/lib/types/model';
+import {
+    GroupSchema,
+    ProfileSchema,
+    UserDetailsWOSecretsSchema,
+    UserSchema
+} from '@/lib/types/model';
 
 // SECTION: Zod Schemas
 const JWTPayloadSchema = z.object({
@@ -27,13 +32,13 @@ const SignUpResponseSchema = APIResponseSchema.extend({
 
 const LoginResponseSchema = APIResponseSchema.extend({
     data: z.object({
-        user: UserSchema.omit({
-            authHash: true,
-            recoveryKey: true,
-            salt: true
-        }),
+        user: UserDetailsWOSecretsSchema,
         accessToken: z.string()
     })
+});
+
+const GetUserDetailsResponseSchema = APIResponseSchema.extend({
+    data: UserDetailsWOSecretsSchema
 });
 
 const GetUserSaltResponseSchema = APIResponseSchema.extend({
@@ -74,6 +79,7 @@ export {
     SignUpRequestSchema,
     SignUpResponseSchema,
     LoginResponseSchema,
+    GetUserDetailsResponseSchema,
     GetUserSaltResponseSchema,
     SingleProfileResponseSchema,
     ListProfileResponseSchema,
@@ -103,6 +109,7 @@ type APIResponse = z.infer<typeof APIResponseSchema>;
 type SignUpRequest = z.infer<typeof SignUpRequestSchema>;
 type SignUpResponse = z.infer<typeof SignUpResponseSchema>;
 type LoginResponse = z.infer<typeof LoginResponseSchema>;
+type GetUserDetailsResponse = z.infer<typeof GetUserDetailsResponseSchema>;
 type GetUserSaltResponse = z.infer<typeof GetUserSaltResponseSchema>;
 type SingleProfileResponse = z.infer<typeof SingleProfileResponseSchema>;
 type ListProfileResponse = z.infer<typeof ListProfileResponseSchema>;
@@ -120,6 +127,7 @@ export type {
     SignUpRequest,
     SignUpResponse,
     LoginResponse,
+    GetUserDetailsResponse,
     GetUserSaltResponse,
     SingleProfileResponse,
     ListProfileResponse,

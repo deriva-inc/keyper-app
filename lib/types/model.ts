@@ -15,6 +15,14 @@ const UserSchema = z.object({
     updatedAt: z.date()
 });
 
+const UserDetailsWOSecretsSchema = UserSchema.omit({
+    authHash: true,
+    authSalt: true,
+    encryptionHash: true,
+    encryptionSalt: true,
+    recoveryKey: true
+});
+
 const ProfileSchema = z.object({
     id: z.uuid(),
     userId: z.uuid(),
@@ -71,6 +79,7 @@ const LocalStorageSchema = z.object({
 
 export {
     UserSchema,
+    UserDetailsWOSecretsSchema,
     ProfileSchema,
     GroupTypeSchema,
     GroupSchema,
@@ -109,6 +118,7 @@ enum TOP_NAV_LINKS {
 }
 
 type User = z.infer<typeof UserSchema>;
+type UserDetailsWOSecrets = z.infer<typeof UserDetailsWOSecretsSchema>;
 type Profile = z.infer<typeof ProfileSchema>;
 type GroupType = z.infer<typeof GroupTypeSchema>;
 type Group = z.infer<typeof GroupSchema>;
@@ -121,6 +131,7 @@ export { ENERGY, THEME, UI_STATE, TOP_NAV_LINKS };
 
 export type {
     User,
+    UserDetailsWOSecrets,
     LocalStorageData,
     Profile,
     GroupType,

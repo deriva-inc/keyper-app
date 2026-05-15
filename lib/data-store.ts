@@ -1,5 +1,10 @@
 import { create } from 'zustand';
-import { Group, Profile, User, VaultEntry } from '@/lib/types/model';
+import {
+    Group,
+    Profile,
+    UserDetailsWOSecrets,
+    VaultEntry
+} from '@/lib/types/model';
 
 /**
  * This file defines a Zustand store for managing user data across the application.
@@ -10,7 +15,7 @@ interface State {
     profiles: Profile[];
     groups: Group[];
     vaultEntries: VaultEntry[];
-    userDetails: Omit<User, 'authHash' | 'recoveryKey' | 'salt'> | null;
+    userDetails: UserDetailsWOSecrets | null;
 }
 
 interface Actions {
@@ -20,9 +25,7 @@ interface Actions {
         setProfiles: (profiles: Profile[]) => void;
         setGroups: (groups: Group[]) => void;
         setVaultEntries: (vaultEntries: VaultEntry[]) => void;
-        setUserDetails: (
-            userDetails: Omit<User, 'authHash' | 'recoveryKey' | 'salt'> | null
-        ) => void;
+        setUserDetails: (userDetails: UserDetailsWOSecrets | null) => void;
     };
 }
 
@@ -41,8 +44,7 @@ export const useDataStore = create<State & Actions>((set) => ({
         setProfiles: (profiles: Profile[]) => set({ profiles }),
         setGroups: (groups: Group[]) => set({ groups }),
         setVaultEntries: (vaultEntries: VaultEntry[]) => set({ vaultEntries }),
-        setUserDetails: (
-            userDetails: Omit<User, 'authHash' | 'recoveryKey' | 'salt'> | null
-        ) => set({ userDetails })
+        setUserDetails: (userDetails: UserDetailsWOSecrets | null) =>
+            set({ userDetails })
     }
 }));

@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.58.0] - 2026-05-15
+---
+#### Added
+- Add UI and User services data integration on the User Profile page.
+
 ### [0.57.0] - 2026-05-15
 ---
 #### Added
