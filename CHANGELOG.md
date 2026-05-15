@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.59.0] - 2026-05-15
+---
+#### Added
+- Add App Sidebar component.
+
 ### [0.58.0] - 2026-05-15
 ---
 #### Added

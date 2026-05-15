@@ -97,7 +97,9 @@ export default function ProfilePage() {
 
     // SECTION: Side Effects
     useEffect(() => {
-        fetchUserDetails();
+        if (isEmpty(userDetails)) {
+            fetchUserDetails();
+        }
     }, []);
     // !SECTION: Side Effects
 
