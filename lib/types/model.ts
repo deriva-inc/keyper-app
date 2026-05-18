@@ -29,6 +29,7 @@ const ProfileSchema = z.object({
     name: z.string(),
     description: z.string().optional(),
     icon: z.url(),
+    isArchived: z.boolean().default(false),
     createdAt: z.date(),
     updatedAt: z.date()
 });
@@ -65,6 +66,12 @@ const VaultEntrySchema = z.object({
     icon: z.url().optional(),
     type: EntryTypeSchema,
     encryptedBlob: z.string(),
+    websiteUrl: z.string().url().optional(),
+    userId: z.string().optional(),
+    userName: z.string().optional(),
+    cardNumber: z.string().optional(),
+    expirationDate: z.string().optional(),
+    securityCode: z.string().optional(),
     customFields: z.record(z.string(), z.unknown()).optional(),
     isFavorite: z.boolean().default(false),
     createdAt: z.date(),

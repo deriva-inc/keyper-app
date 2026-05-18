@@ -74,6 +74,15 @@ export default function ProfileCard({ profile }: { profile: Profile }) {
                         </Badge>
                     </motion.div>
                 )}
+                {profile.isArchived && (
+                    <motion.div
+                        initial={{ opacity: 0, x: 4 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <Badge variant="warning">Archived</Badge>
+                    </motion.div>
+                )}
             </div>
             <div className="flex flex-col gap-1">
                 <Text variant={TextVariant.H3} color="text-text-accent-primary">

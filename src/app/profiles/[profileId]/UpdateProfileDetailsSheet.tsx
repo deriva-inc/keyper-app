@@ -23,8 +23,12 @@ import {
 } from '@/src/components/ui/sheet';
 import { Text, TextVariant } from '@/src/components/ui/text';
 import { Textarea } from '@/src/components/ui/textarea';
+import { Switch } from '@/src/components/ui/switch';
 
-type UpdateProfileFields = Pick<Profile, 'name' | 'description' | 'icon'>;
+type UpdateProfileFields = Pick<
+    Profile,
+    'name' | 'description' | 'icon' | 'isArchived'
+>;
 
 /**
  * This function renders the UpdateProfileDetailsSheet component which is used to update the details of a user profile such as name and avatar.
@@ -49,7 +53,8 @@ export default function UpdateProfileDetailsSheet({
         useState<UpdateProfileFields>({
             name: profileDetails.name,
             description: profileDetails.description || '',
-            icon: profileDetails.icon
+            icon: profileDetails.icon,
+            isArchived: profileDetails.isArchived
         });
     const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
     // !SECTION: States
@@ -80,7 +85,8 @@ export default function UpdateProfileDetailsSheet({
                     body: JSON.stringify({
                         name: editProfileDetails.name,
                         description: editProfileDetails.description,
-                        icon: editProfileDetails.icon
+                        icon: editProfileDetails.icon,
+                        isArchived: editProfileDetails.isArchived
                     })
                 }
             );
@@ -192,6 +198,18 @@ export default function UpdateProfileDetailsSheet({
                                 />
                             </motion.div>
                         ))}
+                    </div>
+                    <div className="mt-6 flex items-center justify-between">
+                        <Label className="">Archived?</Label>
+                        <Switch
+                            checked={editProfileDetails.isArchived}
+                            onCheckedChange={(checked) =>
+                                setEditProfileDetails((prev) => ({
+                                    ...prev,
+                                    isArchived: checked
+                                }))
+                            }
+                        />
                     </div>
                 </form>
                 <SheetFooter>

@@ -80,7 +80,11 @@ export default function ProfilesPage() {
                                 >
                                     Profiles
                                 </Text>
-                                <Text variant={TextVariant.H5}>Profiles</Text>
+                                <Text variant={TextVariant.H5}>
+                                    Each profile is separated for better
+                                    organization of related groups and vault
+                                    entries.
+                                </Text>
                             </div>
                             <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center gap-8">
                                 {profiles.map((profile) => (

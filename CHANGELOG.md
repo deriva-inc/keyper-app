@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.63.0] - 2026-05-18
+---
+#### Added
+- Add "Archive" support on Profiles.
+
 ### [0.62.0] - 2026-05-15
 ---
 #### Added
