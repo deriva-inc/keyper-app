@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.64.0] - 2026-05-18
+---
+#### Added
+- Complete UI for the Profiles page.
+
 ### [0.63.0] - 2026-05-18
 ---
 #### Added

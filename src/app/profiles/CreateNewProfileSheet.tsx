@@ -118,7 +118,7 @@ export default function CreateNewProfileSheet({
             {showTrigger && (
                 <SheetTrigger asChild>
                     <motion.div
-                        className="bg-bg-flat-primary flex min-h-64 w-80 cursor-pointer flex-col items-center justify-center gap-4 rounded-md border px-6 py-8 shadow-md active:scale-95"
+                        className="bg-bg-flat-primary flex min-h-72 w-80 cursor-pointer flex-col items-center justify-center gap-4 rounded-md border px-6 py-8 shadow-md active:scale-95"
                         initial={{ scale: 1 }}
                         whileHover={{ scale: 1.05 }}
                     >

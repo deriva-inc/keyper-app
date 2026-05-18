@@ -73,6 +73,10 @@ const DeleteGroupResponseSchema = APIResponseSchema.extend({
 });
 // !SECTION: Group Service
 
+const CountResponseSchema = APIResponseSchema.extend({
+    data: z.number()
+});
+
 export {
     JWTPayloadSchema,
     APIResponseSchema,
@@ -86,7 +90,8 @@ export {
     DeleteProfileResponseSchema,
     SingleGroupResponseSchema,
     ListGroupResponseSchema,
-    DeleteGroupResponseSchema
+    DeleteGroupResponseSchema,
+    CountResponseSchema
 };
 
 // TypeScript Types
@@ -117,6 +122,7 @@ type DeleteProfileResponse = z.infer<typeof DeleteProfileResponseSchema>;
 type SingleGroupResponse = z.infer<typeof SingleGroupResponseSchema>;
 type ListGroupResponse = z.infer<typeof ListGroupResponseSchema>;
 type DeleteGroupResponse = z.infer<typeof DeleteGroupResponseSchema>;
+type CountResponse = z.infer<typeof CountResponseSchema>;
 
 // Exports - TypeScript types
 export { HTTP_STATUS_CODE };
@@ -134,5 +140,6 @@ export type {
     DeleteProfileResponse,
     SingleGroupResponse,
     ListGroupResponse,
-    DeleteGroupResponse
+    DeleteGroupResponse,
+    CountResponse
 };
