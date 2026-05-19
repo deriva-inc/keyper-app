@@ -20,6 +20,7 @@ import {
     SheetTitle,
     SheetTrigger
 } from '@/src/components/ui/sheet';
+import { Switch } from '@/src/components/ui/switch';
 import { Text, TextVariant } from '@/src/components/ui/text';
 import { Textarea } from '@/src/components/ui/textarea';
 
@@ -46,6 +47,7 @@ export default function CreateNewProfileSheet({
 
     // SECTION: States
     const [activeIcon, setActiveIcon] = useState<string>('');
+    const [isArchived, setIsArchived] = useState<boolean>(false);
     // !SECTION: States
 
     // SECTION: API Queries
@@ -82,7 +84,8 @@ export default function CreateNewProfileSheet({
                 body: JSON.stringify({
                     name: profileName,
                     description: profileDescription,
-                    icon: activeIcon
+                    icon: activeIcon,
+                    isArchived
                 })
             });
 
@@ -189,6 +192,15 @@ export default function CreateNewProfileSheet({
                                 />
                             </motion.div>
                         ))}
+                    </div>
+                    <div className="mt-6 flex items-center justify-between">
+                        <Label className="">Archived?</Label>
+                        <Switch
+                            checked={isArchived}
+                            onCheckedChange={(checked) =>
+                                setIsArchived(checked)
+                            }
+                        />
                     </div>
                 </form>
                 <SheetFooter>

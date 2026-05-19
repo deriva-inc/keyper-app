@@ -22,6 +22,7 @@ import {
     SheetTitle,
     SheetTrigger
 } from '@/src/components/ui/sheet';
+import { Switch } from '@/src/components/ui/switch';
 import { Text, TextVariant } from '@/src/components/ui/text';
 import { Textarea } from '@/src/components/ui/textarea';
 import {
@@ -58,6 +59,7 @@ export default function CreateNewGroupSheet({
     // SECTION: States
     const [activeIcon, setActiveIcon] = useState<string>('google');
     const [groupType, setGroupType] = useState<GroupType>('provider');
+    const [isArchived, setIsArchived] = useState<boolean>(false);
     // !SECTION: States
 
     // SECTION: API Queries
@@ -94,7 +96,8 @@ export default function CreateNewGroupSheet({
                     description: groupDescription,
                     profileId: activeProfile?.id,
                     type: groupType,
-                    icon: activeIcon
+                    icon: activeIcon,
+                    isArchived
                 })
             });
 
@@ -297,6 +300,15 @@ export default function CreateNewGroupSheet({
                                       />
                                   </motion.div>
                               ))}
+                    </div>
+                    <div className="mt-6 flex items-center justify-between">
+                        <Label className="">Archived?</Label>
+                        <Switch
+                            checked={isArchived}
+                            onCheckedChange={(checked) =>
+                                setIsArchived(checked)
+                            }
+                        />
                     </div>
                 </form>
                 <SheetFooter>

@@ -1,5 +1,10 @@
 # CHANGELOG
-### [0.54.0] - 2026-05-19
+### [0.66.0] - 2026-05-19
+---
+#### Added
+- Add "Archive" support on Groups.
+
+### [0.65.0] - 2026-05-19
 ---
 #### Added
 - Complete UI and API services data integration for the Profiles Details page.

@@ -101,7 +101,7 @@ export default function Header() {
 
     // SECTION: UI
     return (
-        <header className="flex items-center justify-between py-2">
+        <header className="bg-bg-base-secondary sticky top-0 z-10 flex items-center justify-between px-8 py-3 shadow-sm">
             <InputGroup className="max-w-md">
                 <InputGroupInput
                     id="inline-start-input"
