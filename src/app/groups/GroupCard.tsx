@@ -15,7 +15,13 @@ import { Text, TextVariant } from '@/src/components/ui/text';
  * @author Aayush Goyal
  * @created 2026-05-13
  */
-export default function GroupCard({ group }: { group: Group }) {
+export default function GroupCard({
+    group,
+    index
+}: {
+    group: Group;
+    index: number;
+}) {
     // SECTION: Constants and Variables
     const router = useRouter();
     // !SECTION: Constants and Variables
@@ -39,7 +45,13 @@ export default function GroupCard({ group }: { group: Group }) {
             key={group.id}
             role="button"
             onClick={() => router.push(`/groups/${group.id}`)}
-            initial={{ scale: 1 }}
+            initial={{ scale: 1, y: 20, opacity: 0 }}
+            animate={{
+                scale: 1,
+                y: 0,
+                opacity: 1,
+                transition: { duration: 0.3, delay: index * 0.1 }
+            }}
             whileHover={{ scale: 1.05 }}
         >
             <div className="flex items-center gap-4">

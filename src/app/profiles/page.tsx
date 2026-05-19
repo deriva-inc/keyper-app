@@ -47,7 +47,7 @@ export default function ProfilesPage() {
         <div className="min-h-screen transition-colors duration-300">
             <SidebarProvider>
                 <AppSidebar />
-                <div className="w-full px-8 py-2">
+                <div className="w-full pb-8">
                     <Header />
                     {isEmpty(profiles) ? (
                         <>
@@ -72,7 +72,7 @@ export default function ProfilesPage() {
                             />
                         </>
                     ) : (
-                        <div className="px-4">
+                        <div className="px-8">
                             <div className="my-8">
                                 <Text
                                     variant={TextVariant.H2}

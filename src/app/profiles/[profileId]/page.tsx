@@ -40,10 +40,10 @@ import {
 } from '@/src/components/ui/tooltip';
 
 /**
- * Description
+ * This function renders the SingleProfilePage component which shows the details of a profile.
  *
  * @author Aayush Goyal
- * @created 2026-05-dd
+ * @created 2026-05-19
  */
 export default function SingleProfilePage() {
     // SECTION: Constants and Variables

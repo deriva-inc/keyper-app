@@ -135,6 +135,11 @@ const groupProviders = [
         id: 'kotak',
         name: 'Kotak Mahindra Bank',
         icon: '/icons/providers/kotak_mahindra.svg'
+    },
+    {
+        id: 'indusind',
+        name: 'IndusInd Bank',
+        icon: '/icons/providers/indusind.svg'
     }
 ];
 

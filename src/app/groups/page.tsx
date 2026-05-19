@@ -5,14 +5,15 @@ import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
-import { TOP_NAV_LINKS } from '@/lib/types/model';
+import { Group, TOP_NAV_LINKS } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
 import CreateNewGroupSheet from '@/src/app/groups/CreateNewGroupSheet';
 import GroupCard from '@/src/app/groups/GroupCard';
+import EmptyState from '@/src/components/blocks/empty-state';
 import Header from '@/src/components/blocks/header';
 import AppSidebar from '@/src/components/ui/app-sidebar';
 import { SidebarProvider } from '@/src/components/ui/sidebar';
-import EmptyState from '@/src/components/blocks/empty-state';
+import { Text, TextVariant } from '@/src/components/ui/text';
 
 /**
  * This function renders the Groups page on the app.
@@ -70,9 +71,11 @@ export default function GroupsPage() {
 
     // SECTION: Side Effects
     useEffect(() => {
-        if (isEmpty(groups)) {
-            actions.setCurrentPage(TOP_NAV_LINKS.GROUPS);
+        actions.setCurrentPage(TOP_NAV_LINKS.GROUPS);
+    }, []);
 
+    useEffect(() => {
+        if (isEmpty(groups)) {
             if (activeProfile) {
                 fetchGroupsForProfile(activeProfile.id);
             } else {
@@ -82,7 +85,6 @@ export default function GroupsPage() {
             }
         }
     }, [activeProfile]);
-
     // !SECTION: Side Effects
 
     // SECTION: UI
@@ -90,7 +92,7 @@ export default function GroupsPage() {
         <div className="min-h-screen transition-colors duration-300">
             <SidebarProvider>
                 <AppSidebar />
-                <div className="w-full px-4 py-2">
+                <div className="w-full pb-8">
                     <Header />
                     {isEmpty(groups) ? (
                         <>
@@ -115,18 +117,37 @@ export default function GroupsPage() {
                             />
                         </>
                     ) : (
-                        <div className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center justify-items-center gap-8">
-                            {groups.map((group) => (
-                                <GroupCard key={group.id} group={group} />
-                            ))}
-                            <CreateNewGroupSheet
-                                isCreateNewGroupSheetOpen={
-                                    isCreateNewGroupSheetOpen
-                                }
-                                setIsCreateNewGroupSheetOpen={
-                                    setIsCreateNewGroupSheetOpen
-                                }
-                            />
+                        <div className="px-8">
+                            <div className="my-8">
+                                <Text
+                                    variant={TextVariant.H2}
+                                    color="text-text-accent-primary"
+                                >
+                                    Groups
+                                </Text>
+                                <Text variant={TextVariant.H5}>
+                                    Group your vault entries into different
+                                    categories for easier management and
+                                    organization.
+                                </Text>
+                            </div>
+                            <div className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center gap-8">
+                                {groups.map((group: Group, idx: number) => (
+                                    <GroupCard
+                                        key={group.id}
+                                        group={group}
+                                        index={idx}
+                                    />
+                                ))}
+                                <CreateNewGroupSheet
+                                    isCreateNewGroupSheetOpen={
+                                        isCreateNewGroupSheetOpen
+                                    }
+                                    setIsCreateNewGroupSheetOpen={
+                                        setIsCreateNewGroupSheetOpen
+                                    }
+                                />
+                            </div>
                         </div>
                     )}
                 </div>
