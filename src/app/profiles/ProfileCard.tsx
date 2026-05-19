@@ -109,7 +109,7 @@ export default function ProfileCard({
     useEffect(() => {
         fetchGroupsCount();
         fetchEntriesCount();
-    });
+    }, []);
     // !SECTION: Side Effects
 
     // SECTION: UI

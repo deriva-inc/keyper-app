@@ -3,6 +3,8 @@
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import logger from '@/lib/logger';
 import { Group } from '@/lib/types/model';
 import { groupProviders, groupCategories } from '@/lib/utils';
 import { Badge } from '@/src/components/ui/badge';
@@ -27,15 +29,51 @@ export default function GroupCard({
     // !SECTION: Constants and Variables
 
     // SECTION: States
+    const [entriesCount, setEntriesCount] = useState(0);
     // !SECTION: States
 
     // SECTION: API Queries
+    /**
+     * This function fetches the vault entries count for the group.
+     */
+    const fetchEntriesCount = async (): Promise<void> => {
+        try {
+            const entriesCountRes = await fetch(
+                `/api/groups/${group.id}/entries/count`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem('jwtToken') || ''}`,
+                        'X-Group-Id': group.id
+                    }
+                }
+            );
+
+            if (entriesCountRes.ok) {
+                const entriesCountData = await entriesCountRes.json();
+                setEntriesCount(entriesCountData.data);
+            } else {
+                logger.error(
+                    'Failed to fetch entries count for group:',
+                    await entriesCountRes.text()
+                );
+                setEntriesCount(0);
+            }
+        } catch (error: any) {
+            logger.error('Cannot fetch entries count for profile:', error);
+            setEntriesCount(0);
+        }
+    };
     // !SECTION API Queries
 
     // SECTION: Event Handlers
     // !SECTION: Event Handlers
 
     // SECTION: Side Effects
+    useEffect(() => {
+        fetchEntriesCount();
+    }, []);
     // !SECTION: Side Effects
 
     // SECTION: UI
@@ -85,7 +123,9 @@ export default function GroupCard({
             <div className="flex items-center gap-8">
                 <div className="flex flex-col gap-0.5">
                     <Text color="text-text-secondary select-none">Entries</Text>
-                    <Text className="font-bold select-none">12</Text>
+                    <Text className="font-bold select-none">
+                        {entriesCount}
+                    </Text>
                 </div>
             </div>
         </motion.div>

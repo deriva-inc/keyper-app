@@ -132,13 +132,6 @@ export default function GroupsPage() {
                                 </Text>
                             </div>
                             <div className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center gap-8">
-                                {groups.map((group: Group, idx: number) => (
-                                    <GroupCard
-                                        key={group.id}
-                                        group={group}
-                                        index={idx}
-                                    />
-                                ))}
                                 <CreateNewGroupSheet
                                     isCreateNewGroupSheetOpen={
                                         isCreateNewGroupSheetOpen
@@ -147,6 +140,13 @@ export default function GroupsPage() {
                                         setIsCreateNewGroupSheetOpen
                                     }
                                 />
+                                {groups.map((group: Group, idx: number) => (
+                                    <GroupCard
+                                        key={group.id}
+                                        group={group}
+                                        index={idx}
+                                    />
+                                ))}
                             </div>
                         </div>
                     )}

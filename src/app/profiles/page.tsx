@@ -87,13 +87,6 @@ export default function ProfilesPage() {
                                 </Text>
                             </div>
                             <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-center gap-8">
-                                {profiles.map((profile, idx) => (
-                                    <ProfileCard
-                                        key={profile.id}
-                                        profile={profile}
-                                        index={idx}
-                                    />
-                                ))}
                                 <CreateNewProfileSheet
                                     isCreateNewProfileSheetOpen={
                                         isCreateNewProfileSheetOpen
@@ -102,6 +95,13 @@ export default function ProfilesPage() {
                                         setIsCreateNewProfileSheetOpen
                                     }
                                 />
+                                {profiles.map((profile, idx) => (
+                                    <ProfileCard
+                                        key={profile.id}
+                                        profile={profile}
+                                        index={idx}
+                                    />
+                                ))}
                             </div>
                         </div>
                     )}

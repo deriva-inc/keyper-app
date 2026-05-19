@@ -140,6 +140,11 @@ const groupProviders = [
         id: 'indusind',
         name: 'IndusInd Bank',
         icon: '/icons/providers/indusind.svg'
+    },
+    {
+        id: 'rbl',
+        name: 'RBL Bank',
+        icon: '/icons/providers/rbl.svg'
     }
 ];
 

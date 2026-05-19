@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.67.0] - 2026-05-19
+---
+#### Added
+- Add Group delete functionality.
+
 ### [0.66.0] - 2026-05-19
 ---
 #### Added

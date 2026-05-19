@@ -268,11 +268,11 @@ export default function CreateNewGroupSheet({
                                           alt={category.name}
                                           height={32}
                                           width={32}
-                                          className={
+                                          className={`object-cover ${
                                               activeIcon === category.id
                                                   ? 'text-bg-base-primary'
                                                   : ''
-                                          }
+                                          }`}
                                       />
                                   </motion.div>
                               ))

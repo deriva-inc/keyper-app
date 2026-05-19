@@ -39,6 +39,7 @@ export default function DeleteProfileDialog({
     // SECTION: States
     const [isDeleteProfileDialogOpen, setIsDeleteProfileDialogOpen] =
         useState<boolean>(false);
+    const [profileName, setProfileName] = useState<string>('');
     // !SECTION: States
 
     // SECTION: API Queries
@@ -119,6 +120,7 @@ export default function DeleteProfileDialog({
                         className="mt-2"
                         id="input-profile-name"
                         type="text"
+                        onChange={(e) => setProfileName(e.target.value)}
                     />
                 </div>
 
@@ -126,6 +128,11 @@ export default function DeleteProfileDialog({
                     <DialogClose asChild>Cancel</DialogClose>
                     <Button
                         variant="destructive"
+                        disabled={
+                            profileName !==
+                            profiles.find((profile) => profile.id === profileId)
+                                ?.name
+                        }
                         onClick={() => handleProfileDeletion()}
                     >
                         Delete
