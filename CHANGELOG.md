@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.68.0] - 2026-05-15
+---
+#### Added
+- Add Group update functionality.
+
 ### [0.67.0] - 2026-05-19
 ---
 #### Added

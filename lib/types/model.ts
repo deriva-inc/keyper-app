@@ -43,6 +43,7 @@ const GroupSchema = z.object({
     description: z.string().optional(),
     type: GroupTypeSchema,
     icon: z.url().optional(),
+    isArchived: z.boolean().default(false),
     createdAt: z.date(),
     updatedAt: z.date()
 });
