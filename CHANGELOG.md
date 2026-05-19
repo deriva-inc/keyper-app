@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.54.0] - 2026-05-19
+---
+#### Added
+- Complete UI and API services data integration for the Profiles Details page.
+
 ### [0.64.0] - 2026-05-18
 ---
 #### Added

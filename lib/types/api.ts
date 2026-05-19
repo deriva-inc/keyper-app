@@ -3,7 +3,8 @@ import {
     GroupSchema,
     ProfileSchema,
     UserDetailsWOSecretsSchema,
-    UserSchema
+    UserSchema,
+    VaultEntrySchema
 } from '@/lib/types/model';
 
 // SECTION: Zod Schemas
@@ -73,6 +74,16 @@ const DeleteGroupResponseSchema = APIResponseSchema.extend({
 });
 // !SECTION: Group Service
 
+// SECTION: Vault Entry Service
+const SingleVaultEntryResponseSchema = APIResponseSchema.extend({
+    data: VaultEntrySchema
+});
+
+const ListVaultEntriesResponseSchema = APIResponseSchema.extend({
+    data: z.array(VaultEntrySchema)
+});
+// !SECTION: Vault Entry Service
+
 const CountResponseSchema = APIResponseSchema.extend({
     data: z.number()
 });
@@ -91,6 +102,8 @@ export {
     SingleGroupResponseSchema,
     ListGroupResponseSchema,
     DeleteGroupResponseSchema,
+    SingleVaultEntryResponseSchema,
+    ListVaultEntriesResponseSchema,
     CountResponseSchema
 };
 
@@ -122,6 +135,8 @@ type DeleteProfileResponse = z.infer<typeof DeleteProfileResponseSchema>;
 type SingleGroupResponse = z.infer<typeof SingleGroupResponseSchema>;
 type ListGroupResponse = z.infer<typeof ListGroupResponseSchema>;
 type DeleteGroupResponse = z.infer<typeof DeleteGroupResponseSchema>;
+type SingleVaultEntryResponse = z.infer<typeof SingleVaultEntryResponseSchema>;
+type ListVaultEntriesResponse = z.infer<typeof ListVaultEntriesResponseSchema>;
 type CountResponse = z.infer<typeof CountResponseSchema>;
 
 // Exports - TypeScript types
@@ -141,5 +156,7 @@ export type {
     SingleGroupResponse,
     ListGroupResponse,
     DeleteGroupResponse,
+    SingleVaultEntryResponse,
+    ListVaultEntriesResponse,
     CountResponse
 };

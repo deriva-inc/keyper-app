@@ -120,8 +120,12 @@ export default function ProfileCard({
             role="button"
             onClick={() => router.push(`/profiles/${profile.id}`)}
             initial={{ scale: 1, y: 20, opacity: 0 }}
-            animate={{ scale: 1, y: 0, opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.2 * index }}
+            animate={{
+                scale: 1,
+                y: 0,
+                opacity: 1,
+                transition: { duration: 0.3, delay: index * 0.1 }
+            }}
             whileHover={{ scale: 1.05 }}
         >
             <div className="flex items-center gap-4">

@@ -2,17 +2,22 @@ import { clsx, type ClassValue } from 'clsx';
 import {
     Airplane,
     Briefcase,
+    CreditCard,
     DogPaw,
+    Fingerprint,
     Flag,
     Gear,
     Home1,
     IdCard,
     Import,
     MediaPlayback,
+    MoneyInstitution2,
+    Notepad,
     OpenBook,
     PiggyBank,
     Pills,
     Rocket,
+    RupeeCash1,
     ShoppingBags,
     ToolBox,
     World1
@@ -146,6 +151,37 @@ const groupCategories = [
     }
 ];
 
+const entryTypeIcons = [
+    {
+        type: 'login',
+        icon: Fingerprint
+    },
+    {
+        type: 'credit_card',
+        icon: CreditCard
+    },
+    {
+        type: 'debit_card',
+        icon: CreditCard
+    },
+    {
+        type: 'bank_account',
+        icon: MoneyInstitution2
+    },
+    {
+        type: 'upi_id',
+        icon: RupeeCash1
+    },
+    {
+        type: 'identity_card',
+        icon: IdCard
+    },
+    {
+        type: 'secure_note',
+        icon: Notepad
+    }
+];
+
 /**
  * This function converts a hex string to a Uint8Array.
  *
@@ -195,5 +231,34 @@ const copyToClipboard = async (text: string): Promise<void> => {
     }
 };
 
-export { protectedRoutes, profileIcons, groupProviders, groupCategories };
-export { cn, hexToUint8Array, uint8ArrayToHex, copyToClipboard };
+/**
+ * This function formats an entry type string (e.g., "bank_account") to a more user-friendly format (e.g., "Bank Account") for UI display.
+ *
+ * @param type - The entry type string to format
+ * @returns The formatted string suitable for UI display
+ */
+const formatEntryTypeToUIString = (type: string): string =>
+    type.includes('_')
+        ? type
+              .split('_')
+              .map(
+                  (word) =>
+                      word.substring(0, 1).toUpperCase() + word.substring(1)
+              )
+              .join(' ')
+        : type.substring(0, 1).toUpperCase() + type.substring(1);
+
+export {
+    protectedRoutes,
+    profileIcons,
+    groupProviders,
+    groupCategories,
+    entryTypeIcons
+};
+export {
+    cn,
+    hexToUint8Array,
+    uint8ArrayToHex,
+    copyToClipboard,
+    formatEntryTypeToUIString
+};
