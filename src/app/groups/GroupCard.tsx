@@ -93,7 +93,7 @@ export default function GroupCard({
             whileHover={{ scale: 1.05 }}
         >
             <div className="flex items-center gap-4">
-                <div className="bg-bg-base-accent-primary rounded-sm p-2">
+                <div className="bg-bg-base-accent-primary rounded-md p-2">
                     <Image
                         src={
                             group.type === 'category'
@@ -109,10 +109,30 @@ export default function GroupCard({
                         width={24}
                     />
                 </div>
-                <Badge variant="outline">
-                    {group.type.substring(0, 1).toUpperCase() +
-                        group.type.substring(1)}
-                </Badge>
+                <div className="flex items-center gap-1">
+                    <motion.div
+                        initial={{ opacity: 0, x: 4 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <Badge
+                            variant="secondary"
+                            className="bg-bg-base-accent-secondary"
+                        >
+                            {group.type.substring(0, 1).toUpperCase() +
+                                group.type.substring(1)}
+                        </Badge>
+                    </motion.div>
+                    {group.isArchived && (
+                        <motion.div
+                            initial={{ opacity: 0, x: 4 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <Badge variant="warning">Archived</Badge>
+                        </motion.div>
+                    )}
+                </div>
             </div>
             <div className="flex flex-col gap-1">
                 <Text variant={TextVariant.H3} color="text-text-accent-primary">

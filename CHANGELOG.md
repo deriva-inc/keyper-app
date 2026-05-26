@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.69.0] - 2026-05-26
+---
+#### Added
+- Complete UI and API services data integration for the Group Details page.
+
 ### [0.68.0] - 2026-05-15
 ---
 #### Added
@@ -17,7 +22,7 @@
 ### [0.65.0] - 2026-05-19
 ---
 #### Added
-- Complete UI and API services data integration for the Profiles Details page.
+- Complete UI and API services data integration for the Profile Details page.
 
 ### [0.64.0] - 2026-05-18
 ---

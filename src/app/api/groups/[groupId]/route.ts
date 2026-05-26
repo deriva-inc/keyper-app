@@ -72,7 +72,7 @@ export async function GET(req: Request) {
             error,
             `Failed to retrieve group details for group ${groupId}.`,
             HTTP_STATUS_CODE.INTERNAL_ERROR,
-            `[GET] /api/groups/${groupId}`
+            `[GET] /api/v1/groups/${groupId}`
         );
     }
 }

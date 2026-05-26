@@ -517,7 +517,7 @@ export default function SingleProfilePage() {
                             {/* Profile Metadata and Health */}
                             <div className="grid grid-cols-2">
                                 {profileDetails && (
-                                    <div className="bg-bg-base-accent-primary grid grid-cols-2 gap-y-2 rounded-sm p-4 shadow-sm">
+                                    <div className="bg-bg-active-fill-accent-primary grid grid-cols-2 gap-y-2 rounded-sm p-4 shadow-sm">
                                         <Text
                                             variant={TextVariant.H4}
                                             className="col-span-2"

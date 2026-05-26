@@ -14,7 +14,7 @@ export async function GET(req: Request) {
     );
 
     try {
-        const profileDetailsRes = await fetch(targetUrl, {
+        const groupEntriesCountRes = await fetch(targetUrl, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,9 +22,9 @@ export async function GET(req: Request) {
             }
         });
 
-        const data = (await profileDetailsRes.json()) as CountResponse;
+        const data = (await groupEntriesCountRes.json()) as CountResponse;
 
-        return NextResponse.json(data, { status: profileDetailsRes.status });
+        return NextResponse.json(data, { status: groupEntriesCountRes.status });
     } catch (error: unknown) {
         return handleErrorOnServerSideAPICalls(
             error,

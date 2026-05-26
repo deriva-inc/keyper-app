@@ -136,7 +136,7 @@ export default function ProfileCard({
                     if (iconObj && iconObj.icon) {
                         const IconComponent = iconObj.icon;
                         return (
-                            <div className="bg-bg-base-accent-primary rounded-sm p-2">
+                            <div className="bg-bg-base-accent-primary rounded-md p-2">
                                 <IconComponent
                                     height={20}
                                     width={20}

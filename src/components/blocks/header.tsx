@@ -115,7 +115,9 @@ export default function Header() {
             <div className="flex items-center gap-4">
                 {!isEmpty(profiles) && (
                     <Select
-                        value={activeProfile ? activeProfile.id : undefined}
+                        value={
+                            activeProfile ? activeProfile.id : profiles[0].id
+                        }
                         onValueChange={(value) => handleSetActiveProfile(value)}
                     >
                         <SelectTrigger>
