@@ -12,11 +12,7 @@ import {
 } from '@/src/components/ui/tooltip';
 import { cryptoService } from '@/lib/crypto';
 import { VaultEntry } from '@/lib/types/model';
-import {
-    copyToClipboard,
-    entryTypeIcons,
-    formatEntryTypeToUIString
-} from '@/lib/utils';
+import { copyToClipboard, entryTypeIcons, formatKey } from '@/lib/utils';
 import VaultEntryDetailsSheet from '@/src/app/vault/VaultEntryDetailsSheet';
 import { Separator } from '@/src/components/ui/separator';
 import { Globe, Mail, User } from 'lucide-react';
@@ -73,7 +69,7 @@ export default function GroupDetailsEntryCard({
     // SECTION: UI
     return (
         <motion.div
-            className="bg-bg-flat-secondary rounded-md p-4 shadow-sm"
+            className="bg-bg-flat-secondary w-full rounded-md p-4 shadow-sm"
             role="button"
             initial={{ scale: 1, y: 20, opacity: 0 }}
             animate={{
@@ -120,11 +116,7 @@ export default function GroupDetailsEntryCard({
                                     </div>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                    <Text>
-                                        {formatEntryTypeToUIString(
-                                            groupEntry.type
-                                        )}
-                                    </Text>
+                                    <Text>{formatKey(groupEntry.type)}</Text>
                                 </TooltipContent>
                             </Tooltip>
                         );
@@ -139,7 +131,7 @@ export default function GroupDetailsEntryCard({
                     <Text color="text-text-secondary">Website: </Text>
                     <Link
                         href={groupEntry.websiteUrl}
-                        className="font-body text-text-info font-medium underline"
+                        className="font-body text-text-info text-sm font-medium underline"
                     >
                         {groupEntry.websiteUrl}
                     </Link>
@@ -149,7 +141,7 @@ export default function GroupDetailsEntryCard({
                     <Text color="text-text-secondary">Email: </Text>
                     <Link
                         href={groupEntry.email}
-                        className="font-body text-text-info font-medium underline"
+                        className="font-body text-text-info text-sm font-medium underline"
                     >
                         {groupEntry.email}
                     </Link>

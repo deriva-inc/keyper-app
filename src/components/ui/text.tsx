@@ -66,7 +66,7 @@ export function Text({
             case TextVariant.Body:
                 return 'text-sm font-body';
             case TextVariant.Subtitle1:
-                return 'text-sm font-medium font-body';
+                return 'text-sm font-bold font-body';
             case TextVariant.Subtitle2:
                 return 'text-xs font-medium font-body';
             case TextVariant.Button:

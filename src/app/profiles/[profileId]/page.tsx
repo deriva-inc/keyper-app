@@ -12,7 +12,7 @@ import logger from '@/lib/logger';
 import useUIStore from '@/lib/ui-store';
 import {
     entryTypeIcons,
-    formatEntryTypeToUIString,
+    formatKey,
     groupCategories,
     groupProviders,
     profileIcons
@@ -500,7 +500,7 @@ export default function SingleProfilePage() {
                                                             </TooltipTrigger>
                                                             <TooltipContent>
                                                                 <Text>
-                                                                    {formatEntryTypeToUIString(
+                                                                    {formatKey(
                                                                         entry.type
                                                                     )}
                                                                 </Text>

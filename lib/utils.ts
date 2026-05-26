@@ -25,6 +25,7 @@ import {
 import { twMerge } from 'tailwind-merge';
 import { toast } from 'sonner';
 import logger from '@/lib/logger';
+import { EntryCustomFieldValueType } from './types/model';
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -252,16 +253,38 @@ const copyToClipboard = async (text: string): Promise<void> => {
  * @param type - The entry type string to format
  * @returns The formatted string suitable for UI display
  */
-const formatEntryTypeToUIString = (type: string): string =>
-    type.includes('_')
-        ? type
-              .split('_')
-              .map(
-                  (word) =>
-                      word.substring(0, 1).toUpperCase() + word.substring(1)
-              )
-              .join(' ')
-        : type.substring(0, 1).toUpperCase() + type.substring(1);
+// const formatKey = (type: string): string =>
+//     type.includes('_')
+//         ? type
+//               .split('_')
+//               .map(
+//                   (word) =>
+//                       word.substring(0, 1).toUpperCase() + word.substring(1)
+//               )
+//               .join(' ')
+//         : type.substring(0, 1).toUpperCase() + type.substring(1);
+
+/**
+ * This function detects the underlying JSON type of a custom field value.
+ * - 'array'     → e.g., recovery codes ["abcd-1234", "efgh-5678"]
+ * - 'object'    → e.g., security question { question: "...", answer: "..." }
+ * - 'primitive' → e.g., a special number, string, or boolean
+ */
+function detectFieldType(value: unknown): EntryCustomFieldValueType {
+    if (Array.isArray(value)) return 'array';
+    if (typeof value === 'object' && value !== null) return 'object';
+    return 'primitive';
+}
+
+// Utility: converts a camelCase or snake_case key to a human-readable label.
+// e.g., "security_question_1" -> "Security Question 1"
+// e.g., "twoFactorBackupCodes" -> "Two Factor Backup Codes"
+function formatKey(key: string): string {
+    return key
+        .replace(/_/g, ' ')
+        .replace(/([a-z])([A-Z])/g, '$1 $2')
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+}
 
 export {
     protectedRoutes,
@@ -275,5 +298,6 @@ export {
     hexToUint8Array,
     uint8ArrayToHex,
     copyToClipboard,
-    formatEntryTypeToUIString
+    detectFieldType,
+    formatKey
 };

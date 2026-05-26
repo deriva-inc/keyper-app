@@ -127,6 +127,7 @@ enum TOP_NAV_LINKS {
     'SETTINGS'
 }
 
+type EntryCustomFieldValueType = 'array' | 'object' | 'primitive';
 type User = z.infer<typeof UserSchema>;
 type UserDetailsWOSecrets = z.infer<typeof UserDetailsWOSecretsSchema>;
 type Profile = z.infer<typeof ProfileSchema>;
@@ -140,6 +141,7 @@ type LocalStorageData = z.infer<typeof LocalStorageSchema>;
 export { ENERGY, THEME, UI_STATE, TOP_NAV_LINKS };
 
 export type {
+    EntryCustomFieldValueType,
     User,
     UserDetailsWOSecrets,
     LocalStorageData,

@@ -269,10 +269,10 @@
 		--text-tertiary: var(--color-gun-metal-300);
 		--text-disabled: var(--color-text-on-disabled);
 		--text-muted: var(--color-gun-metal-900);
-		--text-success: var(--color-basil-amber);
-		--text-destructive: var(--color-tomato-amber);
-		--text-info: var(--color-blueberry-amber);
-		--text-warning: var(--color-corn-amber);
+		--text-success: var(--color-basil-amber-light);
+		--text-destructive: var(--color-tomato-amber-light);
+		--text-info: var(--color-blueberry-amber-light);
+		--text-warning: var(--color-corn-amber-light);
 
 		/* SECTION: LAYER 2: MODAL */
 		--bg-modal-primary: var(--color-amber-white-500);
