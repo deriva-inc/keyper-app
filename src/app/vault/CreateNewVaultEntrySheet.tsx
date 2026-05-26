@@ -1,7 +1,6 @@
 'use client';
 
 import { Add } from 'elementa-icons';
-import { motion } from 'motion/react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -40,11 +39,11 @@ import { Switch } from '@/src/components/ui/switch';
 import { cryptoService } from '@/lib/crypto';
 
 /**
- * This function renders the Create New Group Sidebar which allows users to
- * create a new group.
+ * This function renders the Create New Vault Entry Sheet which allows users to
+ * create a new vault entry.
  *
  * @author Aayush Goyal
- * @created 2026-05-15
+ * @created 2026-05-27
  */
 export default function CreateNewVaultEntrySheet({
     isCreateNewVaultEntrySheetOpen,
