@@ -82,6 +82,10 @@ const SingleVaultEntryResponseSchema = APIResponseSchema.extend({
 const ListVaultEntriesResponseSchema = APIResponseSchema.extend({
     data: z.array(VaultEntrySchema)
 });
+
+const DeleteVaultEntryResponseSchema = APIResponseSchema.extend({
+    data: z.boolean()
+});
 // !SECTION: Vault Entry Service
 
 const CountResponseSchema = APIResponseSchema.extend({
@@ -104,6 +108,7 @@ export {
     DeleteGroupResponseSchema,
     SingleVaultEntryResponseSchema,
     ListVaultEntriesResponseSchema,
+    DeleteVaultEntryResponseSchema,
     CountResponseSchema
 };
 
@@ -137,6 +142,7 @@ type ListGroupResponse = z.infer<typeof ListGroupResponseSchema>;
 type DeleteGroupResponse = z.infer<typeof DeleteGroupResponseSchema>;
 type SingleVaultEntryResponse = z.infer<typeof SingleVaultEntryResponseSchema>;
 type ListVaultEntriesResponse = z.infer<typeof ListVaultEntriesResponseSchema>;
+type DeleteVaultEntryResponse = z.infer<typeof DeleteVaultEntryResponseSchema>;
 type CountResponse = z.infer<typeof CountResponseSchema>;
 
 // Exports - TypeScript types
@@ -158,5 +164,6 @@ export type {
     DeleteGroupResponse,
     SingleVaultEntryResponse,
     ListVaultEntriesResponse,
+    DeleteVaultEntryResponse,
     CountResponse
 };

@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.72.0] - 2026-05-27
+---
+#### Added
+- Add Vault Entry update functionality.
+
 ### [0.71.0] - 2026-05-27
 ---
 #### Added

@@ -201,7 +201,7 @@ export default function GroupDetailsPage() {
                                     </Text>
                                 </div>
                                 {!isEmpty(groupDetails) && (
-                                    <div className="flex items-center gap-1 justify-self-end">
+                                    <div className="flex items-center gap-2 justify-self-end">
                                         <UpdateGroupDetailsSheet
                                             groupDetails={groupDetails}
                                             updateGroupDetails={setGroupDetails}

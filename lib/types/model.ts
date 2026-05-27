@@ -76,6 +76,7 @@ const VaultEntrySchema = z.object({
     securityCode: z.string().optional(),
     customFields: z.record(z.string(), z.unknown()).optional(),
     isFavorite: z.boolean().default(false),
+    isArchived: z.boolean().default(false),
     createdAt: z.date(),
     updatedAt: z.date()
 });
