@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.73.0] - 2026-05-27
+---
+#### Added
+- Add UI and data integration on the Vault Entry details sheet.
+
 ### [0.72.0] - 2026-05-27
 ---
 #### Added
