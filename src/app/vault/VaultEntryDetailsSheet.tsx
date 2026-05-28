@@ -6,8 +6,10 @@ import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { cryptoService } from '@/lib/crypto';
 import { useDataStore } from '@/lib/data-store';
+import logger from '@/lib/logger';
 import { VaultEntry } from '@/lib/types/model';
 import { Button } from '@/src/components/ui/button';
 import {
@@ -53,6 +55,7 @@ export default function VaultEntryDetailsSheet({
     setIsVaultEntryDetailsSheetOpen: (open: boolean) => void;
 }) {
     // SECTION: Constants and Variables
+    const activeProfile = useDataStore((state) => state.activeProfile);
     // !SECTION: Constants and Variables
 
     // SECTION: States
@@ -89,6 +92,49 @@ export default function VaultEntryDetailsSheet({
             );
         }
     };
+
+    /**
+     * This function toggles the favorite status of the vault entry by making an API call to the server.
+     */
+    const handleToggleFavorite = async (): Promise<void> => {
+        try {
+            const jwtToken = localStorage.getItem('jwtToken');
+            const toggleFavoriteRes = await fetch(
+                `/api/entries/${vaultEntry.id}/favorite`,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${jwtToken}`,
+                        'X-Profile-Id': activeProfile?.id || '',
+                        'X-Entry-Id': vaultEntry.id
+                    }
+                }
+            );
+
+            const toggleFavoriteData = await toggleFavoriteRes.json();
+
+            if (toggleFavoriteRes.ok) {
+                vaultEntry.isFavorite = toggleFavoriteData.data.isFavorite;
+                toast.success(
+                    `Entry marked as ${
+                        vaultEntry.isFavorite ? 'favorite' : 'not favorite'
+                    }.`
+                );
+            } else {
+                toast.error(
+                    'Failed to update favorite status. Please try again.'
+                );
+                logger.error(
+                    'Failed to toggle favorite status:',
+                    toggleFavoriteData.message
+                );
+            }
+        } catch (error: any) {
+            logger.error('Failed to toggle favorite status:', error);
+            toast.error('Failed to update favorite status. Please try again.');
+        }
+    };
     // !SECTION: Event Handlers
 
     // SECTION: Side Effects
@@ -113,11 +159,17 @@ export default function VaultEntryDetailsSheet({
                             width={32}
                         />
                         <SheetTitle>{vaultEntry.name}</SheetTitle>
-                        {vaultEntry.isFavorite ? (
-                            <FavoriteFilled onClick={() => {}} />
-                        ) : (
-                            <FavoriteOutline onClick={() => {}} />
-                        )}
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleToggleFavorite()}
+                        >
+                            {vaultEntry.isFavorite ? (
+                                <FavoriteFilled />
+                            ) : (
+                                <FavoriteOutline />
+                            )}
+                        </Button>
                         {vaultEntry.isArchived && <Import />}
                     </div>
                     <SheetDescription>
