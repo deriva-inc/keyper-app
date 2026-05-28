@@ -1,8 +1,13 @@
 # CHANGELOG
+### [0.76.0] - 2026-05-28
+---
+#### Added
+- Add UI and data integration on the Favorites page.
+
 ### [0.75.0] - 2026-05-28
 ---
 #### Added
-- Add UI and data integration on the Vault Entry page sheet.
+- Add UI and data integration on the Vault Entry page.
 
 ### [0.74.0] - 2026-05-28
 ---

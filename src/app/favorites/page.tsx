@@ -45,6 +45,7 @@ export default function VaultPage() {
     // SECTION: Constants and Variables
     const activeProfile = useDataStore((state) => state.activeProfile);
     const groups = useDataStore((state) => state.groups);
+    const profiles = useDataStore((state) => state.profiles);
     const actions = useUIStore((state) => state.actions);
     // !SECTION: Constants and Variables
 
@@ -59,10 +60,10 @@ export default function VaultPage() {
     /**
      * This function fetches all the vault entries of the active profile from the server.
      */
-    const fetchProfileEntries = async (): Promise<void> => {
+    const fetchFavoriteEntries = async () => {
         try {
             const jwtToken = localStorage.getItem('jwtToken');
-            const response = await fetch('/api/entries', {
+            const response = await fetch('/api/entries/favorites', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,14 +76,16 @@ export default function VaultPage() {
             setFilteredEntries(data.data);
         } catch (error) {
             logger.error('Error fetching entries:', error);
-            toast.error('Failed to fetch entries. Please try again.');
+            toast.error(
+                'Failed to fetch favorite entries. Please try again later.'
+            );
         }
     };
     // !SECTION API Queries
 
     // SECTION: Event Handlers
     /**
-     * This function handles the search functionality for vault entries.
+     * This function handles the search functionality for favorite vault entries.
      */
     const handleEntrySearch = (): void => {
         const searchTerm = (
@@ -98,9 +101,10 @@ export default function VaultPage() {
 
     // SECTION: Side Effects
     useEffect(() => {
-        actions.setCurrentPage(TOP_NAV_LINKS.VAULT);
+        actions.setCurrentPage(TOP_NAV_LINKS.FAVORITES);
+
         if (activeProfile) {
-            fetchProfileEntries();
+            fetchFavoriteEntries();
         }
     }, [activeProfile]);
     // !SECTION: Side Effects
@@ -134,7 +138,7 @@ export default function VaultPage() {
                                     variant={TextVariant.H2}
                                     color="text-text-accent-primary"
                                 >
-                                    Vault Entries
+                                    Favorites
                                 </Text>
                                 <Text
                                     variant={TextVariant.H5}
@@ -155,7 +159,7 @@ export default function VaultPage() {
                                         )}
                                     />
                                     <InputGroupAddon align="inline-start">
-                                        <Search className="text-text-secondary" />
+                                        <Search className="text-muted-foreground" />
                                     </InputGroupAddon>
                                 </InputGroup>
                                 <CreateNewVaultEntrySheet
@@ -193,14 +197,14 @@ export default function VaultPage() {
                                         </TableHead>
                                         {/* Col 3: Group */}
                                         <TableHead className="min-w-40">
-                                            Group
+                                            Profile
                                         </TableHead>
                                         {/* Col 4: Updated At + Website URL */}
                                         <TableHead className="min-w-40">
                                             Updated At
                                         </TableHead>
                                         {/* Col 5: isFav + isArch flags + delete */}
-                                        <TableHead className="min-w-60 pr-4 text-right">
+                                        <TableHead className="min-w-80 pr-4 text-right">
                                             Details
                                         </TableHead>
                                     </TableRow>
@@ -212,19 +216,31 @@ export default function VaultPage() {
                                         );
                                         const TypeIconComponent =
                                             typeIconObj?.icon;
-                                        const groupName = groups.find(
-                                            (g) => g.id === entry.groupId
-                                        )?.name;
-                                        const groupIconUrl = getGroupIconUrl(
-                                            entry.groupId
-                                        );
 
                                         return (
                                             <VaultEntryTableRowItem
                                                 key={entry.id}
                                                 entry={entry}
-                                                groupName={groupName}
-                                                groupIconUrl={groupIconUrl}
+                                                profileDetails={
+                                                    profiles.find(
+                                                        (profile) =>
+                                                            profile.id ===
+                                                            entry.profileId
+                                                    ) && {
+                                                        icon:
+                                                            profiles.find(
+                                                                (profile) =>
+                                                                    profile.id ===
+                                                                    entry.profileId
+                                                            )?.icon || '',
+                                                        name:
+                                                            profiles.find(
+                                                                (profile) =>
+                                                                    profile.id ===
+                                                                    entry.profileId
+                                                            )?.name || ''
+                                                    }
+                                                }
                                                 TypeIconComponent={
                                                     TypeIconComponent
                                                 }

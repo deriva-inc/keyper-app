@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { VaultEntry } from '@/lib/types/model';
-import { formatKey } from '@/lib/utils';
+import { formatKey, profileIcons } from '@/lib/utils';
 import VaultEntryDetailsSheet from '@/src/app/vault/VaultEntryDetailsSheet';
 import { Badge } from '@/src/components/ui/badge';
 import { Button } from '@/src/components/ui/button';
@@ -33,11 +33,16 @@ export default function VaultEntryTableRowItem({
     entry,
     groupName,
     groupIconUrl,
+    profileDetails,
     TypeIconComponent
 }: {
     entry: VaultEntry;
     groupName?: string;
     groupIconUrl?: string;
+    profileDetails?: {
+        icon: string;
+        name: string;
+    };
     TypeIconComponent?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }) {
     // SECTION: Constants and Variables
@@ -222,7 +227,28 @@ export default function VaultEntryTableRowItem({
             </TableCell>
 
             <TableCell>
-                {groupName ? (
+                {profileDetails ? (
+                    <div className="flex items-center gap-1">
+                        {(() => {
+                            const iconObj = profileIcons.find(
+                                (icon) => icon.id === profileDetails.icon
+                            );
+                            if (iconObj && iconObj.icon) {
+                                const IconComponent = iconObj.icon;
+                                return (
+                                    <IconComponent
+                                        height={20}
+                                        width={20}
+                                        stroke={0}
+                                        className="text-text-primary"
+                                    />
+                                );
+                            }
+                            return null;
+                        })()}
+                        <Text>{profileDetails.name}</Text>
+                    </div>
+                ) : groupName && !profileDetails ? (
                     <div className="flex items-center gap-2">
                         {groupIconUrl && (
                             <Image
