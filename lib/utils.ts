@@ -248,23 +248,6 @@ const copyToClipboard = async (text: string): Promise<void> => {
 };
 
 /**
- * This function formats an entry type string (e.g., "bank_account") to a more user-friendly format (e.g., "Bank Account") for UI display.
- *
- * @param type - The entry type string to format
- * @returns The formatted string suitable for UI display
- */
-// const formatKey = (type: string): string =>
-//     type.includes('_')
-//         ? type
-//               .split('_')
-//               .map(
-//                   (word) =>
-//                       word.substring(0, 1).toUpperCase() + word.substring(1)
-//               )
-//               .join(' ')
-//         : type.substring(0, 1).toUpperCase() + type.substring(1);
-
-/**
  * This function detects the underlying JSON type of a custom field value.
  * - 'array'     → e.g., recovery codes ["abcd-1234", "efgh-5678"]
  * - 'object'    → e.g., security question { question: "...", answer: "..." }

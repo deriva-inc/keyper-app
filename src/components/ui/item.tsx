@@ -45,12 +45,11 @@ const itemVariants = cva(
                 outline:
                     'border-border border-stroke-flat-secondary text-text-primary',
                 filled: 'border-stroke-flat-secondary bg-bg-flat-secondary text-text-primary',
-                error: 'bg-bg-fill-destructive border-stroke-destructive text-text-destructive',
-                info: 'bg-bg-fill-info border-stroke-info text-text-info',
+                error: 'bg-bg-destructive border-stroke-destructive text-text-destructive',
+                info: 'bg-bg-info border-stroke-info text-text-info',
                 success:
-                    'bg-bg-fill-success border-stroke-success text-text-success',
-                warning:
-                    'bg-bg-fill-warning border-stroke-warning text-text-warning'
+                    'bg-bg-success border-stroke-success text-text-success',
+                warning: 'bg-bg-warning border-stroke-warning text-text-warning'
             },
             size: {
                 default: 'gap-2.5 px-3 py-2.5',

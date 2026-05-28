@@ -1,6 +1,13 @@
 'use client';
 
-import { Friends, Home1, Locker, Logout, Shapes } from 'elementa-icons';
+import {
+    FavoriteOutline,
+    Friends,
+    Home1,
+    Locker,
+    Logout,
+    Shapes
+} from 'elementa-icons';
 import { isEmpty } from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -96,12 +103,20 @@ export default function AppSidebar() {
                 <SidebarHeader className="pb-4">
                     <div className="flex items-center justify-between">
                         {sidebarContext.state === 'expanded' && (
-                            <Text
-                                className="font-heading text-text-accent-primary"
-                                variant={TextVariant.H3}
-                            >
-                                Keyper
-                            </Text>
+                            <div className="flex items-center gap-2">
+                                <img
+                                    src="/icons/logo-small.svg"
+                                    alt="keyper"
+                                    height="32px"
+                                    width="32px"
+                                />
+                                <Text
+                                    className="font-heading text-text-accent-primary"
+                                    variant={TextVariant.H3}
+                                >
+                                    Keyper
+                                </Text>
+                            </div>
                         )}
                         <SidebarTrigger />
                     </div>
@@ -193,6 +208,27 @@ export default function AppSidebar() {
                             >
                                 <Shapes />
                                 <span>Groups</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton
+                            className={`${
+                                currentPage === TOP_NAV_LINKS.FAVORITES
+                                    ? 'bg-bg-base-accent-primary'
+                                    : ''
+                            } ${
+                                sidebarContext.state === 'expanded'
+                                    ? ''
+                                    : 'mx-auto'
+                            }`}
+                        >
+                            <Link
+                                href="/favorites"
+                                className="flex items-center gap-2"
+                            >
+                                <FavoriteOutline />
+                                <span>Favorites</span>
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>

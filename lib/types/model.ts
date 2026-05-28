@@ -125,6 +125,7 @@ enum TOP_NAV_LINKS {
     'PROFILES',
     'GROUPS',
     'VAULT',
+    'FAVORITES',
     'SETTINGS'
 }
 

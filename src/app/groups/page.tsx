@@ -75,14 +75,12 @@ export default function GroupsPage() {
     }, []);
 
     useEffect(() => {
-        if (isEmpty(groups)) {
-            if (activeProfile) {
-                fetchGroupsForProfile(activeProfile.id);
-            } else {
-                toast.info(
-                    'No active profile found. Please select one from top nav bar.'
-                );
-            }
+        if (activeProfile) {
+            fetchGroupsForProfile(activeProfile.id);
+        } else {
+            toast.info(
+                'No active profile found. Please select one from top nav bar.'
+            );
         }
     }, [activeProfile]);
     // !SECTION: Side Effects
