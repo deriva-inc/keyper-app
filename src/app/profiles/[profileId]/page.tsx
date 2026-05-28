@@ -455,63 +455,70 @@ export default function SingleProfilePage() {
                                             </Text>
                                         </Button>
                                     </div>
-                                    {profileVaultEntries.map((entry) => (
-                                        <div className="my-4 flex items-center justify-between">
-                                            <div className="flex items-center gap-2">
-                                                <img
-                                                    height={24}
-                                                    width={24}
-                                                    src={entry.icon}
-                                                    alt={entry.name}
-                                                />
-                                                <Text
-                                                    variant={TextVariant.Button}
-                                                >
-                                                    {entry.name}
-                                                </Text>
+                                    {profileVaultEntries
+                                        .slice(0, 5)
+                                        .map((entry) => (
+                                            <div className="my-4 flex items-center justify-between">
+                                                <div className="flex items-center gap-2">
+                                                    <img
+                                                        height={24}
+                                                        width={24}
+                                                        src={entry.icon}
+                                                        alt={entry.name}
+                                                    />
+                                                    <Text
+                                                        variant={
+                                                            TextVariant.Button
+                                                        }
+                                                    >
+                                                        {entry.name}
+                                                    </Text>
+                                                </div>
+                                                {(() => {
+                                                    const iconObj =
+                                                        entryTypeIcons.find(
+                                                            (icon) =>
+                                                                icon.type ===
+                                                                entry.type
+                                                        );
+                                                    if (
+                                                        iconObj &&
+                                                        iconObj.icon
+                                                    ) {
+                                                        const IconComponent =
+                                                            iconObj.icon;
+                                                        return (
+                                                            <Tooltip>
+                                                                <TooltipTrigger>
+                                                                    <div className="bg-bg-base-accent-secondary rounded-sm p-2">
+                                                                        <IconComponent
+                                                                            height={
+                                                                                20
+                                                                            }
+                                                                            width={
+                                                                                20
+                                                                            }
+                                                                            stroke={
+                                                                                0
+                                                                            }
+                                                                            className="text-text-primary"
+                                                                        />
+                                                                    </div>
+                                                                </TooltipTrigger>
+                                                                <TooltipContent>
+                                                                    <Text>
+                                                                        {formatKey(
+                                                                            entry.type
+                                                                        )}
+                                                                    </Text>
+                                                                </TooltipContent>
+                                                            </Tooltip>
+                                                        );
+                                                    }
+                                                    return null;
+                                                })()}
                                             </div>
-                                            {(() => {
-                                                const iconObj =
-                                                    entryTypeIcons.find(
-                                                        (icon) =>
-                                                            icon.type ===
-                                                            entry.type
-                                                    );
-                                                if (iconObj && iconObj.icon) {
-                                                    const IconComponent =
-                                                        iconObj.icon;
-                                                    return (
-                                                        <Tooltip>
-                                                            <TooltipTrigger>
-                                                                <div className="bg-bg-base-accent-secondary rounded-sm p-2">
-                                                                    <IconComponent
-                                                                        height={
-                                                                            20
-                                                                        }
-                                                                        width={
-                                                                            20
-                                                                        }
-                                                                        stroke={
-                                                                            0
-                                                                        }
-                                                                        className="text-text-primary"
-                                                                    />
-                                                                </div>
-                                                            </TooltipTrigger>
-                                                            <TooltipContent>
-                                                                <Text>
-                                                                    {formatKey(
-                                                                        entry.type
-                                                                    )}
-                                                                </Text>
-                                                            </TooltipContent>
-                                                        </Tooltip>
-                                                    );
-                                                }
-                                                return null;
-                                            })()}
-                                        </div>
-                                    ))}
+                                        ))}
                                 </div>
                             </div>
                             {/* Profile Metadata and Health */}
