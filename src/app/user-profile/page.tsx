@@ -22,6 +22,7 @@ import {
 import { Input } from '@/src/components/ui/input';
 import { SidebarProvider } from '@/src/components/ui/sidebar';
 import { Text, TextVariant } from '@/src/components/ui/text';
+import UpdateProfileSheet from '@/src/app/user-profile/UpdateProfileSheet';
 
 /**
  * This function renders the User Profile page of the app.
@@ -37,6 +38,8 @@ export default function ProfilePage() {
     // !SECTION: Constants and Variables
 
     // SECTION: States
+    const [isUpdateProfileSheetOpen, setIsUpdateProfileSheetOpen] =
+        useState<boolean>(false);
     const [userName, setUserName] = useState('');
     // !SECTION: States
 
@@ -189,62 +192,75 @@ export default function ProfilePage() {
                                         {userDetails.updatedAt.toString()}
                                     </Text>
                                 </div>{' '}
-                                <Dialog>
-                                    <DialogTrigger asChild>
-                                        <Button variant="destructive">
-                                            Delete Profile
-                                        </Button>
-                                    </DialogTrigger>
-                                    <DialogContent>
-                                        <DialogHeader>
-                                            <DialogTitle>
-                                                Are you sure you want to delete
-                                                this profile?
-                                            </DialogTitle>
-                                            <DialogDescription>
-                                                This action cannot be undone.
-                                                All your vault entries and
-                                                groups associated with this
-                                                profile will be permanently
-                                                deleted.
-                                            </DialogDescription>
-                                        </DialogHeader>
-                                        <div className="">
-                                            <Text>
-                                                Please enter your name{' '}
-                                                <span className="font-code font-bold">
-                                                    {userDetails.name}
-                                                </span>{' '}
-                                                into the field below to proceed
-                                                with deleting your profile.
-                                            </Text>
-                                            <Input
-                                                onChange={(e) =>
-                                                    setUserName(e.target.value)
-                                                }
-                                                id="input-user-name"
-                                                className="my-2"
-                                            />
-                                        </div>
-                                        <DialogFooter>
-                                            <DialogClose asChild>
-                                                Cancel
-                                            </DialogClose>
-                                            <Button
-                                                variant="destructive"
-                                                disabled={
-                                                    userName !==
-                                                    userDetails.name
-                                                }
-                                                onClick={
-                                                    handleDeleteUserProfile
-                                                }
-                                            >
-                                                Delete
+                                <div className="flex w-full items-center justify-center gap-4">
+                                    <UpdateProfileSheet
+                                        isUpdateProfileSheetOpen={
+                                            isUpdateProfileSheetOpen
+                                        }
+                                        setIsUpdateProfileSheetOpen={
+                                            setIsUpdateProfileSheetOpen
+                                        }
+                                    />
+                                    <Dialog>
+                                        <DialogTrigger asChild>
+                                            <Button variant="destructive">
+                                                Delete Profile
                                             </Button>
-                                        </DialogFooter>
-                                    </DialogContent>
-                                </Dialog>
+                                        </DialogTrigger>
+                                        <DialogContent>
+                                            <DialogHeader>
+                                                <DialogTitle>
+                                                    Are you sure you want to
+                                                    delete this profile?
+                                                </DialogTitle>
+                                                <DialogDescription>
+                                                    This action cannot be
+                                                    undone. All your vault
+                                                    entries and groups
+                                                    associated with this profile
+                                                    will be permanently deleted.
+                                                </DialogDescription>
+                                            </DialogHeader>
+                                            <div className="">
+                                                <Text>
+                                                    Please enter your name{' '}
+                                                    <span className="font-code font-bold">
+                                                        {userDetails.name}
+                                                    </span>{' '}
+                                                    into the field below to
+                                                    proceed with deleting your
+                                                    profile.
+                                                </Text>
+                                                <Input
+                                                    onChange={(e) =>
+                                                        setUserName(
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    id="input-user-name"
+                                                    className="my-2"
+                                                />
+                                            </div>
+                                            <DialogFooter>
+                                                <DialogClose asChild>
+                                                    Cancel
+                                                </DialogClose>
+                                                <Button
+                                                    variant="destructive"
+                                                    disabled={
+                                                        userName !==
+                                                        userDetails.name
+                                                    }
+                                                    onClick={
+                                                        handleDeleteUserProfile
+                                                    }
+                                                >
+                                                    Delete
+                                                </Button>
+                                            </DialogFooter>
+                                        </DialogContent>
+                                    </Dialog>
+                                </div>
                             </div>
                         </div>
                     )}

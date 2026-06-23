@@ -1,4 +1,9 @@
 # CHANGELOG
+### [0.77.0] - 2026-06-24
+---
+#### Added
+- Add update user details functionality.
+
 ### [0.76.0] - 2026-05-28
 ---
 #### Added

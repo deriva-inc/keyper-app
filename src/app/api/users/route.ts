@@ -4,6 +4,38 @@ import { handleErrorOnServerSideAPICalls } from '@/lib/api';
 import logger from '@/lib/logger';
 import { GetUserDetailsResponse, HTTP_STATUS_CODE } from '@/lib/types/api';
 
+/* Handle PATCH request to update user's details. */
+export async function PATCH(req: Request) {
+    const targetUrl = `${process.env.SERVER_BASE_URL}/users`;
+    const body = await req.json();
+    logger.info(`[PATCH] ${targetUrl} | Updating details for the user.`);
+
+    try {
+        const userDetailsRes = await fetch(`${targetUrl}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: req.headers.get('Authorization') || ''
+            },
+            body: JSON.stringify(body)
+        });
+
+        const userDetailsData =
+            (await userDetailsRes.json()) as GetUserDetailsResponse;
+
+        return NextResponse.json(userDetailsData, {
+            status: userDetailsRes.status
+        });
+    } catch (error: unknown) {
+        return handleErrorOnServerSideAPICalls(
+            error,
+            `Failed to retrieve user details for the user.`,
+            HTTP_STATUS_CODE.INTERNAL_ERROR,
+            `[GET] /api/v1/users`
+        );
+    }
+}
+
 /* Handle GET request to fetch user's details. */
 export async function GET(req: Request) {
     const targetUrl = `${process.env.SERVER_BASE_URL}/users`;
