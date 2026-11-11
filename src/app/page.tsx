@@ -1,17 +1,12 @@
 'use client';
 
-import { Brain, CloudSaas, Locker, LockerChest, Thought } from 'elementa-icons';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 import { cryptoService } from '@/lib/crypto';
 import { useDataStore } from '@/lib/data-store';
-import logger from '@/lib/logger';
 import { HTTP_STATUS_CODE, SignUpResponse } from '@/lib/types/api';
-import { UI_STATE } from '@/lib/types/model';
+import { THEME, UI_STATE } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
 import { copyToClipboard, hexToUint8Array, uint8ArrayToHex } from '@/lib/utils';
-import LoadingState from '@/src/components/blocks/loading-state';
+import { Brain, CloudSaas, Locker, LockerChest, Thought } from 'elementa-icons';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -21,43 +16,50 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogMedia,
-    AlertDialogTitle
-} from '@/src/components/ui/alert-dialog';
-import { Button } from '@/src/components/ui/button';
-import {
+    AlertDialogTitle,
+    Button,
     Dialog,
     DialogContent,
     DialogDescription,
     DialogFooter,
     DialogHeader,
-    DialogTitle
-} from '@/src/components/ui/dialog';
-import {
+    DialogTitle,
+    EnergySwitcher,
     Field,
     FieldDescription,
     FieldLabel,
     FieldLegend,
-    FieldSet
-} from '@/src/components/ui/field';
-import { Input } from '@/src/components/ui/input';
-import {
+    FieldSet,
+    Input,
     Item,
     ItemContent,
     ItemDescription,
     ItemMedia,
-    ItemTitle
-} from '@/src/components/ui/item';
-import { Label } from '@/src/components/ui/label';
-import { Text, TextVariant } from '@/src/components/ui/text';
+    ItemTitle,
+    Label,
+    LoadingState,
+    logger,
+    Text,
+    TextVariant,
+    ThemeSwitcher
+} from 'get-elementa-ui';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import AccountRecoveryDialog from './AccountRecoveryDialog';
 
 /**
  * This function renders the landing page of the app.
+ *
+ * @author Aayush Goyal
+ * @modified 2025-11-12
  */
 export default function HomePage() {
     // SECTION: Constants
     const router = useRouter();
     const isUserLoggedIn = useDataStore((state) => state.isUserLoggedIn);
     const dataActions = useDataStore((state) => state.actions);
+    const themeActions = useUIStore((state) => state.actions);
     const securityFeatures = [
         {
             icon: Locker,
@@ -82,6 +84,9 @@ export default function HomePage() {
     const [isLoginPage, setIsLoginPage] = useState<boolean>(false);
     const [recoveryKey, setRecoveryKey] = useState<string>('');
     const [uiState, setUIState] = useState<UI_STATE>(UI_STATE.IDLE);
+    const [isRecoveryDialogOpen, setIsRecoveryDialogOpen] =
+        useState<boolean>(false);
+    const [loginEmail, setLoginEmail] = useState<string>('');
     // !SECTION: States
 
     // SECTION: API Queries
@@ -150,7 +155,7 @@ export default function HomePage() {
                 }
             });
             const hashSaltData = await hashSaltRes.json();
-            const authHashSalt = hexToUint8Array(hashSaltData.data.authSalt);
+            const authKeySalt = hexToUint8Array(hashSaltData.data.authSalt);
             const encryptionKeySalt = hexToUint8Array(
                 hashSaltData.data.encryptionSalt
             );
@@ -158,13 +163,9 @@ export default function HomePage() {
             const password = (
                 document.getElementById('input-password') as HTMLInputElement
             )?.value;
-            const authKey = await cryptoService.deriveAuthHash(
+            const authKey = await cryptoService.derivaAuthKey(
                 password,
-                authHashSalt
-            );
-            const encryptionKey = await cryptoService.deriveEncryptionKey(
-                password,
-                encryptionKeySalt
+                authKeySalt
             );
 
             // Start the login process.
@@ -189,6 +190,10 @@ export default function HomePage() {
                     JSON.stringify(loginData.data.user)
                 );
 
+                const encryptionKey = await cryptoService.deriveEncryptionKey(
+                    password,
+                    encryptionKeySalt
+                );
                 localStorage.setItem(
                     'encryptionKey',
                     uint8ArrayToHex(encryptionKey)
@@ -231,19 +236,15 @@ export default function HomePage() {
         )?.value;
 
         // Hash password with Argon2 before sending to the server.
-        const authHashSalt = cryptoService.generateSalt();
-        const authKeyRaw = await cryptoService.deriveAuthHash(
+        const authKeySalt = cryptoService.generateSalt();
+        const authKeyRaw = await cryptoService.derivaAuthKey(
             password,
-            authHashSalt
+            authKeySalt
         );
 
         // Hash password with Argon2 to generate the encryption key, which will
         // be used for encrypting the user's data.
-        const encryptionHashSalt = cryptoService.generateSalt();
-        const encryptionKeyRaw = await cryptoService.deriveEncryptionKey(
-            password,
-            encryptionHashSalt
-        );
+        const encryptionKeySalt = cryptoService.generateSalt();
 
         try {
             const signUpRes = await fetch('/api/auth/signup', {
@@ -254,18 +255,46 @@ export default function HomePage() {
                 body: JSON.stringify({
                     name: name,
                     email: email,
-                    authSalt: uint8ArrayToHex(authHashSalt),
+                    authSalt: uint8ArrayToHex(authKeySalt),
                     authKey: authKeyRaw,
-                    encryptionSalt: uint8ArrayToHex(encryptionHashSalt),
-                    encryptionKey: encryptionKeyRaw.toHex(),
+                    encryptionSalt: uint8ArrayToHex(encryptionKeySalt),
                     avatarUrl: `https://api.dicebear.com/9.x/thumbs/svg?seed=${name.split(' ').join('-')}`
                 })
             });
 
             const signUpData = (await signUpRes.json()) as SignUpResponse;
             if (signUpRes.ok) {
-                toast.success('Sign-up successful! Please log in to continue.');
-                setRecoveryKey(signUpData.data.user.recoveryKey);
+                toast.success(
+                    'Sign-up successful! Setting up recovery credentials...'
+                );
+                const generatedKey = signUpData.data?.user?.recoveryKey;
+                if (generatedKey) {
+                    try {
+                        const recoverySalt = cryptoService.generateSalt();
+                        const { recoveryHash } =
+                            await cryptoService.deriveRecoveryCredentials(
+                                generatedKey,
+                                recoverySalt
+                            );
+                        await fetch('/api/auth/recovery/setup', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                email,
+                                recoverySalt: uint8ArrayToHex(recoverySalt),
+                                recoveryHash
+                            })
+                        });
+                    } catch (recErr) {
+                        logger.error(
+                            'Failed to auto-setup recovery on signup:',
+                            recErr
+                        );
+                    }
+                }
+                setRecoveryKey(generatedKey);
             } else {
                 logger.error(
                     'Sign-up failed with response:',
@@ -301,9 +330,38 @@ export default function HomePage() {
     // !SECTION
 
     // SECTION: UI
-    // !SECTION
     return (
-        <div className="px-4 md:px-12 lg:px-20 xl:px-32 2xl:px-44">
+        <div className="bg-bg-base-primary flex min-h-screen flex-col justify-between px-4 sm:px-8">
+            <header className="mx-auto flex w-full max-w-6xl items-center justify-between py-6">
+                <div className="flex items-center gap-2.5">
+                    <div className="bg-bg-flat-primary border-stroke-base-primary flex size-9 items-center justify-center rounded-xl border">
+                        <Locker
+                            className="text-text-primary"
+                            height="20px"
+                            width="20px"
+                        />
+                    </div>
+                    <Text
+                        variant={TextVariant.H3}
+                        className="font-heading text-text-primary font-bold tracking-tight"
+                    >
+                        Keyper
+                    </Text>
+                </div>
+                <div className="flex items-center gap-3">
+                    <EnergySwitcher />
+                    <ThemeSwitcher
+                        onThemeChange={(newTheme) => {
+                            themeActions.setTheme(
+                                newTheme === 'dark'
+                                    ? THEME.GUN_METAL
+                                    : THEME.AMBER
+                            );
+                        }}
+                    />
+                </div>
+            </header>
+
             {uiState === UI_STATE.LOADING && <LoadingState text="Loading..." />}
             {firstTimeLoad &&
                 (uiState === UI_STATE.IDLE ? (
@@ -315,7 +373,7 @@ export default function HomePage() {
                                     URL to get started.
                                 </DialogTitle>
                                 <DialogDescription>
-                                    Kya baat hain bhaijaan. Aapne to macha diya!
+                                    Set up your connection to begin.
                                 </DialogDescription>
                             </DialogHeader>
                             <div>
@@ -396,28 +454,34 @@ export default function HomePage() {
                     </AlertDialog>
                 ) : null)}
             {!firstTimeLoad && !isUserLoggedIn && uiState === UI_STATE.IDLE && (
-                <div className="relative mx-auto h-screen max-w-sm py-8 lg:max-w-md">
-                    <div className="flex flex-col items-center justify-center">
-                        <Text variant={TextVariant.H1} className="text-center">
+                <main className="mx-auto my-auto flex w-full max-w-md flex-col gap-6 py-6">
+                    <div className="flex flex-col items-center justify-center gap-1.5 text-center">
+                        <Text
+                            variant={TextVariant.H1}
+                            className="font-heading text-text-primary text-3xl font-bold tracking-tight sm:text-4xl"
+                        >
                             Welcome to{' '}
                             <span className="text-text-accent-primary">
                                 Keyper
                             </span>
                         </Text>
-                        <Text variant={TextVariant.H3} className="text-center">
+                        <Text
+                            variant={TextVariant.Body}
+                            className="text-text-tertiary"
+                        >
                             Create your own private digital sanctuary.
                         </Text>
                     </div>
                     {isLoginPage ? (
                         // Login Form
                         <form
-                            className="bg-bg-flat-primary my-[8%] rounded-md px-4 py-8 shadow-sm"
+                            className="bg-bg-flat-primary border-stroke-base-primary flex flex-col gap-4 rounded-2xl border p-6 shadow-sm sm:p-8"
                             onSubmit={(e) => handleUserLogin(e)}
                         >
                             <FieldSet>
                                 <FieldLegend>Login</FieldLegend>
                                 <FieldDescription>
-                                    Enter your credentials to log in.
+                                    Enter your credentials to access your vault.
                                 </FieldDescription>
                                 <Field>
                                     <FieldLabel htmlFor="input-email">
@@ -426,22 +490,41 @@ export default function HomePage() {
                                     <Input
                                         id="input-email"
                                         type="email"
+                                        value={loginEmail}
+                                        onChange={(e) =>
+                                            setLoginEmail(e.target.value)
+                                        }
                                         placeholder="Enter your email"
+                                        required
                                     />
                                 </Field>
                                 <Field>
-                                    <FieldLabel htmlFor="input-password">
-                                        Password
-                                    </FieldLabel>
+                                    <div className="flex items-center justify-between">
+                                        <FieldLabel htmlFor="input-password">
+                                            Password
+                                        </FieldLabel>
+                                        <Button
+                                            type="button"
+                                            variant="link"
+                                            size="sm"
+                                            className="text-text-accent-secondary h-auto p-0 text-xs hover:underline"
+                                            onClick={() =>
+                                                setIsRecoveryDialogOpen(true)
+                                            }
+                                        >
+                                            Forgot password?
+                                        </Button>
+                                    </div>
                                     <Input
                                         id="input-password"
                                         type="password"
                                         placeholder="Enter your password"
+                                        required
                                     />
                                 </Field>
                                 <Item
                                     size="default"
-                                    className="my-8 border-2"
+                                    className="bg-bg-raised-primary/50 border-stroke-raised-primary my-3 border"
                                     variant="outline"
                                 >
                                     <ItemMedia>
@@ -459,13 +542,15 @@ export default function HomePage() {
                                         </ItemDescription>
                                     </ItemContent>
                                 </Item>
-                                <Button type="submit">Login</Button>
-                                <Text className="mx-auto flex items-center">
+                                <Button type="submit" className="w-full">
+                                    Login
+                                </Button>
+                                <Text className="mx-auto flex items-center pt-2">
                                     New to Keyper?{' '}
                                     <Button
                                         variant="link"
                                         className="px-1.5 hover:underline"
-                                        onClick={() => setIsLoginPage(true)}
+                                        onClick={() => setIsLoginPage(false)}
                                     >
                                         Sign Up
                                     </Button>
@@ -475,22 +560,23 @@ export default function HomePage() {
                     ) : (
                         // Sign Up Form
                         <form
-                            className="bg-bg-flat-primary my-[4%] rounded-md px-4 py-8 shadow-sm"
+                            className="bg-bg-flat-primary border-stroke-base-primary flex flex-col gap-4 rounded-2xl border p-6 shadow-sm sm:p-8"
                             onSubmit={(e) => handleUserSignUp(e)}
                         >
                             <FieldSet>
                                 <FieldLegend>Sign Up</FieldLegend>
                                 <FieldDescription>
-                                    2 mins, no more!
+                                    Set up your master account in seconds.
                                 </FieldDescription>
                                 <Field>
-                                    <FieldLabel htmlFor="input-email">
+                                    <FieldLabel htmlFor="input-name">
                                         Name
                                     </FieldLabel>
                                     <Input
                                         id="input-name"
                                         type="text"
                                         placeholder="Enter your name"
+                                        required
                                     />
                                 </Field>
                                 <Field>
@@ -501,6 +587,7 @@ export default function HomePage() {
                                         id="input-email"
                                         type="email"
                                         placeholder="Enter your email"
+                                        required
                                     />
                                 </Field>
                                 <Field>
@@ -510,12 +597,13 @@ export default function HomePage() {
                                     <Input
                                         id="input-password"
                                         type="password"
-                                        placeholder="Enter your password"
+                                        placeholder="Enter your master password"
+                                        required
                                     />
                                 </Field>
                                 <Item
                                     size="default"
-                                    className="my-4 border-2"
+                                    className="bg-bg-raised-primary/50 border-stroke-raised-primary my-3 border"
                                     variant="outline"
                                 >
                                     <ItemMedia>
@@ -533,8 +621,10 @@ export default function HomePage() {
                                         </ItemDescription>
                                     </ItemContent>
                                 </Item>
-                                <Button type="submit">Sign Up</Button>
-                                <Text className="mx-auto flex items-center">
+                                <Button type="submit" className="w-full">
+                                    Sign Up
+                                </Button>
+                                <Text className="mx-auto flex items-center pt-2">
                                     Existing member?{' '}
                                     <Button
                                         variant="link"
@@ -547,38 +637,25 @@ export default function HomePage() {
                             </FieldSet>
                         </form>
                     )}
-                    <div className="flex items-center justify-around gap-2">
+                    <div className="grid grid-cols-3 gap-3 py-2">
                         {securityFeatures.map((feature) => (
                             <div
-                                key={feature.title}
-                                className="flex flex-col items-center"
+                                key={feature.icon}
+                                className="bg-bg-flat-primary/50 border-stroke-flat-primary flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center"
                             >
                                 {feature.icon({
-                                    height: '24px',
-                                    width: '24px'
+                                    height: '22px',
+                                    width: '22px'
                                 })}
                                 <Text
                                     variant={TextVariant.Caption}
-                                    className="text-center"
+                                    className="text-center leading-tight font-medium"
                                 >
                                     {feature.title}
                                 </Text>
                             </div>
                         ))}
                     </div>
-                    <Text
-                        variant={TextVariant.Caption}
-                        className="absolute bottom-6 mx-auto w-full text-center"
-                    >
-                        Copyright © 2024{' '}
-                        <a
-                            href="https://deriva.xyz"
-                            className="text-text-info underline"
-                        >
-                            deriva Inc.
-                        </a>{' '}
-                        All rights reserved.
-                    </Text>
                     {recoveryKey && (
                         <AlertDialog open={recoveryKey !== ''}>
                             <AlertDialogContent size="sm">
@@ -587,17 +664,15 @@ export default function HomePage() {
                                         <CloudSaas />
                                     </AlertDialogMedia>
                                     <AlertDialogTitle>
-                                        Wola! This message is important.
+                                        Important: Save Your Recovery Key
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
-                                        Keyper works only with your password. No
-                                        one can ever see your passwords until
-                                        they have your password. This also means
-                                        that if you lose your password, you lose
-                                        access to your data. Please save this
-                                        recovery key in a safe place. You can
-                                        use it to regain access to your account
-                                        if you forget your password.
+                                        Keyper operates on zero-knowledge
+                                        encryption. If you lose your password,
+                                        you lose access to your data. Please
+                                        save this recovery key in a safe place
+                                        to regain access to your account if
+                                        needed.
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <div className="bg-bg-active-primary mx-auto w-full p-2">
@@ -621,8 +696,36 @@ export default function HomePage() {
                             </AlertDialogContent>
                         </AlertDialog>
                     )}
-                </div>
+                    <AccountRecoveryDialog
+                        isOpen={isRecoveryDialogOpen}
+                        onOpenChange={setIsRecoveryDialogOpen}
+                        initialEmail={loginEmail}
+                        onRecoverySuccess={(recoveredEmail) => {
+                            setLoginEmail(recoveredEmail);
+                            setIsLoginPage(true);
+                        }}
+                    />
+                </main>
             )}
+
+            <footer className="w-full py-6 text-center">
+                <Text
+                    variant={TextVariant.Caption}
+                    className="text-text-tertiary"
+                >
+                    Copyright © 2026{' '}
+                    <a
+                        href="https://deriva.xyz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-text-info hover:text-text-primary underline transition-colors"
+                    >
+                        deriva Inc.
+                    </a>{' '}
+                    All rights reserved.
+                </Text>
+            </footer>
         </div>
     );
+    // !SECTION: UI
 }

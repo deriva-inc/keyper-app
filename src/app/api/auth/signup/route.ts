@@ -22,15 +22,14 @@ export async function POST(req: Request) {
 
         if (signUpRes.ok) {
             return NextResponse.json(data, { status: signUpRes.status });
-        } else {
-            return NextResponse.json(
-                {
-                    message: data.message,
-                    error: data.error
-                },
-                { status: signUpRes.status }
-            );
         }
+        return NextResponse.json(
+            {
+                message: data.message,
+                error: data.error
+            },
+            { status: signUpRes.status }
+        );
     } catch (error: unknown) {
         return handleErrorOnServerSideAPICalls(
             error,

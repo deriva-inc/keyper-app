@@ -1,16 +1,13 @@
 'use client';
 
-import { Add } from 'elementa-icons';
-import { motion } from 'motion/react';
-import { useState } from 'react';
-import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { profileIcons } from '@/lib/utils';
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
-import { Label } from '@/src/components/ui/label';
+import { Add } from 'elementa-icons';
 import {
+    Button,
+    Input,
+    Label,
     Sheet,
     SheetClose,
     SheetContent,
@@ -18,18 +15,22 @@ import {
     SheetFooter,
     SheetHeader,
     SheetTitle,
-    SheetTrigger
-} from '@/src/components/ui/sheet';
-import { Switch } from '@/src/components/ui/switch';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import { Textarea } from '@/src/components/ui/textarea';
+    SheetTrigger,
+    Switch,
+    Text,
+    Textarea,
+    TextVariant
+} from 'get-elementa-ui';
+import { motion } from 'motion/react';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Create New Profile Sheet which allows users to
  * create a new profile.
  *
  * @author Aayush Goyal
- * @created 2026-05-13
+ * @created 2026-11-12
  */
 export default function CreateNewProfileSheet({
     isCreateNewProfileSheetOpen,
@@ -121,7 +122,7 @@ export default function CreateNewProfileSheet({
             {showTrigger && (
                 <SheetTrigger asChild>
                     <motion.div
-                        className="bg-bg-flat-primary flex min-h-72 w-80 cursor-pointer flex-col items-center justify-center gap-4 rounded-md border px-6 py-8 shadow-md active:scale-95"
+                        className="bg-bg-raised-primary flex min-h-72 w-80 cursor-pointer flex-col items-center justify-center gap-4 rounded-md border px-6 py-8 shadow-md active:scale-95"
                         initial={{ scale: 1 }}
                         whileHover={{ scale: 1.05 }}
                     >

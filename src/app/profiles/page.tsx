@@ -1,23 +1,26 @@
 'use client';
 
-import { isEmpty } from 'lodash';
-import { useEffect, useState } from 'react';
 import { useDataStore } from '@/lib/data-store';
-import { TOP_NAV_LINKS } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
+import { TOP_NAV_LINKS } from '@/lib/utils';
 import CreateNewProfileSheet from '@/src/app/profiles/CreateNewProfileSheet';
 import ProfileCard from '@/src/app/profiles/ProfileCard';
-import EmptyState from '@/src/components/blocks/empty-state';
 import Header from '@/src/components/blocks/header';
 import AppSidebar from '@/src/components/ui/app-sidebar';
-import { SidebarProvider } from '@/src/components/ui/sidebar';
-import { Text, TextVariant } from '@/src/components/ui/text';
+import {
+    EmptyState,
+    SidebarProvider,
+    Text,
+    TextVariant
+} from 'get-elementa-ui';
+import { isEmpty } from 'lodash';
+import { useEffect, useState } from 'react';
 
 /**
  * This function renders the Profiles page of the app.
  *
  * @author Aayush Goyal
- * @created 2026-05-13
+ * @created 2026-11-12
  */
 export default function ProfilesPage() {
     // SECTION: Constants and Variables
@@ -38,7 +41,9 @@ export default function ProfilesPage() {
 
     // SECTION: Side Effects
     useEffect(() => {
-        actions.setCurrentPage(TOP_NAV_LINKS.PROFILES);
+        actions.setCurrentPage(
+            TOP_NAV_LINKS.find((link) => link.id === 'profiles')?.id || ''
+        );
     }, []);
     // !SECTION: Side Effects
 

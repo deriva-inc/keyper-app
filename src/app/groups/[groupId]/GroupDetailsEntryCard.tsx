@@ -1,28 +1,29 @@
 'use client';
 
-import { format } from 'date-fns';
-import { motion } from 'motion/react';
-import Link from 'next/link';
-import { Button } from '@/src/components/ui/button';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger
-} from '@/src/components/ui/tooltip';
 import { cryptoService } from '@/lib/crypto';
 import { VaultEntry } from '@/lib/types/model';
 import { copyToClipboard, entryTypeIcons, formatKey } from '@/lib/utils';
 import VaultEntryDetailsSheet from '@/src/app/vault/VaultEntryDetailsSheet';
-import { Separator } from '@/src/components/ui/separator';
-import { Globe, Mail, User } from 'lucide-react';
+import { format } from 'date-fns';
 import { Calendar } from 'elementa-icons';
+import {
+    Button,
+    Separator,
+    Text,
+    TextVariant,
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger
+} from 'get-elementa-ui';
+import { Globe, Mail, User } from 'lucide-react';
+import { motion } from 'motion/react';
+import Link from 'next/link';
 
 /**
  * This function renders the Entry details card on the Group Details page.
  *
  * @author Aayush Goyal
- * @created 2026-05-26
+ * @created 2026-11-12
  */
 export default function GroupDetailsEntryCard({
     groupEntry,
@@ -69,7 +70,7 @@ export default function GroupDetailsEntryCard({
     // SECTION: UI
     return (
         <motion.div
-            className="bg-bg-flat-secondary w-full rounded-md p-4 shadow-sm"
+            className="bg-bg-raised-secondary w-full rounded-md p-4 shadow-sm"
             role="button"
             initial={{ scale: 1, y: 20, opacity: 0 }}
             animate={{

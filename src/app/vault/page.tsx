@@ -1,45 +1,43 @@
 'use client';
 
-import { Search } from 'elementa-icons';
-import { debounce, isEmpty } from 'lodash';
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
-import { cryptoService } from '@/lib/crypto';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
-import { TOP_NAV_LINKS, VaultEntry } from '@/lib/types/model';
+import { VaultEntry } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
 import {
+    TOP_NAV_LINKS,
     entryTypeIcons,
-    formatKey,
     groupCategories,
     groupProviders
 } from '@/lib/utils';
 import CreateNewVaultEntrySheet from '@/src/app/vault/CreateNewVaultEntrySheet';
 import VaultEntryTableRowItem from '@/src/app/vault/VaultEntryTableRowItem';
-import EmptyState from '@/src/components/blocks/empty-state';
 import Header from '@/src/components/blocks/header';
 import AppSidebar from '@/src/components/ui/app-sidebar';
+import { Search } from 'elementa-icons';
 import {
+    EmptyState,
     InputGroup,
     InputGroupAddon,
-    InputGroupInput
-} from '@/src/components/ui/input-group';
-import { SidebarProvider } from '@/src/components/ui/sidebar';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import {
+    InputGroupInput,
+    SidebarProvider,
     Table,
     TableBody,
     TableHead,
     TableHeader,
-    TableRow
-} from '@/src/components/ui/table';
+    TableRow,
+    Text,
+    TextVariant
+} from 'get-elementa-ui';
+import { debounce, isEmpty } from 'lodash';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Vault page of the app where all the password entries are listed.
  *
  * @author Aayush Goyal
- * @created 2026-05-27
+ * @created 2026-11-12
  */
 export default function VaultPage() {
     // SECTION: Constants and Variables
@@ -98,7 +96,9 @@ export default function VaultPage() {
 
     // SECTION: Side Effects
     useEffect(() => {
-        actions.setCurrentPage(TOP_NAV_LINKS.VAULT);
+        actions.setCurrentPage(
+            TOP_NAV_LINKS.find((link) => link.id === 'vault')?.id || ''
+        );
         if (activeProfile) {
             fetchProfileEntries();
         }

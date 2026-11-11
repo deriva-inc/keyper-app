@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     const targetUrl = `${process.env.SERVER_BASE_URL}/entries/favorites`;
 
     logger.info(
-        `[PATCH] | ${targetUrl} | Handling update of favorite status of vault entry`
+        `[GET] | ${targetUrl} | Fetching favorite vault entries for the user.`
     );
 
     try {
@@ -29,9 +29,9 @@ export async function GET(req: Request) {
     } catch (error: unknown) {
         return handleErrorOnServerSideAPICalls(
             error,
-            `Failed to update favorite status of vault entry on the platform.`,
+            `Failed to fetch favorite vault entries for the user.`,
             HTTP_STATUS_CODE.INTERNAL_ERROR,
-            `[PATCH] /api/v1/entries/favorite`
+            `[GET] /api/v1/entries/favorites`
         );
     }
 }

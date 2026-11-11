@@ -1,26 +1,19 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
-import { formatKey } from '@/lib/utils';
 import { cryptoService } from '@/lib/crypto';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { EntryType, VaultEntry } from '@/lib/types/model';
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
-import { Label } from '@/src/components/ui/label';
-import { Switch } from '@/src/components/ui/switch';
+import { formatKey } from '@/lib/utils';
 import {
+    Button,
+    Input,
+    Label,
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue
-} from '@/src/components/ui/select';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import { Textarea } from '@/src/components/ui/textarea';
-import {
+    SelectValue,
     Sheet,
     SheetClose,
     SheetContent,
@@ -28,14 +21,20 @@ import {
     SheetFooter,
     SheetHeader,
     SheetTitle,
-    SheetTrigger
-} from '@/src/components/ui/sheet';
+    SheetTrigger,
+    Switch,
+    Text,
+    Textarea,
+    TextVariant
+} from 'get-elementa-ui';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Update Vault Entry Sheet, which allows users to update the details of an existing vault entry.
  *
  * @author Aayush Goyal
- * @created 2026-05-27
+ * @created 2026-11-12
  */
 export default function UpdateVaultEntrySheet({
     vaultEntry,

@@ -1,25 +1,28 @@
 'use client';
 
-import { isEmpty } from 'lodash';
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { Group, TOP_NAV_LINKS } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
 import CreateNewGroupSheet from '@/src/app/groups/CreateNewGroupSheet';
 import GroupCard from '@/src/app/groups/GroupCard';
-import EmptyState from '@/src/components/blocks/empty-state';
 import Header from '@/src/components/blocks/header';
 import AppSidebar from '@/src/components/ui/app-sidebar';
-import { SidebarProvider } from '@/src/components/ui/sidebar';
-import { Text, TextVariant } from '@/src/components/ui/text';
+import {
+    EmptyState,
+    SidebarProvider,
+    Text,
+    TextVariant
+} from 'get-elementa-ui';
+import { isEmpty } from 'lodash';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Groups page on the app.
  *
  * @author Aayush Goyal
- * @created 2026-05-13
+ * @created 2026-11-12
  */
 export default function GroupsPage() {
     // SECTION: Constants and Variables

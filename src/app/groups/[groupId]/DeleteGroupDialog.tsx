@@ -1,29 +1,29 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
-import logger from '@/lib/logger';
 import { Group } from '@/lib/types/model';
-import { Button } from '@/src/components/ui/button';
 import {
+    Button,
     Dialog,
     DialogClose,
     DialogContent,
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger
-} from '@/src/components/ui/dialog';
-import { Input } from '@/src/components/ui/input';
-import { Text } from '@/src/components/ui/text';
+    DialogTrigger,
+    Input,
+    logger,
+    Text
+} from 'get-elementa-ui';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Delete Group Dialog which allows users to delete a group.
  *
  * @author Aayush Goyal
- * @created 2026-05-19
+ * @created 2026-11-12
  */
 export default function DeleteGroupDialog({
     groupDetails

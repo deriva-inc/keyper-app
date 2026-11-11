@@ -1,29 +1,29 @@
 'use client';
 
-import { Delete } from 'elementa-icons';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
-import { Button } from '@/src/components/ui/button';
+import { Delete } from 'elementa-icons';
 import {
+    Button,
     Dialog,
     DialogClose,
     DialogContent,
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger
-} from '@/src/components/ui/dialog';
-import { Text } from '@/src/components/ui/text';
-import { Input } from '@/src/components/ui/input';
+    DialogTrigger,
+    Input,
+    Text
+} from 'get-elementa-ui';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Delete Profile Dialog which allows users to delete an existing profile.
  *
  * @author Aayush Goyal
- * @created 2026-05-16
+ * @created 2026-11-12
  */
 export default function DeleteProfileDialog({
     profileId

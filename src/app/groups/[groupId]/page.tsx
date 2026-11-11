@@ -1,38 +1,39 @@
 'use client';
 
+import { useDataStore } from '@/lib/data-store';
+import logger from '@/lib/logger';
+import { Group, TOP_NAV_LINKS, VaultEntry } from '@/lib/types/model';
+import useUIStore from '@/lib/ui-store';
+import { groupCategories, groupProviders } from '@/lib/utils';
+import DeleteGroupDialog from '@/src/app/groups/[groupId]/DeleteGroupDialog';
+import GroupDetailsEntryCard from '@/src/app/groups/[groupId]/GroupDetailsEntryCard';
+import UpdateGroupDetailsSheet from '@/src/app/groups/[groupId]/UpdateGroupDetailsSheet';
+import Header from '@/src/components/blocks/header';
+import AppSidebar from '@/src/components/ui/app-sidebar';
 import { format } from 'date-fns';
+import {
+    Badge,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbSeparator,
+    SidebarProvider,
+    Text,
+    TextVariant
+} from 'get-elementa-ui';
 import { isEmpty } from 'lodash';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { useDataStore } from '@/lib/data-store';
-import logger from '@/lib/logger';
-import useUIStore from '@/lib/ui-store';
-import { groupCategories, groupProviders } from '@/lib/utils';
-import { Group, TOP_NAV_LINKS, VaultEntry } from '@/lib/types/model';
-import DeleteGroupDialog from '@/src/app/groups/[groupId]/DeleteGroupDialog';
-import GroupDetailsEntryCard from '@/src/app/groups/[groupId]/GroupDetailsEntryCard';
-import UpdateGroupDetailsSheet from '@/src/app/groups/[groupId]/UpdateGroupDetailsSheet';
-import Header from '@/src/components/blocks/header';
-import { Badge } from '@/src/components/ui/badge';
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbSeparator
-} from '@/src/components/ui/breadcrumb';
-import AppSidebar from '@/src/components/ui/app-sidebar';
-import { SidebarProvider } from '@/src/components/ui/sidebar';
-import { Text, TextVariant } from '@/src/components/ui/text';
 
 /**
  * This function renders the GroupDetailsPage component which shows the details of a group.
  *
  * @author Aayush Goyal
- * @created 2026-05-26
+ * @created 2026-11-12
  */
 export default function GroupDetailsPage() {
     // SECTION: Constants and Variables

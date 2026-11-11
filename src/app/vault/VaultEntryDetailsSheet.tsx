@@ -1,28 +1,9 @@
 'use client';
 
-import { format } from 'date-fns';
-import { Copy, FavoriteFilled, FavoriteOutline, Import } from 'elementa-icons';
-import { Eye } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import { toast } from 'sonner';
 import { cryptoService } from '@/lib/crypto';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { VaultEntry } from '@/lib/types/model';
-import { Button } from '@/src/components/ui/button';
-import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger
-} from '@/src/components/ui/sheet';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import DeleteVaultEntryDialog from './DeleteVaultEntryDialog';
 import {
     copyToClipboard,
     entryTypeIcons,
@@ -31,28 +12,46 @@ import {
     groupProviders,
     profileIcons
 } from '@/lib/utils';
+import { CustomFieldsRenderer } from '@/src/app/vault/CustomFieldRenderer';
+import UpdateVaultEntrySheet from '@/src/app/vault/UpdateVaultEntrySheet';
+import { format } from 'date-fns';
+import { Copy, FavoriteFilled, FavoriteOutline, Import } from 'elementa-icons';
 import {
+    Button,
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+    Text,
+    TextVariant,
     Tooltip,
     TooltipContent,
     TooltipTrigger
-} from '@/src/components/ui/tooltip';
-import { CustomFieldsRenderer } from '@/src/app/vault/CustomFieldRenderer';
-import UpdateVaultEntrySheet from '@/src/app/vault/UpdateVaultEntrySheet';
+} from 'get-elementa-ui';
+import { Eye } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import DeleteVaultEntryDialog from './DeleteVaultEntryDialog';
 
 /**
  * This function renders the Vault Entry Details sheet.
  *
  * @author Aayush Goyal
- * @created 2026-05-27
+ * @created 2026-11-12
  */
 export default function VaultEntryDetailsSheet({
     vaultEntry,
-    isVaultEntryDetailsSheetOpen,
-    setIsVaultEntryDetailsSheetOpen
+    isVaultEntryDetailsSheetOpen: controlledOpen,
+    setIsVaultEntryDetailsSheetOpen: setControlledOpen
 }: {
     vaultEntry: VaultEntry;
-    isVaultEntryDetailsSheetOpen: boolean;
-    setIsVaultEntryDetailsSheetOpen: (open: boolean) => void;
+    isVaultEntryDetailsSheetOpen?: boolean;
+    setIsVaultEntryDetailsSheetOpen?: (open: boolean) => void;
 }) {
     // SECTION: Constants and Variables
     const activeProfile = useDataStore((state) => state.activeProfile);
@@ -62,6 +61,10 @@ export default function VaultEntryDetailsSheet({
     const [password, setPassword] = useState('');
     const [isUpdateVaultEntrySheetOpen, setIsUpdateVaultEntrySheetOpen] =
         useState(false);
+    const [internalOpen, setInternalOpen] = useState(false);
+
+    const isOpen = controlledOpen !== undefined ? controlledOpen : internalOpen;
+    const setIsOpen = setControlledOpen || setInternalOpen;
     // !SECTION: States
 
     // SECTION: API Queries
@@ -142,10 +145,7 @@ export default function VaultEntryDetailsSheet({
 
     // SECTION: UI
     return (
-        <Sheet
-            open={isVaultEntryDetailsSheetOpen}
-            onOpenChange={setIsVaultEntryDetailsSheetOpen}
-        >
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
                 <Button>Details</Button>
             </SheetTrigger>
@@ -276,9 +276,7 @@ export default function VaultEntryDetailsSheet({
                 <SheetFooter>
                     <DeleteVaultEntryDialog
                         vaultEntry={vaultEntry}
-                        setIsVaultEntryDetailsSheetOpen={
-                            setIsVaultEntryDetailsSheetOpen
-                        }
+                        setIsVaultEntryDetailsSheetOpen={setIsOpen}
                     />
                     <UpdateVaultEntrySheet
                         vaultEntry={vaultEntry}

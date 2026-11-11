@@ -1,9 +1,6 @@
 'use client';
 
-import { Add } from 'elementa-icons';
-import Image from 'next/image';
-import { useState } from 'react';
-import { toast } from 'sonner';
+import { cryptoService } from '@/lib/crypto';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { EntryType } from '@/lib/types/model';
@@ -13,10 +10,16 @@ import {
     groupProviders,
     profileIcons
 } from '@/lib/utils';
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
-import { Label } from '@/src/components/ui/label';
+import { Add } from 'elementa-icons';
 import {
+    Button,
+    Input,
+    Label,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
     Sheet,
     SheetClose,
     SheetContent,
@@ -24,26 +27,22 @@ import {
     SheetFooter,
     SheetHeader,
     SheetTitle,
-    SheetTrigger
-} from '@/src/components/ui/sheet';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import { Textarea } from '@/src/components/ui/textarea';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue
-} from '@/src/components/ui/select';
-import { Switch } from '@/src/components/ui/switch';
-import { cryptoService } from '@/lib/crypto';
+    SheetTrigger,
+    Switch,
+    Text,
+    Textarea,
+    TextVariant
+} from 'get-elementa-ui';
+import Image from 'next/image';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Create New Vault Entry Sheet which allows users to
  * create a new vault entry.
  *
  * @author Aayush Goyal
- * @created 2026-05-27
+ * @created 2026-11-12
  */
 export default function CreateNewVaultEntrySheet({
     isCreateNewVaultEntrySheetOpen,
@@ -91,7 +90,7 @@ export default function CreateNewVaultEntrySheet({
             const encryptedBlob = await cryptoService.encryptAndEncode(
                 (
                     document.getElementById(
-                        'textarea-entry-eblob'
+                        'textarea-entry-blob'
                     ) as HTMLTextAreaElement
                 ).value,
                 await cryptoService.getEncryptionKey()
@@ -365,7 +364,7 @@ export default function CreateNewVaultEntrySheet({
                         <Label className="mt-6" htmlFor="input-entry-eblob">
                             Encrypted Blob
                         </Label>
-                        <Textarea className="mt-2" id="textarea-entry-eblob" />
+                        <Textarea className="mt-2" id="textarea-entry-blob" />
                     </div>
                     {/* Email */}
                     <div>

@@ -1,14 +1,8 @@
 'use client';
 
-import { format } from 'date-fns';
-import { isEmpty } from 'lodash';
-import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
+import { Group, Profile, TOP_NAV_LINKS, VaultEntry } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
 import {
     entryTypeIcons,
@@ -17,27 +11,32 @@ import {
     groupProviders,
     profileIcons
 } from '@/lib/utils';
-import { Group, Profile, TOP_NAV_LINKS, VaultEntry } from '@/lib/types/model';
 import DeleteProfileDialog from '@/src/app/profiles/[profileId]/DeleteProfileDialog';
 import UpdateProfileDetailsSheet from '@/src/app/profiles/[profileId]/UpdateProfileDetailsSheet';
 import Header from '@/src/components/blocks/header';
-import { Badge } from '@/src/components/ui/badge';
+import AppSidebar from '@/src/components/ui/app-sidebar';
+import { format } from 'date-fns';
 import {
+    Badge,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
-    BreadcrumbSeparator
-} from '@/src/components/ui/breadcrumb';
-import { Button } from '@/src/components/ui/button';
-import AppSidebar from '@/src/components/ui/app-sidebar';
-import { SidebarProvider } from '@/src/components/ui/sidebar';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import {
+    BreadcrumbSeparator,
+    Button,
+    SidebarProvider,
+    Text,
+    TextVariant,
     Tooltip,
     TooltipContent,
     TooltipTrigger
-} from '@/src/components/ui/tooltip';
+} from 'get-elementa-ui';
+import { isEmpty } from 'lodash';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the SingleProfilePage component which shows the details of a profile.
@@ -352,7 +351,7 @@ export default function SingleProfilePage() {
                             </div>
                             {/* Groups and Entries */}
                             <div className="my-8 grid grid-cols-2 gap-4">
-                                <div className="bg-bg-flat-secondary rounded-sm p-4 shadow-sm">
+                                <div className="bg-bg-raised-secondary rounded-sm p-4 shadow-sm">
                                     <div className="flex items-center justify-between">
                                         <Text
                                             variant={TextVariant.H4}
@@ -429,7 +428,7 @@ export default function SingleProfilePage() {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="bg-bg-flat-secondary rounded-sm p-4 shadow-sm">
+                                <div className="bg-bg-raised-secondary rounded-sm p-4 shadow-sm">
                                     <div className="flex items-center justify-between">
                                         <Text
                                             variant={TextVariant.H4}

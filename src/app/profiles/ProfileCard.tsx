@@ -1,21 +1,20 @@
 'use client';
 
-import { motion } from 'motion/react';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { Profile } from '@/lib/types/model';
 import { profileIcons } from '@/lib/utils';
-import { Badge } from '@/src/components/ui/badge';
-import { Text, TextVariant } from '@/src/components/ui/text';
+import { Badge, Text, TextVariant } from 'get-elementa-ui';
+import { motion } from 'motion/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 /**
  * This function renders the Profile Card to display basic information about a
  * user profile on the Profiles page.
  *
  * @author Aayush Goyal
- * @created 2026-05-13
+ * @created 2026-11-12
  */
 export default function ProfileCard({
     profile,
@@ -115,7 +114,7 @@ export default function ProfileCard({
     // SECTION: UI
     return (
         <motion.div
-            className="bg-bg-flat-primary flex min-h-72 w-80 cursor-pointer flex-col gap-6 rounded-md border px-6 py-8 shadow-md active:scale-95"
+            className="bg-bg-raised-primary flex min-h-72 w-80 cursor-pointer flex-col gap-6 rounded-md border px-6 py-8 shadow-md active:scale-95"
             key={profile.id}
             role="button"
             onClick={() => router.push(`/profiles/${profile.id}`)}

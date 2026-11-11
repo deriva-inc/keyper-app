@@ -7,8 +7,7 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb",
-        "prettier",
-        "prettier-plugin-tailwindcss"
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -42,6 +41,14 @@
             { "SwitchCase": 1, "offsetTernaryExpressions": false }
         ],
         "no-undef": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+        ],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+        "import/prefer-default-export": "off",
         "no-use-before-define": "off",
         "prettier/prettier": [2, { "useTabs": false }],
         "react/destructuring-assignment": [0],

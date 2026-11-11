@@ -1,38 +1,33 @@
 'use client';
 
+import { useDataStore } from '@/lib/data-store';
+import logger from '@/lib/logger';
+import { THEME } from '@/lib/types/model';
+import useUIStore from '@/lib/ui-store';
+import { profileIcons } from '@/lib/utils';
 import { Search } from 'elementa-icons';
-import { isEmpty } from 'lodash';
-import { Moon, Sun } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { ButtonGroup } from '@/src/components/ui/button-group';
-import { Button } from '@/src/components/ui/button';
 import {
+    EnergySwitcher,
     InputGroup,
     InputGroupAddon,
-    InputGroupInput
-} from '@/src/components/ui/input-group';
-import {
+    InputGroupInput,
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue
-} from '@/src/components/ui/select';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import { useDataStore } from '@/lib/data-store';
-import { handleThemeChange } from '@/lib/ui';
-import useUIStore from '@/lib/ui-store';
-import { THEME, TOP_NAV_LINKS } from '@/lib/types/model';
+    SelectValue,
+    Text,
+    ThemeSwitcher
+} from 'get-elementa-ui';
+import { isEmpty } from 'lodash';
+import { useEffect } from 'react';
 import { toast } from 'sonner';
-import logger from '@/lib/logger';
-import { profileIcons } from '@/lib/utils';
 
 /**
  * This function renders the Header component of the app.
  *
  * @author Aayush Goyal
- * @created 2026-04-15
+ * @created 2026-11-12
  */
 export default function Header() {
     // SECTION: Constants and Variables
@@ -65,6 +60,9 @@ export default function Header() {
             if (userProfilesRes.ok) {
                 const profilesData = await userProfilesRes.json();
                 dataActions.setProfiles(profilesData.data);
+                if (!activeProfile) {
+                    dataActions.setActiveProfile(profilesData.data[0] || null);
+                }
             } else {
                 toast.error('Failed to fetch user profiles. Please try again.');
                 logger.error('Failed to fetch user profiles.');
@@ -101,7 +99,7 @@ export default function Header() {
 
     // SECTION: UI
     return (
-        <header className="bg-bg-base-secondary sticky top-0 z-10 flex items-center justify-between px-8 py-3 shadow-sm">
+        <header className="bg-bg-flat-primary sticky top-0 z-10 flex items-center justify-between px-8 py-3 shadow-sm">
             <InputGroup className="max-w-md">
                 <InputGroupInput
                     id="inline-start-input"
@@ -120,7 +118,7 @@ export default function Header() {
                         }
                         onValueChange={(value) => handleSetActiveProfile(value)}
                     >
-                        <SelectTrigger>
+                        <SelectTrigger className="border-stroke-active-primary">
                             <SelectValue placeholder="Select Profile" />
                         </SelectTrigger>
                         <SelectContent>
@@ -153,40 +151,14 @@ export default function Header() {
                         </SelectContent>
                     </Select>
                 )}
-                <ButtonGroup>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => {
-                            if (theme === THEME.GUN_METAL) {
-                                handleThemeChange(theme, actions.setTheme);
-                            }
-                        }}
-                        className={
-                            theme === THEME.AMBER
-                                ? 'bg-bg-active-fill-accent-primary'
-                                : ''
-                        }
-                    >
-                        <Sun className="text-text-primary" />
-                    </Button>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => {
-                            if (theme === THEME.AMBER) {
-                                handleThemeChange(theme, actions.setTheme);
-                            }
-                        }}
-                        className={
-                            theme === THEME.GUN_METAL
-                                ? 'bg-bg-active-fill-accent-primary'
-                                : ''
-                        }
-                    >
-                        <Moon className="text-text-primary" />
-                    </Button>
-                </ButtonGroup>
+                <EnergySwitcher />
+                <ThemeSwitcher
+                    onThemeChange={(newTheme) => {
+                        actions.setTheme(
+                            newTheme === 'dark' ? THEME.GUN_METAL : THEME.AMBER
+                        );
+                    }}
+                />
             </div>
         </header>
     );

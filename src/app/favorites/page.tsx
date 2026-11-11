@@ -1,47 +1,40 @@
 'use client';
 
-import { Search } from 'elementa-icons';
-import { debounce, isEmpty } from 'lodash';
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
-import { cryptoService } from '@/lib/crypto';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { TOP_NAV_LINKS, VaultEntry } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
-import {
-    entryTypeIcons,
-    formatKey,
-    groupCategories,
-    groupProviders
-} from '@/lib/utils';
+import { entryTypeIcons, groupCategories, groupProviders } from '@/lib/utils';
 import CreateNewVaultEntrySheet from '@/src/app/vault/CreateNewVaultEntrySheet';
 import VaultEntryTableRowItem from '@/src/app/vault/VaultEntryTableRowItem';
-import EmptyState from '@/src/components/blocks/empty-state';
 import Header from '@/src/components/blocks/header';
 import AppSidebar from '@/src/components/ui/app-sidebar';
+import { Search } from 'elementa-icons';
 import {
+    EmptyState,
     InputGroup,
     InputGroupAddon,
-    InputGroupInput
-} from '@/src/components/ui/input-group';
-import { SidebarProvider } from '@/src/components/ui/sidebar';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import {
+    InputGroupInput,
+    SidebarProvider,
     Table,
     TableBody,
     TableHead,
     TableHeader,
-    TableRow
-} from '@/src/components/ui/table';
+    TableRow,
+    Text,
+    TextVariant
+} from 'get-elementa-ui';
+import { debounce, isEmpty } from 'lodash';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Vault page of the app where all the password entries are listed.
  *
  * @author Aayush Goyal
- * @created 2026-05-27
+ * @created 2026-11-12
  */
-export default function VaultPage() {
+export default function VaultFavoritesPage() {
     // SECTION: Constants and Variables
     const activeProfile = useDataStore((state) => state.activeProfile);
     const groups = useDataStore((state) => state.groups);
@@ -75,7 +68,7 @@ export default function VaultPage() {
             setEntries(data.data);
             setFilteredEntries(data.data);
         } catch (error) {
-            logger.error('Error fetching entries:', error);
+            logger.error('Error fetching favorite entries:', error);
             toast.error(
                 'Failed to fetch favorite entries. Please try again later.'
             );
@@ -159,7 +152,7 @@ export default function VaultPage() {
                                         )}
                                     />
                                     <InputGroupAddon align="inline-start">
-                                        <Search className="text-muted-foreground" />
+                                        <Search className="text-muted" />
                                     </InputGroupAddon>
                                 </InputGroup>
                                 <CreateNewVaultEntrySheet

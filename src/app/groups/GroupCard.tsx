@@ -1,21 +1,20 @@
 'use client';
 
+import logger from '@/lib/logger';
+import { Group } from '@/lib/types/model';
+import { groupCategories, groupProviders } from '@/lib/utils';
+import { Badge, Text, TextVariant } from 'get-elementa-ui';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import logger from '@/lib/logger';
-import { Group } from '@/lib/types/model';
-import { groupProviders, groupCategories } from '@/lib/utils';
-import { Badge } from '@/src/components/ui/badge';
-import { Text, TextVariant } from '@/src/components/ui/text';
 
 /**
  * This function renders the Group Card to display basic information about a
  * user group on the Groups page.
  *
  * @author Aayush Goyal
- * @created 2026-05-13
+ * @created 2026-11-12
  */
 export default function GroupCard({
     group,
@@ -79,7 +78,7 @@ export default function GroupCard({
     // SECTION: UI
     return (
         <motion.div
-            className="bg-bg-flat-primary flex min-h-64 w-80 cursor-pointer flex-col gap-6 rounded-md border px-6 py-8 shadow-md active:scale-95"
+            className="bg-bg-raised-primary flex min-h-64 w-full min-w-80 cursor-pointer flex-col gap-6 rounded-md border px-6 py-8 shadow-md active:scale-95"
             key={group.id}
             role="button"
             onClick={() => router.push(`/groups/${group.id}`)}

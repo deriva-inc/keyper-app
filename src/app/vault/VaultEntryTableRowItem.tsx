@@ -1,33 +1,35 @@
 'use client';
 
+import { cryptoService } from '@/lib/crypto';
+import { useDataStore } from '@/lib/data-store';
+import logger from '@/lib/logger';
+import { VaultEntry } from '@/lib/types/model';
+import { formatKey, profileIcons } from '@/lib/utils';
+import VaultEntryDetailsSheet from '@/src/app/vault/VaultEntryDetailsSheet';
 import { format } from 'date-fns';
 import { Import } from 'elementa-icons';
+import {
+    Badge,
+    Button,
+    TableCell,
+    TableRow,
+    Text,
+    TextVariant,
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger
+} from 'get-elementa-ui';
 import { EyeIcon, EyeOffIcon, Globe, Heart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { VaultEntry } from '@/lib/types/model';
-import { formatKey, profileIcons } from '@/lib/utils';
-import VaultEntryDetailsSheet from '@/src/app/vault/VaultEntryDetailsSheet';
-import { Badge } from '@/src/components/ui/badge';
-import { Button } from '@/src/components/ui/button';
-import { TableCell, TableRow } from '@/src/components/ui/table';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger
-} from '@/src/components/ui/tooltip';
-import { cryptoService } from '@/lib/crypto';
-import logger from '@/lib/logger';
 import { toast } from 'sonner';
-import { useDataStore } from '@/lib/data-store';
 
 /**
  * This function renders a single vault entry as a row in the vault entries table on the
  *
  * @author Aayush Goyal
- * @created 2026-05-28
+ * @created 2026-11-12
  */
 export default function VaultEntryTableRowItem({
     entry,

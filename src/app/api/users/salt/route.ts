@@ -6,7 +6,8 @@ import { GetUserSaltResponse, HTTP_STATUS_CODE } from '@/lib/types/api';
 
 /* Handle GET request to fetch user's unique salt. */
 export async function GET(req: Request) {
-    const email = req.headers.get('x-email') as string;
+    const { searchParams } = new URL(req.url);
+    const email = searchParams.get('email') || req.headers.get('x-email') || '';
     const targetUrl = `${process.env.SERVER_BASE_URL}/users/salt?email=${email}`;
     logger.info(`[GET] ${targetUrl} | Fetching salt for the user: ${email}`);
 

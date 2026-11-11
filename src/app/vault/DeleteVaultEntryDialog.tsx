@@ -1,28 +1,28 @@
 'use client';
 
-import { useState } from 'react';
-import { toast } from 'sonner';
 import logger from '@/lib/logger';
-import { Button } from '@/src/components/ui/button';
+import { VaultEntry } from '@/lib/types/model';
 import {
+    Button,
     Dialog,
-    DialogContent,
     DialogClose,
+    DialogContent,
     DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger
-} from '@/src/components/ui/dialog';
-import { Text } from '@/src/components/ui/text';
-import { VaultEntry } from '@/lib/types/model';
-import { Input } from '@/src/components/ui/input';
+    DialogTrigger,
+    Input,
+    Text
+} from 'get-elementa-ui';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the DeleteVaultEntryDialog component to delete a vault entry.
  *
  * @author Aayush Goyal
- * @created 2026-05-27
+ * @created 2026-11-12
  */
 export default function DeleteVaultEntryDialog({
     vaultEntry,

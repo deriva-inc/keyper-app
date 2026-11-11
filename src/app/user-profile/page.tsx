@@ -1,34 +1,36 @@
 'use client';
 
+import { useDataStore } from '@/lib/data-store';
+import logger from '@/lib/logger';
+import UpdateProfileSheet from '@/src/app/user-profile/UpdateProfileSheet';
+import Header from '@/src/components/blocks/header';
+import AppSidebar from '@/src/components/ui/app-sidebar';
+import { format } from 'date-fns';
+import {
+    Button,
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    Input,
+    SidebarProvider,
+    Text,
+    TextVariant
+} from 'get-elementa-ui';
 import { isEmpty } from 'lodash';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { useDataStore } from '@/lib/data-store';
-import logger from '@/lib/logger';
-import Header from '@/src/components/blocks/header';
-import AppSidebar from '@/src/components/ui/app-sidebar';
-import { Button } from '@/src/components/ui/button';
-import {
-    Dialog,
-    DialogContent,
-    DialogClose,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-    DialogFooter
-} from '@/src/components/ui/dialog';
-import { Input } from '@/src/components/ui/input';
-import { SidebarProvider } from '@/src/components/ui/sidebar';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import UpdateProfileSheet from '@/src/app/user-profile/UpdateProfileSheet';
 
 /**
  * This function renders the User Profile page of the app.
  *
  * @author Aayush Goyal
- * @created 2026-05-15
+ * @created 2026-11-12
  */
 export default function ProfilePage() {
     // SECTION: Constants and Variables
@@ -127,7 +129,7 @@ export default function ProfilePage() {
                 <div className="w-full px-8 py-2">
                     <Header />
                     {!isEmpty(userDetails) && (
-                        <div className="mx-80 py-8">
+                        <div className="mx-8 py-8 sm:mx-16 lg:mx-40 2xl:mx-80">
                             <div className="flex flex-col gap-8">
                                 <img
                                     src={userDetails.avatarUrl}
@@ -145,7 +147,7 @@ export default function ProfilePage() {
                                     </Text>
                                     <Text
                                         variant={TextVariant.H4}
-                                        color="text-text-primary"
+                                        color="text-text-primary font-body"
                                     >
                                         {userDetails.name}
                                     </Text>
@@ -159,7 +161,7 @@ export default function ProfilePage() {
                                     </Text>
                                     <Text
                                         variant={TextVariant.H4}
-                                        color="text-text-primary"
+                                        color="text-text-primary font-body"
                                     >
                                         {userDetails.email}
                                     </Text>
@@ -173,9 +175,12 @@ export default function ProfilePage() {
                                     </Text>
                                     <Text
                                         variant={TextVariant.H4}
-                                        color="text-text-primary"
+                                        color="text-text-primary font-body"
                                     >
-                                        {userDetails.createdAt.toString()}
+                                        {format(
+                                            new Date(userDetails.createdAt),
+                                            'PPp'
+                                        )}
                                     </Text>
                                 </div>
                                 <div className="flex items-center justify-between">
@@ -187,9 +192,12 @@ export default function ProfilePage() {
                                     </Text>
                                     <Text
                                         variant={TextVariant.H4}
-                                        color="text-text-primary"
+                                        color="text-text-primary font-body"
                                     >
-                                        {userDetails.updatedAt.toString()}
+                                        {format(
+                                            new Date(userDetails.updatedAt),
+                                            'PPp'
+                                        )}
                                     </Text>
                                 </div>{' '}
                                 <div className="flex w-full items-center justify-center gap-4">

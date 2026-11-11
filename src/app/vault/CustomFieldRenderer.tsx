@@ -1,13 +1,13 @@
 'use client';
 
 import { detectFieldType, formatKey } from '@/lib/utils';
-import { Text, TextVariant } from '@/src/components/ui/text';
+import { Text, TextVariant } from 'get-elementa-ui';
 
 /**
  * This component is responsible for rendering the custom fields of a vault entry.
  *
  * @author Aayush Goyal
- * @created 2026-05-27
+ * @created 2026-11-12
  */
 // ------------------------------------------------------------------
 // SUB-RENDERERS: One component per data type

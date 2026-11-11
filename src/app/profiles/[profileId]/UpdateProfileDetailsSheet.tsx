@@ -1,17 +1,14 @@
 'use client';
 
-import { Edit } from 'elementa-icons';
-import { motion } from 'motion/react';
-import { useState } from 'react';
-import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import { Profile } from '@/lib/types/model';
 import { profileIcons } from '@/lib/utils';
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
-import { Label } from '@/src/components/ui/label';
+import { Edit } from 'elementa-icons';
 import {
+    Button,
+    Input,
+    Label,
     Sheet,
     SheetClose,
     SheetContent,
@@ -19,11 +16,15 @@ import {
     SheetFooter,
     SheetHeader,
     SheetTitle,
-    SheetTrigger
-} from '@/src/components/ui/sheet';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import { Textarea } from '@/src/components/ui/textarea';
-import { Switch } from '@/src/components/ui/switch';
+    SheetTrigger,
+    Switch,
+    Text,
+    Textarea,
+    TextVariant
+} from 'get-elementa-ui';
+import { motion } from 'motion/react';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 type UpdateProfileFields = Pick<
     Profile,
@@ -34,7 +35,7 @@ type UpdateProfileFields = Pick<
  * This function renders the UpdateProfileDetailsSheet component which is used to update the details of a user profile such as name and avatar.
  *
  * @author Aayush Goyal
- * @created 2026-05-15
+ * @created 2026-11-12
  */
 export default function UpdateProfileDetailsSheet({
     profileDetails,

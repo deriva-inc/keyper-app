@@ -1,25 +1,19 @@
 'use client';
 
-import { Edit } from 'elementa-icons';
-import { motion } from 'motion/react';
-import Image from 'next/image';
-import { useState } from 'react';
-import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
-import logger from '@/lib/logger';
 import { Group, GroupType } from '@/lib/types/model';
 import { groupCategories, groupProviders, profileIcons } from '@/lib/utils';
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
-import { Label } from '@/src/components/ui/label';
+import { Edit } from 'elementa-icons';
 import {
+    Button,
+    Input,
+    Label,
+    logger,
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue
-} from '@/src/components/ui/select';
-import {
+    SelectValue,
     Sheet,
     SheetClose,
     SheetContent,
@@ -27,18 +21,23 @@ import {
     SheetFooter,
     SheetHeader,
     SheetTitle,
-    SheetTrigger
-} from '@/src/components/ui/sheet';
-import { Switch } from '@/src/components/ui/switch';
-import { Text, TextVariant } from '@/src/components/ui/text';
-import { Textarea } from '@/src/components/ui/textarea';
+    SheetTrigger,
+    Switch,
+    Text,
+    Textarea,
+    TextVariant
+} from 'get-elementa-ui';
+import { motion } from 'motion/react';
+import Image from 'next/image';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the Update Group Details Sheet which allows users to
  * update an existing group's details.
  *
  * @author Aayush Goyal
- * @created 2026-05-19
+ * @created 2026-11-12
  */
 export default function UpdateGroupDetailsSheet({
     groupDetails,

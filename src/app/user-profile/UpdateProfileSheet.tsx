@@ -2,10 +2,10 @@
 
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
-import { Label } from '@/src/components/ui/label';
 import {
+    Button,
+    Input,
+    Label,
     Sheet,
     SheetClose,
     SheetContent,
@@ -13,16 +13,17 @@ import {
     SheetFooter,
     SheetHeader,
     SheetTitle,
-    SheetTrigger
-} from '@/src/components/ui/sheet';
-import { TextVariant, Text } from '@/src/components/ui/text';
+    SheetTrigger,
+    Text,
+    TextVariant
+} from 'get-elementa-ui';
 import { toast } from 'sonner';
 
 /**
  * This function renders the UpdateProfileSheet component, which is responsible for displaying the user profile update interface.
  *
  * @author Aayush Goyal
- * @created 2026-06-24
+ * @created 2026-11-12
  */
 export default function UpdateProfileSheet({
     isUpdateProfileSheetOpen,

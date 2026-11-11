@@ -1,29 +1,15 @@
 'use client';
 
-import {
-    FavoriteOutline,
-    Friends,
-    Home1,
-    Locker,
-    Logout,
-    Shapes
-} from 'elementa-icons';
-import { isEmpty } from 'lodash';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { toast } from 'sonner';
 import { useDataStore } from '@/lib/data-store';
 import logger from '@/lib/logger';
 import useUIStore from '@/lib/ui-store';
-import { TOP_NAV_LINKS } from '@/lib/types/model';
+import { TOP_NAV_LINKS } from '@/lib/utils';
+import { Logout } from 'elementa-icons';
 import {
     Avatar,
     AvatarBadge,
     AvatarFallback,
-    AvatarImage
-} from '@/src/components/ui/avatar';
-import {
+    AvatarImage,
     Sidebar,
     SidebarContent,
     SidebarFooter,
@@ -32,9 +18,15 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarTrigger,
+    Text,
+    TextVariant,
     useSidebar
-} from '@/src/components/ui/sidebar';
-import { Text, TextVariant } from '@/src/components/ui/text';
+} from 'get-elementa-ui';
+import { isEmpty } from 'lodash';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 /**
  * This function renders the {@link AppSidebar} component on the UI.
@@ -125,113 +117,42 @@ export default function AppSidebar() {
                     )}
                 </SidebarHeader>
                 <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton
-                            className={`${
-                                currentPage === TOP_NAV_LINKS.DASHBOARD
-                                    ? 'bg-bg-base-accent-primary'
-                                    : ''
-                            } ${
-                                sidebarContext.state === 'expanded'
-                                    ? ''
-                                    : 'mx-auto'
-                            }`}
-                        >
-                            <Link
-                                href="/dashboard"
-                                className={`flex items-center ${sidebarContext.state === 'expanded' ? 'gap-2' : ''}`}
+                    {TOP_NAV_LINKS.map((navLink) => (
+                        <SidebarMenuItem key={navLink.id}>
+                            <SidebarMenuButton
+                                className={`${
+                                    currentPage === navLink.id
+                                        ? 'bg-bg-base-accent-primary'
+                                        : ''
+                                } ${
+                                    sidebarContext.state === 'expanded'
+                                        ? ''
+                                        : 'mx-auto'
+                                }`}
                             >
-                                <Home1 />
-                                {sidebarContext.state === 'expanded' && (
-                                    <span>Dashboard</span>
-                                )}
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton
-                            className={`${
-                                currentPage === TOP_NAV_LINKS.VAULT
-                                    ? 'bg-bg-base-accent-primary'
-                                    : ''
-                            } ${
-                                sidebarContext.state === 'expanded'
-                                    ? ''
-                                    : 'mx-auto'
-                            }`}
-                        >
-                            <Link
-                                href="/vault"
-                                className="flex items-center gap-2"
-                            >
-                                <Locker />
-                                Vault
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton
-                            className={`${
-                                currentPage === TOP_NAV_LINKS.PROFILES
-                                    ? 'bg-bg-base-accent-primary'
-                                    : ''
-                            } ${
-                                sidebarContext.state === 'expanded'
-                                    ? ''
-                                    : 'mx-auto'
-                            }`}
-                        >
-                            <Link
-                                href="/profiles"
-                                className="flex items-center gap-2"
-                            >
-                                <Friends />
-                                Profiles
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton
-                            className={`${
-                                currentPage === TOP_NAV_LINKS.GROUPS
-                                    ? 'bg-bg-base-accent-primary'
-                                    : ''
-                            } ${
-                                sidebarContext.state === 'expanded'
-                                    ? ''
-                                    : 'mx-auto'
-                            }`}
-                        >
-                            <Link
-                                href="/groups"
-                                className="flex items-center gap-2"
-                            >
-                                <Shapes />
-                                <span>Groups</span>
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton
-                            className={`${
-                                currentPage === TOP_NAV_LINKS.FAVORITES
-                                    ? 'bg-bg-base-accent-primary'
-                                    : ''
-                            } ${
-                                sidebarContext.state === 'expanded'
-                                    ? ''
-                                    : 'mx-auto'
-                            }`}
-                        >
-                            <Link
-                                href="/favorites"
-                                className="flex items-center gap-2"
-                            >
-                                <FavoriteOutline />
-                                <span>Favorites</span>
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
+                                <Link
+                                    href={navLink.href}
+                                    className={`flex items-center ${navLink.id !== 'dashboard' && 'gap-2'} ${sidebarContext.state === 'expanded' && navLink.id === 'dashboard' ? 'gap-2' : ''}`}
+                                >
+                                    {(() => {
+                                        if (navLink.icon) {
+                                            const IconComponent = navLink.icon;
+                                            return (
+                                                <IconComponent
+                                                    height={24}
+                                                    width={24}
+                                                    stroke={0}
+                                                    className=""
+                                                />
+                                            );
+                                        }
+                                        return null;
+                                    })()}
+                                    {navLink.label}
+                                </Link>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                    ))}
                 </SidebarMenu>
             </SidebarContent>
             <SidebarFooter>

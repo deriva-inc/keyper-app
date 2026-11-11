@@ -1,76 +1,59 @@
+@import 'get-elementa-ui/styles.css';
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
-/* @import "../../public/styles/animations.css"; */
-@import "../../public/styles/theme.css";
-@import "../../public/styles/utilities.css";
-@import 'lenis/dist/lenis.css';
+@source "../../node_modules/get-elementa-ui";
 
 @custom-variant dark (&:is(.dark *));
 
-/* 1. Fraunces */
-@font-face {
-    font-family: 'Fraunces';
-    src: url('../../public/fonts/fraunces/Fraunces-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+/* SimpleBar Scrollbar Track */
+.simplebar-scrollbar::before {
+  background-color: var(--bg-active-accent-primary);
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.simplebar-scrollbar:hover::before {
+  background-color: var(--bg-active-hover-accent-primary);
+  opacity: 0.8;
+}
+/* SimpleBar Scrollbar Thumb (the draggable part) */
+.simplebar-track.simplebar-vertical > .simplebar-scrollbar:before {
+  top: 2px;
+  bottom: 2px;
+  border-radius: 4px;
+  right: 2px;
+  left: 2px;
+  background-color: var(--bg-active-accent-primary);
+  opacity: 0.7;
+}
+.simplebar-track.simplebar-vertical > .simplebar-scrollbar:hover::before {
+  background-color: var(--bg-active-hover-accent-primary);
+  opacity: 0.9;
+}
+.simplebar-track.simplebar-horizontal > .simplebar-scrollbar:before {
+  right: 2px;
+  left: 2px;
+  border-radius: 4px;
+  top: 2px;
+  bottom: 2px;
+  background-color: var(--bg-active-accent-primary);
+  opacity: 0.7;
+}
+.simplebar-track.simplebar-horizontal > .simplebar-scrollbar:hover::before {
+  background-color: var(--bg-active-hover-accent-primary);
+  opacity: 0.9;
+}
+/* SimpleBar Track (the area the scrollbar moves within) */
+.simplebar-track {
+  background-color: var(--bg-active-fill-accent-primary);
 }
 
-@font-face {
-    font-family: 'Fraunces';
-    src: url('../../public/fonts/fraunces/Fraunces-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
-/* 2. Satoshi */
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../../public/fonts/satoshi/Satoshi-Light.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../../public/fonts/satoshi/Satoshi-Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../../public/fonts/satoshi/Satoshi-Medium.otf') format('opentype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../../public/fonts/satoshi/Satoshi-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Satoshi';
-    src: url('../../public/fonts/satoshi/Satoshi-Black.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* 3. JetBrains Mono */
-@font-face {
-    font-family: 'JetBrains Mono';
-    src: url('../../public/fonts/jetbrains-mono/JetBrainsMono-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+/* Scoped to AnimatedThemeToggler — the toggler sets the data-attribute and the variable only during a theme toggle. */
+html[data-magicui-theme-vt="active"]::view-transition-group(root) {
+  animation-duration: var(--magicui-theme-toggle-vt-duration);
 }
