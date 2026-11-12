@@ -1,4 +1,14 @@
 # CHANGELOG
+### [0.79.0] - 2026-11-12
+---
+#### Added
+- Added necessary Agent skills to the repository.
+
+### [0.78.0] - 2026-11-12
+---
+#### Changed
+- Use components from `get-elementa-ui` library and remove local components.
+
 ### [0.77.0] - 2026-06-24
 ---
 #### Added
