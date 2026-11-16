@@ -1,11 +1,11 @@
 {
     "name": "keyper-app",
-    "version": "1.0.0",
+    "version": "0.79.0",
     "description": "Web app for the Keyper platform.",
     "homepage": "https://keyper.deriva.xyz",
     "main": "index.js",
     "scripts": {
-        "dev": "next dev --port 3005",
+        "dev": "next dev --hostname 0.0.0.0 --port 3005",
         "build": "next build",
         "coverage": "jest --coverage",
         "e2e": "start-server-and-test start http://localhost:3000 cypress",
@@ -17,7 +17,12 @@
         "lint-and-fix": "eslint . --ext .ts --fix",
         "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
         "test": "jest --watchAll --silent=false",
-        "test-coverage": "jest --coverage --watchAll"
+        "test-coverage": "jest --coverage --watchAll",
+        "typecheck": "tsc --noEmit",
+        "check": "./scripts/verify-local.sh",
+        "changeset": "changeset",
+        "version": "changeset version && node ./scripts/format-changelog.cjs",
+        "release": "node ./scripts/publish-release.cjs"
     },
     "keywords": [],
     "author": "Aayush Goyal",
@@ -74,6 +79,7 @@
         "zustand": "^4.5.2"
     },
     "devDependencies": {
+        "@changesets/cli": "^3.0.3",
         "@playwright/test": "^1.44.0",
         "@testing-library/jest-dom": "^6.4.2",
         "@testing-library/react": "^15.0.4",

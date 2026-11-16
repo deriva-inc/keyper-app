@@ -104,3 +104,29 @@ Every time a UI screen or section is finalized, append a new **Archetype Bluepri
 - Reuse **Archetype 02 (Architectural `<Table>`)** directly below a section divider (`border-t border-stroke-base-primary pt-8`):
   - Toolbar with search `<Input>`, status `<Select>`, and export `<Button variant="outline">`.
   - Clean `<Table>` on `bg-bg-base-primary` with monospace transaction IDs, semantic status indicators, and right-aligned `font-mono tabular-nums` currency amounts.
+
+---
+
+## Archetype 04: Zero-Knowledge Landing & Authentication Page with Atmospheric Canvas, Dynamic Energy SVGs, and Glass Overlays
+
+**Use Case**: Primary consumer-facing or enterprise login/signup landing pages, security credentials restoration, and cryptographic onboarding experiences.
+
+### 1. Spatial & Elevation Layering (Border-Free Elevation)
+- **Atmospheric Canvas**: Full-bleed WebGL / ASCII gradient canvas (`GradientASCII` fixed at `-z-0 opacity-30 pointer-events-none`) with color stops dynamically wired to the 4 color channels of the active `ENERGY_THEMES`.
+- **Elevation Hierarchy**:
+  - **Base Canvas**: `bg-bg-base-primary` with `relative z-10`.
+  - **Primary Card Container**: `bg-bg-flat-primary shadow-md rounded-2xl p-6 sm:p-8` (no boundary border; elevation communicated purely via `shadow-md` and surface chromatic shift).
+  - **Nested Callouts & Badges**: `bg-bg-raised-secondary shadow-md rounded-xl p-3.5` (e.g. Zero-Knowledge Architecture callouts and security feature strips).
+  - **Modal / Overlay Surface**: `bg-bg-modal-primary/90 backdrop-blur-xl border-none shadow-2xl rounded-2xl` with glass effect.
+
+### 2. Header & Energy Orchestration
+- **Dynamic Energy Logo**: Renders `/icons/logo-small-${energy}.svg` reacting in real-time to active `useElementa()` context.
+- **Mobile Responsive Header**: Forces inner energy label visibility on mobile viewports using `[&_div.hidden]:!flex [&_div.hidden]:!flex-col` to prevent icon-only truncation on narrow mobile screens.
+
+### 3. Storyset Illustration Integration
+- **5-Color Palette Mapping**: Uses 5 canonical brand primary codes (`ev`, `dr`, `ms`, `tr`, `gh`) to dynamically serve `/illus/recovery/recovery-${colorCode}.svg`.
+- **Container Encasement**: Illustrations encased in `bg-bg-raised-secondary shadow-md rounded-2xl h-40` at the header of recovery modals.
+
+### 4. Motion Physics & Micro-Interactions
+- **Spring Login Transition**: On successful authentication, cross-fades the login form into an animated sanctuary unlocking card (`scale: 1, y: 0` with spring damping `22`, stiffness `280`) before programmatic routing.
+- **Form State Feedback**: Real-time password confirmation validation with error alerts and disabled submit states.

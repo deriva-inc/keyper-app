@@ -1,0 +1,14 @@
+.git
+.github
+.vscode
+.agent
+node_modules
+.next
+tmp
+coverage
+*.log
+.env
+.env.*
+!.env.example
+*.md
+tsconfig.tsbuildinfo

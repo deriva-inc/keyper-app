@@ -1,0 +1,153 @@
+name: Release Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      is_release:
+        description: "Whether this workflow_call is triggered as part of a release"
+        required: false
+        type: boolean
+        default: false
+  push:
+    tags:
+      - "v*.*.*"
+      - "keyper-app@*.*.*"
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  lint-and-typecheck:
+    name: Code Quality & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript Type Check
+        run: pnpm tsc --noEmit
+
+      - name: ESLint Check
+        run: pnpm lint
+
+  build-app:
+    name: Production Next.js Build
+    runs-on: ubuntu-latest
+    needs: lint-and-typecheck
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next.js App
+        run: pnpm build
+
+  docker-release:
+    name: Build & Push Docker Image to GHCR
+    runs-on: ubuntu-latest
+    needs: build-app
+    if: startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/tags/keyper-app@') || inputs.is_release == true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry (GHCR)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Determine Version
+        id: pkg
+        run: |
+          if [ -f package.json ]; then
+            VERSION=$(node -p "require('./package.json').version")
+          else
+            VERSION="latest"
+          fi
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "tag=v${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Extract Docker metadata (semantic versioning & tags)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=latest
+            type=raw,value=${{ steps.pkg.outputs.version }}
+            type=raw,value=${{ steps.pkg.outputs.tag }}
+            type=sha,format=short,prefix=sha-
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VERSION=${{ steps.pkg.outputs.version }}
+            GIT_COMMIT=${{ github.sha }}
+            BUILD_DATE=${{ fromJSON(steps.meta.outputs.json).created }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  create-github-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: docker-release
+    if: startsWith(github.ref, 'refs/tags/v') || startsWith(github.ref, 'refs/tags/keyper-app@') || inputs.is_release == true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Release via GitHub CLI
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG_NAME="v${VERSION}"
+          if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            echo "Release $TAG_NAME already exists."
+          else
+            gh release create "$TAG_NAME" \
+              --title "Release $TAG_NAME" \
+              --generate-notes
+          fi
