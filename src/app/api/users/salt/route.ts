@@ -1,14 +1,13 @@
-// Import the server-only argon2 library
-import { NextResponse } from 'next/server';
-import { handleErrorOnServerSideAPICalls } from '@/lib/api';
-import logger from '@/lib/logger';
+import { getServerBaseUrl } from '@/lib/api-server';
 import { GetUserSaltResponse, HTTP_STATUS_CODE } from '@/lib/types/api';
+import { handleErrorOnServerSideAPICalls, logger } from 'get-elementa-ui';
+import { NextResponse } from 'next/server';
 
 /* Handle GET request to fetch user's unique salt. */
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const email = searchParams.get('email') || req.headers.get('x-email') || '';
-    const targetUrl = `${process.env.SERVER_BASE_URL}/users/salt?email=${email}`;
+    const targetUrl = `${getServerBaseUrl(req)}/users/salt?email=${email}`;
     logger.info(`[GET] ${targetUrl} | Fetching salt for the user: ${email}`);
 
     try {

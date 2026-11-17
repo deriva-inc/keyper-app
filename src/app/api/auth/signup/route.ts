@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
+import { getServerBaseUrl } from '@/lib/api-server';
 import { HTTP_STATUS_CODE, SignUpResponse } from '@/lib/types/api';
-import { handleErrorOnServerSideAPICalls } from '@/lib/api';
-import logger from '@/lib/logger';
+import { handleErrorOnServerSideAPICalls, logger } from 'get-elementa-ui';
+import { NextResponse } from 'next/server';
 
 /** Handle user signup request. */
 export async function POST(req: Request) {
-    const targetUrl = `${process.env.SERVER_BASE_URL}/auth/signup`;
+    const targetUrl = `${getServerBaseUrl(req)}/auth/signup`;
     const body = await req.json();
     logger.info(`[POST] | ${targetUrl} | Handling user signup request.`);
 

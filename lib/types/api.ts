@@ -24,7 +24,7 @@ const APIResponseSchema = z.object({
 const SignUpRequestSchema = z.object({
     email: z.email(),
     name: z.string(),
-    authHash: z.string()
+    authKey: z.string()
 });
 
 const SignUpResponseSchema = APIResponseSchema.extend({
@@ -34,7 +34,17 @@ const SignUpResponseSchema = APIResponseSchema.extend({
 const LoginResponseSchema = APIResponseSchema.extend({
     data: z.object({
         user: UserDetailsWOSecretsSchema,
-        accessToken: z.string()
+        accessToken: z.string(),
+        refreshToken: z.string().optional(),
+        expiryTime: z.string().optional()
+    })
+});
+
+const RefreshTokenResponseSchema = APIResponseSchema.extend({
+    data: z.object({
+        accessToken: z.string(),
+        refreshToken: z.string(),
+        expiryTime: z.string()
     })
 });
 
@@ -43,7 +53,49 @@ const GetUserDetailsResponseSchema = APIResponseSchema.extend({
 });
 
 const GetUserSaltResponseSchema = APIResponseSchema.extend({
-    data: z.object({ salt: z.string() })
+    data: z.object({
+        authSalt: z.string().optional(),
+        encryptionSalt: z.string().optional(),
+        recoverySalt: z.string().optional()
+    })
+});
+
+const RecoverySetupResponseSchema = APIResponseSchema.extend({
+    data: z.object({
+        userId: z.string(),
+        email: z.string()
+    })
+});
+
+const RecoveryInitiateResponseSchema = APIResponseSchema.extend({
+    data: z.object({
+        restoreJwt: z.string(),
+        expiresIn: z.number().optional()
+    })
+});
+
+const ResetPasswordInitiateResponseSchema = APIResponseSchema.extend({
+    data: z.object({
+        userId: z.string(),
+        email: z.string()
+    })
+});
+
+const ResetPasswordConfirmResponseSchema = APIResponseSchema.extend({
+    data: z.object({
+        userId: z.string(),
+        email: z.string(),
+        authSalt: z.string(),
+        encryptionSalt: z.string()
+    })
+});
+
+const RecoveryCompleteResponseSchema = APIResponseSchema.extend({
+    data: z.object({
+        userId: z.string(),
+        email: z.string(),
+        accessToken: z.string()
+    })
 });
 
 // SECTION: Profile Service
@@ -88,28 +140,41 @@ const DeleteVaultEntryResponseSchema = APIResponseSchema.extend({
 });
 // !SECTION: Vault Entry Service
 
+// SECTION: Stats Service
+const DashboardStatsResponseSchema = APIResponseSchema.extend({
+    data: z.object({
+        totalProfiles: z.number(),
+        totalGroups: z.number(),
+        totalVaultEntries: z.number(),
+        popularProfile: ProfileSchema,
+        popularGroup: GroupSchema
+    })
+});
+// !SECTION: Stats Service
+
 const CountResponseSchema = APIResponseSchema.extend({
     data: z.number()
 });
 
 export {
-    JWTPayloadSchema,
     APIResponseSchema,
-    SignUpRequestSchema,
-    SignUpResponseSchema,
-    LoginResponseSchema,
+    CountResponseSchema,
+    DeleteGroupResponseSchema,
+    DeleteProfileResponseSchema,
+    DeleteVaultEntryResponseSchema,
     GetUserDetailsResponseSchema,
     GetUserSaltResponseSchema,
-    SingleProfileResponseSchema,
-    ListProfileResponseSchema,
-    DeleteProfileResponseSchema,
-    SingleGroupResponseSchema,
+    JWTPayloadSchema,
     ListGroupResponseSchema,
-    DeleteGroupResponseSchema,
-    SingleVaultEntryResponseSchema,
+    ListProfileResponseSchema,
     ListVaultEntriesResponseSchema,
-    DeleteVaultEntryResponseSchema,
-    CountResponseSchema
+    LoginResponseSchema,
+    RefreshTokenResponseSchema,
+    SignUpRequestSchema,
+    SignUpResponseSchema,
+    SingleGroupResponseSchema,
+    SingleProfileResponseSchema,
+    SingleVaultEntryResponseSchema
 };
 
 // TypeScript Types
@@ -132,8 +197,18 @@ type APIResponse = z.infer<typeof APIResponseSchema>;
 type SignUpRequest = z.infer<typeof SignUpRequestSchema>;
 type SignUpResponse = z.infer<typeof SignUpResponseSchema>;
 type LoginResponse = z.infer<typeof LoginResponseSchema>;
+type RefreshTokenResponse = z.infer<typeof RefreshTokenResponseSchema>;
 type GetUserDetailsResponse = z.infer<typeof GetUserDetailsResponseSchema>;
 type GetUserSaltResponse = z.infer<typeof GetUserSaltResponseSchema>;
+type RecoverySetupResponse = z.infer<typeof RecoverySetupResponseSchema>;
+type RecoveryInitiateResponse = z.infer<typeof RecoveryInitiateResponseSchema>;
+type ResetPasswordInitiateResponse = z.infer<
+    typeof ResetPasswordInitiateResponseSchema
+>;
+type ResetPasswordConfirmResponse = z.infer<
+    typeof ResetPasswordConfirmResponseSchema
+>;
+type RecoveryCompleteResponse = z.infer<typeof RecoveryCompleteResponseSchema>;
 type SingleProfileResponse = z.infer<typeof SingleProfileResponseSchema>;
 type ListProfileResponse = z.infer<typeof ListProfileResponseSchema>;
 type DeleteProfileResponse = z.infer<typeof DeleteProfileResponseSchema>;
@@ -144,26 +219,34 @@ type SingleVaultEntryResponse = z.infer<typeof SingleVaultEntryResponseSchema>;
 type ListVaultEntriesResponse = z.infer<typeof ListVaultEntriesResponseSchema>;
 type DeleteVaultEntryResponse = z.infer<typeof DeleteVaultEntryResponseSchema>;
 type CountResponse = z.infer<typeof CountResponseSchema>;
+type DashboardStatsResponse = z.infer<typeof DashboardStatsResponseSchema>;
 
 // Exports - TypeScript types
-export { HTTP_STATUS_CODE };
+export { DashboardStatsResponseSchema, HTTP_STATUS_CODE };
 
 export type {
-    JWTPayload,
     APIResponse,
-    SignUpRequest,
-    SignUpResponse,
-    LoginResponse,
+    CountResponse,
+    DashboardStatsResponse,
+    DeleteGroupResponse,
+    DeleteProfileResponse,
+    DeleteVaultEntryResponse,
     GetUserDetailsResponse,
     GetUserSaltResponse,
-    SingleProfileResponse,
-    ListProfileResponse,
-    DeleteProfileResponse,
-    SingleGroupResponse,
+    JWTPayload,
     ListGroupResponse,
-    DeleteGroupResponse,
-    SingleVaultEntryResponse,
+    ListProfileResponse,
     ListVaultEntriesResponse,
-    DeleteVaultEntryResponse,
-    CountResponse
+    LoginResponse,
+    RefreshTokenResponse,
+    RecoveryCompleteResponse,
+    RecoveryInitiateResponse,
+    RecoverySetupResponse,
+    ResetPasswordConfirmResponse,
+    ResetPasswordInitiateResponse,
+    SignUpRequest,
+    SignUpResponse,
+    SingleGroupResponse,
+    SingleProfileResponse,
+    SingleVaultEntryResponse
 };

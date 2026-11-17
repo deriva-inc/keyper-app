@@ -1,6 +1,6 @@
-// import { hash } from 'phc-argon2';
-import argon2 from 'argon2-browser/dist/argon2-bundled.min.js';
+// eslint-disable-next-line import/order, import/extensions
 import { hexToUint8Array } from '@/lib/utils';
+import argon2 from 'argon2-browser/dist/argon2-bundled.min.js';
 
 const AUTH_HASH_PARAMS = {
     timeCost: 1,
@@ -15,14 +15,19 @@ const ENCRYPTION_KEY_PARAMS = {
     parallelism: 4
 };
 
+const RECOVERY_KEY_PARAMS = {
+    timeCost: 2,
+    memoryCost: 64 * 1024,
+    parallelism: 4
+};
+
 /**
  * This function generates a cryptographically secure random salt.
  *
  * @returns {Uint8Array} A 16-byte random salt.
  */
-const generateSalt = (): Uint8Array => {
-    return window.crypto.getRandomValues(new Uint8Array(16));
-};
+const generateSalt = (): Uint8Array =>
+    window.crypto.getRandomValues(new Uint8Array(16));
 
 /**
  * This function derives an authentication hash from a master password.
@@ -31,14 +36,14 @@ const generateSalt = (): Uint8Array => {
  * @param {Uint8Array} salt - The salt to use for hashing.
  * @returns {Promise<string>} The derived auth hash, encoded as a hex string.
  */
-const deriveAuthHash = async (
+const deriveAuthKey = async (
     password: string,
     salt: Uint8Array
 ): Promise<string> => {
     const hashResult = await argon2.hash({
         ...AUTH_HASH_PARAMS,
         pass: password,
-        salt: salt
+        salt
     });
 
     // Return the raw hash, not the full encoded string. The server will store
@@ -60,11 +65,62 @@ const deriveEncryptionKey = async (
     const hashResult = await argon2.hash({
         ...ENCRYPTION_KEY_PARAMS,
         pass: password,
-        salt: salt
+        salt
     });
 
     // We return the raw hash bytes to be used as the encryption key.
     return hashResult.hash;
+};
+
+/**
+ * This function derives a recovery master key from a recovery key seed.
+ *
+ * @param {string} recoveryKey - The user's recovery key.
+ * @param {Uint8Array} salt - The salt to use for key derivation.
+ * @returns {Promise<Uint8Array>} The 32-byte derived encryption key.
+ */
+const deriveRecoveryMasterKey = async (
+    recoveryKey: string,
+    salt: Uint8Array
+): Promise<Uint8Array> => {
+    const hashResult = await argon2.hash({
+        ...RECOVERY_KEY_PARAMS,
+        pass: recoveryKey,
+        salt
+    });
+
+    // We return the raw hash bytes to be used as the recovery master key.
+    return hashResult.hash;
+};
+
+/**
+ * This function derives the recovery credentials (recovery master key and recovery hash)
+ * from the user's recovery key seed and recovery salt.
+ *
+ * @param {string} recoveryKey - The user's recovery key.
+ * @param {Uint8Array} salt - The salt to use for key derivation.
+ * @returns {Promise<{ recoveryMasterKey: Uint8Array; recoveryHash: string }>}
+ */
+const deriveRecoveryCredentials = async (
+    recoveryKey: string,
+    salt: Uint8Array
+): Promise<{ recoveryMasterKey: Uint8Array; recoveryHash: string }> => {
+    const masterKeyResult = await argon2.hash({
+        ...RECOVERY_KEY_PARAMS,
+        pass: recoveryKey,
+        salt
+    });
+
+    const recoveryHashResult = await argon2.hash({
+        ...AUTH_HASH_PARAMS,
+        pass: masterKeyResult.hashHex,
+        salt
+    });
+
+    return {
+        recoveryMasterKey: masterKeyResult.hash,
+        recoveryHash: recoveryHashResult.hashHex
+    };
 };
 
 /**
@@ -75,6 +131,11 @@ const deriveEncryptionKey = async (
  * @returns A Promise that resolves to a CryptoKey object ready for use in encryption/decryption operations.
  */
 async function importKey(rawKey: Uint8Array): Promise<CryptoKey> {
+    if (typeof window === 'undefined' || !window.crypto?.subtle) {
+        throw new Error(
+            'Web Crypto API is unavailable in insecure HTTP contexts. Access Keyper via HTTPS or localhost to encrypt/decrypt.'
+        );
+    }
     if (rawKey.length !== 32) {
         throw new Error(
             `Invalid key length: expected 32 bytes for AES-256, got ${rawKey.length}`
@@ -96,6 +157,11 @@ async function encryptAndEncode(
     plainText: string,
     key: CryptoKey
 ): Promise<string> {
+    if (typeof window === 'undefined' || !window.crypto?.subtle) {
+        throw new Error(
+            'Web Crypto API is unavailable in insecure HTTP contexts. Access Keyper via HTTPS or localhost.'
+        );
+    }
     const encoder = new TextEncoder();
     const data = encoder.encode(plainText);
 
@@ -125,10 +191,15 @@ async function decodeAndDecrypt(
     base64Data: string,
     key: CryptoKey
 ): Promise<string> {
+    if (typeof window === 'undefined' || !window.crypto?.subtle) {
+        throw new Error(
+            'Web Crypto API is unavailable in insecure HTTP contexts. Access Keyper via HTTPS or localhost.'
+        );
+    }
     // 1. Convert Base64 string back to binary (Uint8Array)
     const binaryString = window.atob(base64Data);
     const bytes = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
+    for (let i = 0; i < binaryString.length; i += 1) {
         bytes[i] = binaryString.charCodeAt(i);
     }
 
@@ -138,7 +209,7 @@ async function decodeAndDecrypt(
 
     // 3. Decrypt using the same algorithm (AES-GCM)
     const decryptedBuffer = await window.crypto.subtle.decrypt(
-        { name: 'AES-GCM', iv: iv },
+        { name: 'AES-GCM', iv },
         key,
         ciphertext
     );
@@ -156,6 +227,11 @@ async function decodeAndDecrypt(
  */
 const getEncryptionKey = async (): Promise<CryptoKey> => {
     const encryptionKeyHex = localStorage.getItem('encryptionKey');
+    if (!encryptionKeyHex) {
+        throw new Error(
+            'Encryption key not found in session. Please sign in again.'
+        );
+    }
     const encryptionKey = await importKey(hexToUint8Array(encryptionKeyHex));
 
     return encryptionKey;
@@ -163,8 +239,10 @@ const getEncryptionKey = async (): Promise<CryptoKey> => {
 
 export const cryptoService = {
     generateSalt,
-    deriveAuthHash,
+    deriveAuthKey,
     deriveEncryptionKey,
+    deriveRecoveryMasterKey,
+    deriveRecoveryCredentials,
     importKey,
     encryptAndEncode,
     decodeAndDecrypt,

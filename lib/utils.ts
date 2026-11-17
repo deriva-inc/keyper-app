@@ -26,6 +26,7 @@ import {
     ToolBox,
     World1
 } from 'elementa-icons';
+import { ENERGY_THEMES } from 'get-elementa-ui';
 import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 import logger from '@/lib/logger';
@@ -316,12 +317,23 @@ function formatKey(key: string): string {
         .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+function getEnergyIllustrationPath(
+    kind: 'loading-state' | 'error-state' | 'empty-state' | 'recovery',
+    energy?: string | null
+): string {
+    const colorCode =
+        ENERGY_THEMES.find((t) => t.id === energy)?.colors?.primary?.code ??
+        'ev';
+    return `/illus/${kind}/${colorCode}.svg`;
+}
+
 export {
     cn,
     copyToClipboard,
     detectFieldType,
     entryTypeIcons,
     formatKey,
+    getEnergyIllustrationPath,
     groupCategories,
     groupProviders,
     hexToUint8Array,

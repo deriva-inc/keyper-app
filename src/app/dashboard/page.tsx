@@ -1,10 +1,14 @@
 'use client';
 
 import { useDataStore } from '@/lib/data-store';
-import { useIllustrationAnim } from '@/lib/illustration-anim';
 import { VaultEntry } from '@/lib/types/model';
 import useUIStore from '@/lib/ui-store';
-import { entryTypeIcons, formatKey, TOP_NAV_LINKS } from '@/lib/utils';
+import {
+    entryTypeIcons,
+    formatKey,
+    getEnergyIllustrationPath,
+    TOP_NAV_LINKS
+} from '@/lib/utils';
 import { dashboardApi } from '@/services/dashboard/network';
 import type {
     DashboardOverviewData,
@@ -80,8 +84,6 @@ export default function DashboardPage() {
     const userDetails = useDataStore((state) => state.userDetails);
     const { energy, theme } = useElementa();
     const router = useRouter();
-    const loadingAnimData = useIllustrationAnim('loading-state');
-    const errorAnimData = useIllustrationAnim('error-state');
     // !SECTION: Constants and Variables
 
     // SECTION: States
@@ -345,7 +347,10 @@ export default function DashboardPage() {
                             <div className="flex min-h-[calc(100dvh-10rem)] items-center justify-center py-6">
                                 <LoadingState
                                     text="Loading your sanctuary..."
-                                    animData={loadingAnimData}
+                                    illustration={getEnergyIllustrationPath(
+                                        'loading-state',
+                                        energy
+                                    )}
                                 />
                             </div>
                         ) : uiState === UI_STATE_ENUM.ERROR ? (
@@ -357,7 +362,10 @@ export default function DashboardPage() {
                                         text: 'Retry',
                                         onClick: () => loadDashboardData()
                                     }}
-                                    animData={errorAnimData}
+                                    illustration={getEnergyIllustrationPath(
+                                        'error-state',
+                                        energy
+                                    )}
                                 />
                             </div>
                         ) : isDataEmpty ? (
@@ -365,6 +373,10 @@ export default function DashboardPage() {
                                 <EmptyState
                                     heading="Welcome to Your Vault"
                                     text="Your sanctuary is clean and empty. Create profiles, groups, and store your encrypted credentials to get started."
+                                    illustration={getEnergyIllustrationPath(
+                                        'empty-state',
+                                        energy
+                                    )}
                                     primaryButtonOptions={{
                                         text: 'Go to Vault',
                                         onClick: () => router.push('/vault')
