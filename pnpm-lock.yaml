@@ -54,8 +54,8 @@ importers:
         specifier: ^10.12.1
         version: 10.14.1
       get-elementa-ui:
-        specifier: ^1.80.1
-        version: 1.80.1(@babel/core@7.29.13)(@playwright/test@1.65.1)(@types/node@20.19.43)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@2.79.2)(sass@1.108.2)(typescript@5.9.3)(use-sync-external-store@1.7.0(react@19.3.1))
+        specifier: ^1.82.0
+        version: 1.82.0(@babel/core@7.29.13)(@playwright/test@1.65.1)(@types/node@20.19.43)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@2.79.2)(sass@1.108.2)(typescript@5.9.3)(use-sync-external-store@1.7.0(react@19.3.1))
       graphql:
         specifier: ^16.9.0
         version: 16.15.0
@@ -180,6 +180,9 @@ importers:
       '@types/react':
         specifier: ^18.2.74
         version: 18.3.31
+      '@types/react-dom':
+        specifier: 18.3.7
+        version: 18.3.7(@types/react@18.3.31)
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.5.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.3))(eslint@8.57.1)(typescript@5.9.3)
@@ -3843,8 +3846,8 @@ packages:
     resolution: {integrity: sha512-XjH1AECxf0giL2V1aU8vKyRR2ppRUb5c0EvT7zuJTokQ74bNo52zOtghqdWIqrhUD79fo3x0WfKZdOqxF6LG1Q==}
     engines: {node: '>=18'}
 
-  get-elementa-ui@1.80.1:
-    resolution: {integrity: sha512-jdwCXCZVjOhUoPAhvocJSX26t6IfaIsflF231KcRNPBAD3fyoCs9/bTDN+j7okzz0UhprXQIvhmSa1GOssYnig==}
+  get-elementa-ui@1.82.0:
+    resolution: {integrity: sha512-8IOyl4YTCfoFC7bqifLTbP8K1asRNjLNAv7DEb+QmEKGX+fMMc1PzXpo9jbgmmdXnZ0VN3YAYCZYw//9gqS5sA==}
     peerDependencies:
       react: '>=19.3.1'
       react-dom: '>=19.3.1'
@@ -10907,7 +10910,7 @@ snapshots:
 
   get-east-asian-width@1.7.0: {}
 
-  get-elementa-ui@1.80.1(@babel/core@7.29.13)(@playwright/test@1.65.1)(@types/node@20.19.43)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@2.79.2)(sass@1.108.2)(typescript@5.9.3)(use-sync-external-store@1.7.0(react@19.3.1)):
+  get-elementa-ui@1.82.0(@babel/core@7.29.13)(@playwright/test@1.65.1)(@types/node@20.19.43)(@types/react-dom@18.3.7(@types/react@18.3.31))(@types/react@18.3.31)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rollup@2.79.2)(sass@1.108.2)(typescript@5.9.3)(use-sync-external-store@1.7.0(react@19.3.1)):
     dependencies:
       '@tailwindcss/postcss': 4.3.5
       class-variance-authority: 0.7.1

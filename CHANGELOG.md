@@ -7,7 +7,9 @@
 #### Added
 
 - Add release pipeline and version management using Changeset.
-    - Replaced `yarn` with `pnpm` as package manager.
+
+#### Changed
+- Replaced `yarn` with `pnpm` as package manager.
 
 ### [0.79.0] - 2026-11-12
 
