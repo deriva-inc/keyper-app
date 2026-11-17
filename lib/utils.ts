@@ -4,12 +4,15 @@ import {
     Briefcase,
     CreditCard,
     DogPaw,
+    FavoriteOutline,
     Fingerprint,
     Flag,
+    Friends,
     Gear,
     Home1,
     IdCard,
     Import,
+    Locker,
     MediaPlayback,
     MoneyInstitution2,
     Notepad,
@@ -18,12 +21,13 @@ import {
     Pills,
     Rocket,
     RupeeCash1,
+    Shapes,
     ShoppingBags,
     ToolBox,
     World1
 } from 'elementa-icons';
-import { twMerge } from 'tailwind-merge';
 import { toast } from 'sonner';
+import { twMerge } from 'tailwind-merge';
 import logger from '@/lib/logger';
 import { EntryCustomFieldValueType } from './types/model';
 
@@ -36,7 +40,52 @@ const protectedRoutes = [
     '/groups',
     '/entries',
     '/vault',
-    '/profiles'
+    '/profiles',
+    '/favorites',
+    '/user-profile'
+];
+
+const TOP_NAV_LINKS = [
+    {
+        id: 'dashboard',
+        label: 'Dashboard',
+        href: '/dashboard',
+        icon: Home1,
+        level: 0,
+        isDisabled: false
+    },
+    {
+        id: 'vault',
+        label: 'Vault',
+        href: '/vault',
+        icon: Locker,
+        level: 0,
+        isDisabled: false
+    },
+    {
+        id: 'profiles',
+        label: 'Profiles',
+        href: '/profiles',
+        icon: Friends,
+        level: 0,
+        isDisabled: false
+    },
+    {
+        id: 'groups',
+        label: 'Groups',
+        href: '/groups',
+        icon: Shapes,
+        level: 0,
+        isDisabled: false
+    },
+    {
+        id: 'favorites',
+        label: 'Favorites',
+        href: '/favorites',
+        icon: FavoriteOutline,
+        level: 0,
+        isDisabled: false
+    }
 ];
 
 const profileIcons = [
@@ -218,11 +267,10 @@ const hexToUint8Array = (hexString: string): Uint8Array => {
  * @param {Uint8Array} bytes - The Uint8Array to convert
  * @returns {string} The resulting hex string
  */
-const uint8ArrayToHex = (bytes: Uint8Array): string => {
-    return Array.from(bytes)
+const uint8ArrayToHex = (bytes: Uint8Array): string =>
+    Array.from(bytes)
         .map((b) => b.toString(16).padStart(2, '0'))
         .join('');
-};
 
 /**
  * This function copies text to clipboard using the modern Clipboard API with fallback.
@@ -236,7 +284,6 @@ const copyToClipboard = async (text: string): Promise<void> => {
         if (navigator.clipboard && window.isSecureContext) {
             await navigator.clipboard.writeText(text);
             toast.success('Copied to clipboard');
-            return;
         }
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -270,17 +317,16 @@ function formatKey(key: string): string {
 }
 
 export {
-    protectedRoutes,
-    profileIcons,
-    groupProviders,
-    groupCategories,
-    entryTypeIcons
-};
-export {
     cn,
-    hexToUint8Array,
-    uint8ArrayToHex,
     copyToClipboard,
     detectFieldType,
-    formatKey
+    entryTypeIcons,
+    formatKey,
+    groupCategories,
+    groupProviders,
+    hexToUint8Array,
+    profileIcons,
+    protectedRoutes,
+    TOP_NAV_LINKS,
+    uint8ArrayToHex
 };

@@ -17,6 +17,14 @@ const path = require('path');
 
 module.exports = {
     output: 'standalone',
+    allowedDevOrigins: [
+        '192.168.*.*',
+        '10.*.*.*',
+        '172.16.*.*',
+        '100.*.*.*',
+        '*.local',
+        'localhost'
+    ],
     reactStrictMode: false,
     sassOptions: {
         includePaths: [path.join(__dirname, 'styles')]

@@ -4,21 +4,19 @@ import { z } from 'zod';
 const UserSchema = z.object({
     id: z.uuid(),
     email: z.string(),
-    authHash: z.string(),
-    authSalt: z.string(),
-    encryptionHash: z.string(),
-    encryptionSalt: z.string(),
-    recoveryKey: z.string(),
-    name: z.string(),
-    avatarUrl: z.url(),
-    createdAt: z.date(),
-    updatedAt: z.date()
+    authKey: z.string().optional(),
+    authSalt: z.string().optional(),
+    encryptionSalt: z.string().optional(),
+    recoveryKey: z.string().optional(),
+    name: z.string().optional(),
+    avatarUrl: z.url().optional(),
+    createdAt: z.date().optional(),
+    updatedAt: z.date().optional()
 });
 
 const UserDetailsWOSecretsSchema = UserSchema.omit({
-    authHash: true,
+    authKey: true,
     authSalt: true,
-    encryptionHash: true,
     encryptionSalt: true,
     recoveryKey: true
 });
@@ -88,45 +86,55 @@ const LocalStorageSchema = z.object({
     userDetails: UserSchema
 });
 
+const NavLinkSchema = z.object({
+    id: z.string(),
+    label: z.string(),
+    href: z.string(),
+    icon: z.custom<React.ReactNode>(),
+    level: z.number().int().nonnegative(),
+    isDisabled: z.boolean().default(false)
+});
+
 export {
-    UserSchema,
-    UserDetailsWOSecretsSchema,
-    ProfileSchema,
-    GroupTypeSchema,
-    GroupSchema,
     EntryTypeSchema,
-    VaultEntrySchema,
-    LocalStorageSchema
+    GroupSchema,
+    GroupTypeSchema,
+    LocalStorageSchema,
+    NavLinkSchema,
+    ProfileSchema,
+    UserDetailsWOSecretsSchema,
+    UserSchema,
+    VaultEntrySchema
 };
 
 // TypeScript Types
 enum ENERGY {
-    'VAPORWAVE' = 'vaporwave',
-    'ELECTRIC_SHOCK' = 'electric-shock',
-    'CYBER_MIST' = 'cyber-mist',
-    'SUMMER_FRUIT' = 'summer-fruit',
-    'BUBBLEGUM_ICE' = 'bubblegum-ice'
+    VAPORWAVE = 'vaporwave',
+    ELECTRIC_SHOCK = 'electric-shock',
+    CYBER_MIST = 'cyber-mist',
+    SUMMER_FRUIT = 'summer-fruit',
+    BUBBLEGUM_ICE = 'bubblegum-ice'
 }
 
 enum THEME {
-    'AMBER' = 'light',
-    'GUN_METAL' = 'dark'
+    AMBER = 'light',
+    GUN_METAL = 'dark'
 }
 
 enum UI_STATE {
-    'LOADING',
-    'ERROR',
-    'SUCCESS',
-    'IDLE'
+    LOADING,
+    ERROR,
+    SUCCESS,
+    IDLE
 }
 
 enum TOP_NAV_LINKS {
-    'DASHBOARD',
-    'PROFILES',
-    'GROUPS',
-    'VAULT',
-    'FAVORITES',
-    'SETTINGS'
+    DASHBOARD = 'dashboard',
+    PROFILES = 'profiles',
+    GROUPS = 'groups',
+    VAULT = 'vault',
+    FAVORITES = 'favorites',
+    SETTINGS = 'settings'
 }
 
 type EntryCustomFieldValueType = 'array' | 'object' | 'primitive';
@@ -138,18 +146,20 @@ type Group = z.infer<typeof GroupSchema>;
 type EntryType = z.infer<typeof EntryTypeSchema>;
 type VaultEntry = z.infer<typeof VaultEntrySchema>;
 type LocalStorageData = z.infer<typeof LocalStorageSchema>;
+type NavLink = z.infer<typeof NavLinkSchema>;
 
 // Exports - TypeScript types
-export { ENERGY, THEME, UI_STATE, TOP_NAV_LINKS };
+export { ENERGY, THEME, TOP_NAV_LINKS, UI_STATE };
 
 export type {
     EntryCustomFieldValueType,
+    EntryType,
+    Group,
+    GroupType,
+    LocalStorageData,
+    NavLink,
+    Profile,
     User,
     UserDetailsWOSecrets,
-    LocalStorageData,
-    Profile,
-    GroupType,
-    Group,
-    EntryType,
     VaultEntry
 };
