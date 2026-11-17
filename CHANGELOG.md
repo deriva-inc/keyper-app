@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### [0.81.0] - 2026-11-17
+
+---
+
+#### Added
+
+- Update favicon and logo SVG for all the energies.
+
 ### [0.80.1] - 2026-11-17
 
 ---
