@@ -1,6 +1,6 @@
 {
     "name": "keyper-app",
-    "version": "0.80.0",
+    "version": "0.80.1",
     "description": "Web app for the Keyper platform.",
     "homepage": "https://keyper.deriva.xyz",
     "main": "index.js",
