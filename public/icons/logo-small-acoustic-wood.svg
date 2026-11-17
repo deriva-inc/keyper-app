@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 570" width="480" height="570" role="img" aria-labelledby="t d">
+  <title id="t">Keyper Hallmark</title>
+  <desc id="d">A shield containing a key whose shaft forms the stem of the letter K.</desc>
+  <defs>
+    <linearGradient id="shieldStroke" x1="0" y1="30" x2="0" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F3A7C4"/>
+      <stop offset="1" stop-color="#A05C77"/>
+    </linearGradient>
+    <linearGradient id="shieldFill" x1="0" y1="30" x2="0" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C26D8F" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#C26D8F" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="keyFill" x1="0" y1="112.6" x2="0" y2="428" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#EE9978"/>
+      <stop offset="1" stop-color="#A44B28"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield: quiet supporting frame -->
+  <path id="shield" fill="url(#shieldFill)" stroke="url(#shieldStroke)" stroke-opacity="0.85"
+        stroke-width="10" stroke-linejoin="round"
+        d="M240,30 C340,30 422,52 446,100 C454,290 400,462 240,540 C80,462 26,290 34,100 C58,52 140,30 240,30 Z"/>
+
+  <!-- Key + K: bow (ring), shaft = K stem, bitting (teeth) on the left, K arm and leg on the right -->
+  <g id="key-k" fill="url(#keyFill)">
+    <circle cx="182.5" cy="160.2" r="36.2" fill="none" stroke="url(#keyFill)" stroke-width="22.68"/>
+    <path d="M161.9,194.7 H203 V276.2 L284.5,194.7 H340.6 L231.1,304.3 L354.8,428 H298.6 L203,332.4 V428 H161.9 Z"/>
+    <path d="M152.2,196.8 Q161.9,197.8 161.9,213 L164.9,213 L164.9,192.8 Z M212.7,196.8 Q203,197.8 203,213 L200,213 L200,192.8 Z"/>
+    <rect x="125.2" y="320" width="42.7" height="16.2" rx="2.5"/>
+    <rect x="140.3" y="350.2" width="27.6" height="16.2" rx="2.5"/>
+    <rect x="129.5" y="380.5" width="38.4" height="16.2" rx="2.5"/>
+  </g>
+</svg>
