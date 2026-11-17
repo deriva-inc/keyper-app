@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### [0.80.1] - 2026-11-17
+
+---
+
+#### Updated
+
+- Update illustrations for `EmptyState`, `ErrorState`, `LoadingState`, and `AccountRecoveryDialog`.
+
 ### [0.80.0] - 2026-11-16
 
 ---
@@ -9,6 +17,7 @@
 - Add release pipeline and version management using Changeset.
 
 #### Changed
+
 - Replaced `yarn` with `pnpm` as package manager.
 
 ### [0.79.0] - 2026-11-12
