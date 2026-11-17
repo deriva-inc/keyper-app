@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### [0.82.0] - 2026-11-17
+
+---
+
+#### Added
+
+- Add data integration on the dashboard page and enchance UI.
+
 ### [0.81.0] - 2026-11-17
 
 ---
